@@ -19,19 +19,22 @@ export default async function Nav() {
 
   return user ? (
     <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-            <div className="flex items-center gap-4">
-              <Link href='/'>Home</Link>
-              <Link href='/allQuizzes'>Quizzes</Link>
-              <Link href='https://bot.schoolofcode.com/' target="_blank">SoCBot</Link>
-                Hey, {user.email}!
-                <form action={signOut}>
-                    <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-                        Logout
-                    </button>
-                </form>
-            </div>
+      <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
+        <div className="flex items-center gap-4">
+          <Link href="/">Home</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/allQuizzes">Quizzes</Link>
+          <Link href="https://bot.schoolofcode.com/" target="_blank">
+            SoCBot
+          </Link>
+          Hey, {user.email}!
+          <form action={signOut}>
+            <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+              Logout
+            </button>
+          </form>
         </div>
+      </div>
     </nav>
-  ) : null
+  ) : null;
 }

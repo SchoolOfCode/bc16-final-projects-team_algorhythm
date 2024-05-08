@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui";
+import tailwindcssAnimated from "tailwindcss-animated";
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [daisyui],
+  plugins: [daisyui, tailwindcssAnimated],
 };

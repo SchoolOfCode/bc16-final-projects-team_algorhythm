@@ -13,6 +13,10 @@ export default function SignUp({
     "use server";
 
     const origin = headers().get("origin");
+
+    const first_name = formData.get('first_name') as string;
+    const last_name = formData.get('last_name') as string;
+
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
@@ -36,6 +40,26 @@ export default function SignUp({
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
 
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+        <label className="text-md" htmlFor="first_name">
+          First Name
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="first_name"
+          placeholder="Jack"
+          type="text"
+          required
+        />
+        <label className="text-md" htmlFor="last_name">
+          Last Name
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="last_name"
+          placeholder="Bob"
+          type="text"
+          required
+        />
         <label className="text-md" htmlFor="email">
           Email
         </label>

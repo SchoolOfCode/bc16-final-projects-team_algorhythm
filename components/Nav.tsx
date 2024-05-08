@@ -21,10 +21,10 @@ export default async function Nav() {
     <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
       <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
         <div className="flex items-center gap-4">
-          <Link href="/">Home</Link>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/allQuizzes">Quizzes</Link>
-          <Link href="https://bot.schoolofcode.com/" target="_blank">
+          <Link className="btn btn-wide btn-primary" href="/">Home</Link>
+          <Link className="btn btn-wide btn-primary" href="/dashboard">Dashboard</Link>
+          <Link className="btn btn-wide btn-primary" href="/allQuizzes">Quizzes</Link>
+          <Link className="btn btn-wide btn-primary" href="https://bot.schoolofcode.com/" target="_blank">
             SoCBot
           </Link>
           Hey, {user.email}!

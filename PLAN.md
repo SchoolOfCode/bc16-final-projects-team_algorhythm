@@ -6,7 +6,7 @@ Part 1:
 - Login Page
 - Sign up Page
 - Home Page
-- Quizzes (Modules) Page
+- Quizzes (Module) Page
 - Quiz page
 - Quiz results page
 - Basic User / Admin Page

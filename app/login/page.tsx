@@ -28,9 +28,13 @@ export default function Login({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="flex-1 flex w-full justify-center">
+      <div className="bg-sky-100 flex-1 flex flex-col w-full px-8 justify-center">
+        HELLO
+      </div>
+    <div className="flex-1 flex w-full px-8 justify-center gap-2">
 
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+      <form className="animate-in flex w-[50%] flex-col justify-center gap-2 text-foreground">
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -64,6 +68,7 @@ export default function Login({
           </p>
         )}
       </form>
+    </div>
     </div>
   );
 }

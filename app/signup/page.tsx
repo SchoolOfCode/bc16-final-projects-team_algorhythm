@@ -2,6 +2,8 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "@/components/Sign-Up-In";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function SignUp({
   searchParams,
@@ -37,24 +39,44 @@ export default async function SignUp({
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-
+    console.log(error!.code)
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      if(error!.code === 'weak_password'){
+        return redirect("/signup?message=Password should be at least 6 characters");
+      }
+      return redirect("/signup?message=Could not authenticate user");
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    return redirect("/signup?message=Check email to continue sign in process");
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+    <div className="flex-1 flex w-full justify-center">
+    <div className="bg-sky-100 flex-1 flex flex-col w-full px-8 justify-center items-center">
+      <Image
+        className="pb-10 animate-fade-right"
+        src="/soclarge.png"
+        alt="SoC Logo"
+        width={600}
+        height={600}
+      />
+    </div>
+    <div className="flex-1 flex w-full px-8 justify-center gap-2">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground">
+        <div className="tooltip tooltip-left " data-tip="Go Back">
+        <Link 
+          href="/login" 
+          className="rounded-md py-2 text-foreground mb-2 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">   <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" /></svg>
+        </Link>
+        </div>
         <label className="text-md" htmlFor="first_name">
           First Name
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="first_name"
-          placeholder="Jack"
+          placeholder="Linus"
           type="text"
           required
         />
@@ -64,7 +86,7 @@ export default async function SignUp({
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="last_name"
-          placeholder="Bob"
+          placeholder="Torvalds"
           type="text"
           required
         />
@@ -74,7 +96,7 @@ export default async function SignUp({
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="email"
-          placeholder="you@example.com"
+          placeholder="email@example.com"
           required
         />
         <label className="text-md" htmlFor="password">
@@ -89,7 +111,7 @@ export default async function SignUp({
         />
         <SubmitButton
           formAction={signUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
+          className="bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing Up..."
         >
           Sign Up
@@ -100,6 +122,7 @@ export default async function SignUp({
           </p>
         )}
       </form>
+    </div>
     </div>
   );
 }

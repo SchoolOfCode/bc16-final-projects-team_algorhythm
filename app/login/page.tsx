@@ -50,7 +50,7 @@ export default async function Login({
         />
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2">
-        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue">
           <label className="text-md" htmlFor="email">
             Email
           </label>
@@ -72,14 +72,15 @@ export default async function Login({
           />
           <SubmitButton
             formAction={signIn}
-            className= "bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2"
+            className="bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2"
             pendingText="Signing In..."
           >
             Sign In
           </SubmitButton>
-          <Link 
-          href="/signup" 
-          className="bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2 text-center">
+          <Link
+            href="/signup"
+            className="bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2 text-center"
+          >
             Sign Up Here!
           </Link>
           {searchParams?.message && (

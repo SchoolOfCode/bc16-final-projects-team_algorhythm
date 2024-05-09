@@ -25,11 +25,10 @@ export default function QuizCreation() {
   };
 
   async function handleSubmit(values, { resetForm }) {
-    const { question, answer } = values;
     try {
       const { error } = await supabase
         .from("quiz_creation")
-        .insert({ id, question, answer });
+        .insert({ id: values.id, question: values.question, answer: values.answer });
       if (error) {
         throw error;
       }
@@ -85,6 +84,7 @@ export default function QuizCreation() {
           </Field>
 
           <div className="button-container">
+          {feedback && <p>{feedback}</p>}
             <button type="submit" className="submit-button">
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>

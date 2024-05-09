@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import * as yup from 'yup';
 
 
+
 const supabase = createClient();
 
 export default function QuizCreation() {

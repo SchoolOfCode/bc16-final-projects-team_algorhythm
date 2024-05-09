@@ -53,7 +53,7 @@ export default async function Nav() {
             </li>
             <li>
               <form action={signOut}>
-                <button>Logout</button>
+                <button type="submit">Logout</button>
               </form>
             </li>
           </ul>

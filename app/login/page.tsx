@@ -40,7 +40,7 @@ export default async function Login({
 
   return (
     <div className="flex-1 flex w-full justify-center">
-      <div className="bg-sky-100 flex-1 flex flex-col w-full px-8 justify-center items-center">
+      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center">
         <Image
           className="pb-10 animate-fade-right"
           src="/soclarge.png"
@@ -49,13 +49,13 @@ export default async function Login({
           height={600}
         />
       </div>
-      <div className="flex-1 flex w-full px-8 justify-center gap-2">
-        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue">
+      <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl">
           <label className="text-md" htmlFor="email">
             Email
           </label>
           <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
+            className="rounded-md px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
             name="email"
             placeholder="you@example.com"
             required
@@ -64,7 +64,7 @@ export default async function Login({
             Password
           </label>
           <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
+            className="rounded-md px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
             type="password"
             name="password"
             placeholder="••••••••"
@@ -72,14 +72,14 @@ export default async function Login({
           />
           <SubmitButton
             formAction={signIn}
-            className="bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2"
+            className="bg-socskyblue hover:bg-sky-200 rounded-md px-4 py-2 text-foreground mb-2 text-black"
             pendingText="Signing In..."
           >
             Sign In
           </SubmitButton>
           <Link
             href="/signup"
-            className="bg-sky-500 hover:bg-sky-600 rounded-md px-4 py-2 text-foreground mb-2 text-center"
+            className="bg-socskyblue hover:bg-sky-200 rounded-md px-4 py-2 text-foreground mb-2 text-center text-black"
           >
             Sign Up Here!
           </Link>

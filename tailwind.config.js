@@ -25,6 +25,7 @@ module.exports = {
           "background-hover": "hsl(var(--btn-background-hover))",
         },
         loginblue: "#32A4DC",
+        socskyblue: "#CDF6FF",
       },
     },
   },

@@ -19,7 +19,7 @@ export default async function Nav() {
   };
 
   return user ? (
-    <div className="navbar bg-sky-100 px-10 py-5">
+    <div className="navbar bg-sky-100 px-10 py-5 animate-fade-down">
       <div className="flex-1">
         <Link href="/">
           <Image src="/logoblack.png" alt="SoC Logo" width={250} height={200} />

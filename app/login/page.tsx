@@ -4,11 +4,21 @@ import { SubmitButton } from "@/components/Sign-Up-In";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Login({
+export default async function Login({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    return redirect("/");
+  }
+
   const signIn = async (formData: FormData) => {
     "use server";
 
@@ -30,17 +40,17 @@ export default function Login({
 
   return (
     <div className="flex-1 flex w-full justify-center">
-      <div className="bg-sky-100 flex-1 flex flex-col w-full px-8">
+      <div className="bg-sky-100 flex-1 flex flex-col w-full px-8 justify-center items-center">
         <Image
-          className="justify-center"
+          className="pb-10 animate-fade-right"
           src="/soclarge.png"
           alt="SoC Logo"
-          width={400}
-          height={400}
+          width={600}
+          height={600}
         />
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2">
-        <form className="animate-in flex w-[50%] flex-col justify-center gap-2 text-foreground">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground">
           <label className="text-md" htmlFor="email">
             Email
           </label>

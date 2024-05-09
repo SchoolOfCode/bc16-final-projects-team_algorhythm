@@ -3,19 +3,28 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "@/components/Sign-Up-In";
 
-export default function SignUp({
+export default async function SignUp({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    return redirect("/");
+  }
 
   const signUp = async (formData: FormData) => {
     "use server";
 
     const origin = headers().get("origin");
 
-    const first_name = formData.get('first_name') as string;
-    const last_name = formData.get('last_name') as string;
+    const first_name = formData.get("first_name") as string;
+    const last_name = formData.get("last_name") as string;
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -38,7 +47,6 @@ export default function SignUp({
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
         <label className="text-md" htmlFor="first_name">
           First Name

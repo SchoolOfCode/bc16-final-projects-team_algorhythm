@@ -19,12 +19,30 @@ export default async function Nav() {
   };
 
   return user ? (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-sky-100 px-10 py-5">
       <div className="flex-1">
-        <Image src="/logoblack.png" alt="SoC Logo" width={200} height={200} />
+        <Link href="/">
+          <Image src="/logoblack.png" alt="SoC Logo" width={250} height={200} />
+        </Link>
       </div>
-      <div className="flex-none">
-        Hey, {user.email}!
+      <div className="">
+        <Link className="px-3 dark:text-black" href="/">
+          Home
+        </Link>
+        <Link className="px-3 dark:text-black" href="/dashboard">
+          Dashboard
+        </Link>
+        <Link className="px-3 dark:text-black" href="/allQuizzes">
+          Quizzes
+        </Link>
+        <Link
+          className="px-5 dark:text-black"
+          href="https://bot.schoolofcode.com/"
+          target="_blank"
+        >
+          SoCBot
+        </Link>
+        <p className="pl-3 dark:text-black">Hey, {user.email}!</p>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -50,10 +68,7 @@ export default async function Nav() {
                 </a>
               </li>
               <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                  <button type="submit">Logout</button>
+                <button type="submit">Logout</button>
               </li>
             </ul>
           </form>

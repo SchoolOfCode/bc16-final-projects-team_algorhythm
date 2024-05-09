@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 
 export default async function Nav() {
   const supabase = createClient();
@@ -18,20 +19,46 @@ export default async function Nav() {
   };
 
   return user ? (
-    <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-            <div className="flex items-center gap-4">
-              <Link href='/'>Home</Link>
-              <Link href='/allQuizzes'>Quizzes</Link>
-              <Link href='https://bot.schoolofcode.com/' target="_blank">SoCBot</Link>
-                Hey, {user.email}!
-                <form action={signOut}>
-                    <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-                        Logout
-                    </button>
-                </form>
+    <div className="navbar bg-base-100">
+      <div className="flex-1">
+        <Image src="/logoblack.png" alt="SoC Logo" width={200} height={200} />
+      </div>
+      <div className="flex-none">
+        Hey, {user.email}!
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              />
             </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li>
+              <form action={signOut}>
+                <button>Logout</button>
+              </form>
+            </li>
+          </ul>
         </div>
-    </nav>
-  ) : null
+      </div>
+    </div>
+  ) : null;
 }

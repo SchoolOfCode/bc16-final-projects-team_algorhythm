@@ -65,28 +65,10 @@ export default async function SignUp({
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
         <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl">
-          <div className="tooltip tooltip-left " data-tip="Return to login">
-            <Link
-              href="/login"
-              className="rounded-2xl py-2 text-foreground mb-2 text-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                {" "}
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
-                />
-              </svg>
-            </Link>
-          </div>
+          <div
+            className="tooltip tooltip-left "
+            data-tip="Return to login"
+          ></div>
           <label className="text-md text-white" htmlFor="first_name">
             First name
           </label>
@@ -128,16 +110,16 @@ export default async function SignUp({
           />
           <SubmitButton
             formAction={signUp}
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black mx-[15%]"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%]"
             pendingText="Signing Up..."
           >
             Submit
           </SubmitButton>
           <Link
-              href="/login"
-              className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black mx-[15%]"
-            >
-             Return to login
+            href="/login"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black dark:text-black mx-[15%]"
+          >
+            Return to login
           </Link>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">

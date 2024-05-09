@@ -72,14 +72,14 @@ export default async function Login({
           />
           <SubmitButton
             formAction={signIn}
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black mx-[15%]"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%]"
             pendingText="Signing In..."
           >
             Sign in
           </SubmitButton>
           <Link
             href="/signup"
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black mx-[15%]"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black dark:text-black mx-[15%]"
           >
             Register
           </Link>

@@ -42,7 +42,7 @@ export default async function Nav() {
         >
           SoCBot
         </Link>
-        <p className="pl-3 dark:text-black">Hey, {user.email}!</p>
+        <p className="pl-10 pr-10 dark:text-black">Hey, {user.email}!</p>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -50,9 +50,11 @@ export default async function Nav() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+              <Image
+                src="/usericon.png"
+                alt="User Icon"
+                width={50}
+                height={50}
               />
             </div>
           </div>

@@ -13,13 +13,11 @@ export default function QuizCreation() {
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({
-    id: yup.string().max(120, "Too long!").required("Required."),
     question: yup.string().max(120, "Too long!").required("Required."),
     answer: yup.string().max(100, "Too long!").required("Required."),
   });
 
   const QuizValues = {
-    id: "",
     question: "",
     answer: "",
   };
@@ -28,7 +26,7 @@ export default function QuizCreation() {
     try {
       const { error } = await supabase
         .from("quiz_creation")
-        .insert({ id: values.id, question: values.question, answer: values.answer });
+        .insert({ question: values.question, answer: values.answer });
       if (error) {
         throw error;
       }
@@ -49,17 +47,6 @@ export default function QuizCreation() {
     >
       {({ isSubmitting }) => (
         <Form>
-          <Field name="id">
-            {({ field, meta }) => (
-              <div className="form-control">
-                <label mb="1.5" fontSize="sm" htmlFor="id">
-                  Question Number
-                </label>
-                <input {...field} placeholder="Enter question number" id="id" />
-                {meta.error && meta.touched && <p>{meta.error}</p>}
-              </div>
-            )}
-          </Field>
           <Field name="question">
             {({ field, meta }) => (
               <div className="form-control">

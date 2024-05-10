@@ -18,6 +18,24 @@ export default async function Nav() {
     return redirect("/login");
   };
 
+  let userData = null;
+
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("uuid, first_name, last_name, email");
+      if (data) {
+        return {"Hey, "data[0].first_name"!"};
+        console.log(data[0].first_name);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  fetchData();
+
   return user ? (
     <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down">
       <div className="flex-1">
@@ -42,7 +60,9 @@ export default async function Nav() {
         >
           SoCBot
         </Link>
-        <p className="pl-10 pr-10 dark:text-black">Hey, {user.email}!</p>
+        <p className="pl-10 pr-10 dark:text-black">
+          Hey, {userData ? userData : "ERROR"}!
+        </p>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -64,10 +84,10 @@ export default async function Nav() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
+                <Link className="justify-between" href="/profile">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <button type="submit">Logout</button>

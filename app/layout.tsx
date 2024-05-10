@@ -1,11 +1,16 @@
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { Lexend } from 'next/font/google'
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
+
+const lexend = Lexend({
+  subsets: ['latin'],
+  variable: '--font-lexend',
+})
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
@@ -19,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
+    <html lang="en" className={`${lexend.variable} font-sans`}>
+      <body className="bg-background text-foreground dark:bg-slate-600">
         <main className="min-h-screen flex flex-col items-center">
           <Nav />
           {children}

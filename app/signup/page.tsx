@@ -86,7 +86,7 @@ export default async function SignUp({
             First name
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             name="first_name"
             placeholder="Linus"
             type="text"
@@ -98,7 +98,7 @@ export default async function SignUp({
             Last name
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             name="last_name"
             placeholder="Torvalds"
             type="text"
@@ -110,7 +110,7 @@ export default async function SignUp({
             Email
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             name="email"
             placeholder="email@example.com"
             required
@@ -119,7 +119,7 @@ export default async function SignUp({
             Password
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             type="password"
             name="password"
             placeholder="••••••••"

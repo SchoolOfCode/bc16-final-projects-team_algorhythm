@@ -27,19 +27,18 @@ export default async function SignUp({
 
     const first_name = formData.get("first_name") as string;
     const last_name = formData.get("last_name") as string;
-
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-    console.log(error!.code);
+
     if (error) {
       if (error!.code === "weak_password") {
         return redirect(
@@ -48,6 +47,20 @@ export default async function SignUp({
       }
       return redirect("/signup?message=Could not authenticate user");
     }
+
+    // Inserting data to Profiles table
+    const { error: roleError } = await supabase
+    .from("profiles")
+    .insert([{ 
+      uuid: data.user!.id, 
+      first_name, 
+      last_name, 
+      email 
+    }])
+    if (roleError) {
+      console.error("Error inserting data to table roles:", roleError);
+    }
+    // Ends
 
     return redirect("/signup?message=Check email to continue sign in process");
   };
@@ -77,6 +90,8 @@ export default async function SignUp({
             name="first_name"
             placeholder="Linus"
             type="text"
+            minLength={3}
+            maxLength={25}
             required
           />
           <label className="text-md text-white" htmlFor="last_name">
@@ -87,6 +102,8 @@ export default async function SignUp({
             name="last_name"
             placeholder="Torvalds"
             type="text"
+            minLength={3}
+            maxLength={25}
             required
           />
           <label className="text-md text-white" htmlFor="email">

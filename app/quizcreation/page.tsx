@@ -5,37 +5,40 @@ import * as yup from "yup";
 import { useState } from "react";
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
 export default function QuizCreation() {
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({
+    week_number: yup.number().max(12, "Week must be 1 to 12").required("Required."),
     question: yup.string().max(120, "Too long!").required("Required."),
     correct_answer: yup.string().max(100, "Too long!").required("Required."),
-    answer2: yup.string().max(100, "Too long!").required("Required."),
-    answer3: yup.string().max(100, "Too long!").required("Required."),
-    answer4: yup.string().max(100, "Too long!").required("Required."),
+    incorrect_answer1: yup.string().max(100, "Too long!").required("Required."),
+    incorrect_answer2: yup.string().max(100, "Too long!").required("Required."),
+    incorrect_answer3: yup.string().max(100, "Too long!").required("Required."),
   });
 
   const QuizValues = {
+    week_number: "",
     question: "",
     correct_answer: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+    incorrect_answer1: "",
+    incorrect_answer2: "",
+    incorrect_answer3: "",
   };
 
-  async function handleSubmit(values, { resetForm }) {
+  async function handleSubmit(values: any, { resetForm }: any) {
     try {
-      const { error } = await supabase.from("quiz_creation").insert({
+      const { error } = await supabase.from("quiz1").insert({
+        week_number: values.week_number,
         question: values.question,
         correct_answer: values.correct_answer,
-        answer2: values.answer2,
-        answer3: values.answer3,
-        answer4: values.answer4,
+        incorrect_answer1: values.incorrect_answer1,
+        incorrect_answer2: values.incorrect_answer2,
+        incorrect_answer3: values.incorrect_answer3,
       });
       if (error) {
         throw error;
@@ -57,8 +60,17 @@ export default function QuizCreation() {
     >
       {({ isSubmitting }) => (
         <Form>
+          <Field name="week_number">
+            {({ field, meta }: any) => (
+              <div className="form-control">
+                <label>Week</label>
+                <input {...field} placeholder="Enter the week number" id="week_number" />
+                {meta.error && meta.touched && <p>{meta.error}</p>}
+              </div>
+            )}
+          </Field>
           <Field name="question">
-            {({ field, meta }) => (
+            {({ field, meta }: any) => (
               <div className="form-control">
                 <label>Question</label>
                 <input {...field} placeholder="Enter question" id="question" />
@@ -67,7 +79,7 @@ export default function QuizCreation() {
             )}
           </Field>
           <Field name="correct_answer">
-            {({ field, meta }) => (
+            {({ field, meta }: any) => (
               <div className="form-control">
                 <label>Correct Answer</label>
                 <input
@@ -79,29 +91,29 @@ export default function QuizCreation() {
               </div>
             )}
           </Field>
-          <Field name="answer2">
-            {({ field, meta }) => (
+          <Field name="incorrect_answer1">
+            {({ field, meta }: any) => (
               <div className="form-control">
                 <label>Incorrect Answer</label>
-                <input {...field} placeholder="Enter answer 2" id="answer2" />
+                <input {...field} placeholder="Enter incorrect answer 1" id="incorrect_answer1" />
                 {meta.error && meta.touched && <p>{meta.error}</p>}
               </div>
             )}
           </Field>
-          <Field name="answer3">
-            {({ field, meta }) => (
+          <Field name="incorrect_answer2">
+            {({ field, meta }: any) => (
               <div className="form-control">
                 <label>Incorrect Answer</label>
-                <input {...field} placeholder="Enter answer 3" id="answer3" />
+                <input {...field} placeholder="Enter incorrect answer 2" id="incorrect_answer2" />
                 {meta.error && meta.touched && <p>{meta.error}</p>}
               </div>
             )}
           </Field>
-          <Field name="answer4">
-            {({ field, meta }) => (
+          <Field name="incorrect_answer3">
+            {({ field, meta }: any) => (
               <div className="form-control">
                 <label>Incorrect Answer</label>
-                <input {...field} placeholder="Enter answer 4" id="answer4" />
+                <input {...field} placeholder="Enter incorrect answer 3" id="incorrect_answer3" />
                 {meta.error && meta.touched && <p>{meta.error}</p>}
               </div>
             )}

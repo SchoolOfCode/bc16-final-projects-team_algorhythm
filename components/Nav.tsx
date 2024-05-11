@@ -18,8 +18,22 @@ export default async function Nav() {
     return redirect("/login");
   };
 
+  const userData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("uuid, first_name, last_name, email");
+      if (data) {
+        return (`Hey, ${data[0].first_name}`);
+      }
+    } catch (error) {
+      console.log(error);
+      return null
+    }
+  };
+
   return user ? (
-    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down">
+    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50">
       <div className="flex-1">
         <Link href="/">
           <Image src="/logoblack.png" alt="SoC Logo" width={250} height={200} />
@@ -42,7 +56,9 @@ export default async function Nav() {
         >
           SoCBot
         </Link>
-        <p className="pl-10 pr-10 dark:text-black">Hey, {user.email}!</p>
+        <p className="pl-10 pr-10 dark:text-black">
+          {userData()}!
+        </p>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -61,13 +77,13 @@ export default async function Nav() {
           <form action={signOut}>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
+                <Link className="justify-between" href="/profile">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <button type="submit">Logout</button>

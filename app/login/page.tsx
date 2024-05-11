@@ -55,7 +55,7 @@ export default async function Login({
             Email
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
             name="email"
             placeholder="you@example.com"
             required
@@ -64,7 +64,7 @@ export default async function Login({
             Password
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
             type="password"
             name="password"
             placeholder="••••••••"

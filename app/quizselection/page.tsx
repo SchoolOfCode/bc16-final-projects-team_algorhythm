@@ -1,139 +1,32 @@
-"use client";
-import { Formik, Form, Field } from "formik";
-import { createClient } from "@supabase/supabase-js";
-import * as yup from "yup";
-import { useState } from "react";
-import Image from "next/image";
 import QuizCard from "@/components/QuizCard";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-);
-
 export default function QuizSelection() {
+
+    const quizData = [
+      { title: "Quiz 1", description: "Description for Quiz 1", imageUrl: "/soclogo.png" },
+      { title: "Quiz 2", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 3", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 4", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 5", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 6", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 7", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 8", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 9", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 10", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 11", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      { title: "Quiz 12", description: "Description for Quiz 2", imageUrl: "/soclogo.png" },
+      // Add more quiz data objects as needed
+    ];
+ 
   return (
     <>
       <div className="grid grid-cols-4 gap-4">
+      {quizData.map((data, index) => (
         <QuizCard
-          name="Quiz 1"
-          description="Quiz Description"
-          image="/soclogo.png"
+          props={data}
+          key={index}
         />
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Quiz 2</h2>
-            <p>Quiz Description</p>
-          </div>
-          <figure className="bg-sky-200">
-            <Image src="/soclogo.png" alt="Quiz" width={200} height={200} />
-          </figure>
-        </div>
+      ))}
       </div>
     </>
   );

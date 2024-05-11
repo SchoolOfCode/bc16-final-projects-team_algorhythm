@@ -46,7 +46,7 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/dashboard">
           Dashboard
         </Link>
-        <Link className="px-3 dark:text-black" href="/allQuizzes">
+        <Link className="px-3 dark:text-black" href="/quizselection">
           Quizzes
         </Link>
         <Link className="px-3 dark:text-black" href="/quizcreation">

@@ -2,12 +2,23 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "@/components/Sign-Up-In";
 import Link from "next/link";
+import Image from "next/image";
 
-export default function Login({
+export default async function Login({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    return redirect("/");
+  }
+
   const signIn = async (formData: FormData) => {
     "use server";
 
@@ -28,42 +39,57 @@ export default function Login({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-        <label className="text-md" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
-          placeholder="you@example.com"
-          required
+    <div className="flex-1 flex w-full justify-center">
+      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center">
+        <Image
+          className="pb-10 animate-fade-right"
+          src="/soclarge.png"
+          alt="SoC Logo"
+          width={600}
+          height={600}
         />
-        <label className="text-md" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
-        <SubmitButton
-          formAction={signIn}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing In..."
-        >
-          Sign In
-        </SubmitButton>
-        <Link href='/signup'>Sign Up Here!</Link>
-        {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {searchParams.message}
-          </p>
-        )}
-      </form>
+      </div>
+      <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl">
+          <label className="text-md text-white" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            name="email"
+            placeholder="you@example.com"
+            required
+          />
+          <label className="text-md text-white" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+          <SubmitButton
+            formAction={signIn}
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black mx-[15%]"
+            pendingText="Signing In..."
+          >
+            Sign in
+          </SubmitButton>
+          <Link
+            href="/signup"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black mx-[15%]"
+          >
+            Register
+          </Link>
+          {searchParams?.message && (
+            <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
+              {searchParams.message}
+            </p>
+          )}
+        </form>
+      </div>
     </div>
   );
 }

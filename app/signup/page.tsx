@@ -2,20 +2,31 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "@/components/Sign-Up-In";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function SignUp({
+export default async function SignUp({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    return redirect("/");
+  }
 
   const signUp = async (formData: FormData) => {
     "use server";
 
     const origin = headers().get("origin");
 
-    const first_name = formData.get('first_name') as string;
-    const last_name = formData.get('last_name') as string;
+    const first_name = formData.get("first_name") as string;
+    const last_name = formData.get("last_name") as string;
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -28,70 +39,113 @@ export default function SignUp({
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-
+    console.log(error!.code);
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      if (error!.code === "weak_password") {
+        return redirect(
+          "/signup?message=Password should be at least 6 characters",
+        );
+      }
+      return redirect("/signup?message=Could not authenticate user");
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    return redirect("/signup?message=Check email to continue sign in process");
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-        <label className="text-md" htmlFor="first_name">
-          First Name
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="first_name"
-          placeholder="Jack"
-          type="text"
-          required
+    <div className="flex-1 flex w-full justify-center">
+      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center">
+        <Image
+          className="pb-10 animate-fade-right"
+          src="/soclarge.png"
+          alt="SoC Logo"
+          width={600}
+          height={600}
         />
-        <label className="text-md" htmlFor="last_name">
-          Last Name
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="last_name"
-          placeholder="Bob"
-          type="text"
-          required
-        />
-        <label className="text-md" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
-        <label className="text-md" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
-        <SubmitButton
-          formAction={signUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing Up..."
-        >
-          Sign Up
-        </SubmitButton>
-        {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {searchParams.message}
-          </p>
-        )}
-      </form>
+      </div>
+      <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl">
+          <div className="tooltip tooltip-left " data-tip="Return to login">
+            <Link
+              href="/login"
+              className="rounded-2xl py-2 text-foreground mb-2 text-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                {" "}
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
+                />
+              </svg>
+            </Link>
+          </div>
+          <label className="text-md text-white" htmlFor="first_name">
+            First name
+          </label>
+          <input
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            name="first_name"
+            placeholder="Linus"
+            type="text"
+            required
+          />
+          <label className="text-md text-white" htmlFor="last_name">
+            Last name
+          </label>
+          <input
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            name="last_name"
+            placeholder="Torvalds"
+            type="text"
+            required
+          />
+          <label className="text-md text-white" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            name="email"
+            placeholder="email@example.com"
+            required
+          />
+          <label className="text-md text-white" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+          <SubmitButton
+            formAction={signUp}
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black mx-[15%]"
+            pendingText="Signing Up..."
+          >
+            Submit
+          </SubmitButton>
+          <Link
+              href="/login"
+              className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black mx-[15%]"
+            >
+             Return to login
+          </Link>
+          {searchParams?.message && (
+            <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
+              {searchParams.message}
+            </p>
+          )}
+        </form>
+      </div>
     </div>
   );
 }

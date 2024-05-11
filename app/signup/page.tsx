@@ -27,19 +27,18 @@ export default async function SignUp({
 
     const first_name = formData.get("first_name") as string;
     const last_name = formData.get("last_name") as string;
-
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-    console.log(error!.code);
+
     if (error) {
       if (error!.code === "weak_password") {
         return redirect(
@@ -48,6 +47,20 @@ export default async function SignUp({
       }
       return redirect("/signup?message=Could not authenticate user");
     }
+
+    // Inserting data to Profiles table
+    const { error: roleError } = await supabase
+    .from("profiles")
+    .insert([{ 
+      uuid: data.user!.id, 
+      first_name, 
+      last_name, 
+      email 
+    }])
+    if (roleError) {
+      console.error("Error inserting data to table roles:", roleError);
+    }
+    // Ends
 
     return redirect("/signup?message=Check email to continue sign in process");
   };
@@ -65,53 +78,39 @@ export default async function SignUp({
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
         <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl">
-          <div className="tooltip tooltip-left " data-tip="Return to login">
-            <Link
-              href="/login"
-              className="rounded-2xl py-2 text-foreground mb-2 text-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                {" "}
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
-                />
-              </svg>
-            </Link>
-          </div>
+          <div
+            className="tooltip tooltip-left "
+            data-tip="Return to login"
+          ></div>
           <label className="text-md text-white" htmlFor="first_name">
             First name
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             name="first_name"
             placeholder="Linus"
             type="text"
+            minLength={3}
+            maxLength={25}
             required
           />
           <label className="text-md text-white" htmlFor="last_name">
             Last name
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             name="last_name"
             placeholder="Torvalds"
             type="text"
+            minLength={3}
+            maxLength={25}
             required
           />
           <label className="text-md text-white" htmlFor="email">
             Email
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             name="email"
             placeholder="email@example.com"
             required
@@ -120,7 +119,7 @@ export default async function SignUp({
             Password
           </label>
           <input
-            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 placeholder-sky-800"
+            className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6  dark:text-black"
             type="password"
             name="password"
             placeholder="••••••••"
@@ -128,16 +127,16 @@ export default async function SignUp({
           />
           <SubmitButton
             formAction={signUp}
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black mx-[15%]"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%]"
             pendingText="Signing Up..."
           >
             Submit
           </SubmitButton>
           <Link
-              href="/login"
-              className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black mx-[15%]"
-            >
-             Return to login
+            href="/login"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black dark:text-black mx-[15%]"
+          >
+            Return to login
           </Link>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">

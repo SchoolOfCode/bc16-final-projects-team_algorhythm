@@ -48,8 +48,20 @@ export default async function SignUp({
       return redirect("/signup?message=Could not authenticate user");
     }
 
+    // Inserting role to Roles table
+    const { error: rolesError } = await supabase
+    .from("roles")
+    .insert([{ 
+      uuid: data.user!.id, 
+      role: 'student'
+    }])
+    if (rolesError) {
+      console.error("Error inserting data to table roles:", rolesError);
+    }
+    // Ends
+
     // Inserting data to Profiles table
-    const { error: roleError } = await supabase
+    const { error: profileError } = await supabase
     .from("profiles")
     .insert([{ 
       uuid: data.user!.id, 
@@ -57,8 +69,8 @@ export default async function SignUp({
       last_name, 
       email 
     }])
-    if (roleError) {
-      console.error("Error inserting data to table roles:", roleError);
+    if (profileError) {
+      console.error("Error inserting data to table profiles:", profileError);
     }
     // Ends
 

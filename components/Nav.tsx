@@ -24,11 +24,11 @@ export default async function Nav() {
         .from("profiles")
         .select("uuid, first_name, last_name, email");
       if (data) {
-        return (`Hey, ${data[0].first_name}`);
+        return `Hey, ${data[0].first_name}`;
       }
     } catch (error) {
       console.log(error);
-      return null
+      return null;
     }
   };
 
@@ -49,6 +49,9 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/allQuizzes">
           Quizzes
         </Link>
+        <Link className="px-3 dark:text-black" href="/quizcreation">
+          Quiz Creator
+        </Link>
         <Link
           className="px-5 dark:text-black"
           href="https://bot.schoolofcode.com/"
@@ -56,9 +59,7 @@ export default async function Nav() {
         >
           SoCBot
         </Link>
-        <p className="pl-10 pr-10 dark:text-black">
-          {userData()}!
-        </p>
+        <p className="pl-10 pr-10 dark:text-black">{userData()}!</p>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}

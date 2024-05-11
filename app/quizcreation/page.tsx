@@ -55,7 +55,7 @@ export default function QuizCreation() {
   }
 
   return (
-    <div className="flex-1 w-full flex  items-center justify-evenly">
+    <div className="flex-1 w-full flex items-center justify-evenly">
       <Formik
         enableReinitialize
         initialValues={QuizValues}
@@ -63,13 +63,13 @@ export default function QuizCreation() {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl">
+          <Form className="animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-6 rounded-2xl my-10">
             <Field className="" name="week_number">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label>Week</label>
+                  <label className="font-bold">Week</label>
                   <input
-                    className="bg-white w-[25%] rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
+                    className="bg-white w-[25%] rounded-2xl px-4 py-2 bg-inherit border m-6 dark:text-black"
                     {...field}
                     placeholder="Enter the week number"
                     id="week_number"
@@ -78,7 +78,7 @@ export default function QuizCreation() {
                     max="12"
                   />
                   {meta.error && meta.touched && (
-                    <p className="mt-4 p-4 bg-foreground/10 text-foreground w-[50%] text-center rounded-2xl text-pink-300">
+                    <p className="p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
                       {meta.error}
                     </p>
                   )}
@@ -88,84 +88,12 @@ export default function QuizCreation() {
             <Field name="question">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label>Question</label>
+                  <label className="font-bold">Question</label>
                   <textarea
-                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
+                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border m-6 dark:text-black"
                     {...field}
                     placeholder="Enter question"
                     id="question"
-                  />
-                  {meta.error && meta.touched && (
-                    <p className="mt-4 p-4 bg-foreground/10 text-foreground w-[50%] text-center rounded-2xl text-pink-300">
-                      {meta.error}
-                    </p>
-                  )}
-                </div>
-              )}
-            </Field>
-            <Field name="correct_answer">
-              {({ field, meta }: any) => (
-                <div className="form-control">
-                  <label>Correct Answer</label>
-                  <textarea
-                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
-                    {...field}
-                    placeholder="Enter the correct answer"
-                    id="correct_answer"
-                  />
-                  {meta.error && meta.touched && (
-                    <p className="mt-4 p-4 bg-foreground/10 text-foreground w-[50%] text-center rounded-2xl text-pink-300">
-                      {meta.error}
-                    </p>
-                  )}
-                </div>
-              )}
-            </Field>
-            <Field name="incorrect_answer1">
-              {({ field, meta }: any) => (
-                <div className="form-control">
-                  <label>Incorrect Answer</label>
-                  <textarea
-                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
-                    {...field}
-                    placeholder="Enter incorrect answer 1"
-                    id="incorrect_answer1"
-                  />
-                  {meta.error && meta.touched && (
-                    <p className="mt-4 p-4 bg-foreground/10 text-foreground w-[50%] text-center rounded-2xl text-pink-300">
-                      {meta.error}
-                    </p>
-                  )}
-                </div>
-              )}
-            </Field>
-            <Field name="incorrect_answer2">
-              {({ field, meta }: any) => (
-                <div className="form-control">
-                  <label>Incorrect Answer</label>
-                  <textarea
-                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
-                    {...field}
-                    placeholder="Enter incorrect answer 2"
-                    id="incorrect_answer2"
-                  />
-                  {meta.error && meta.touched && (
-                    <p className="mt-4 p-4 bg-foreground/10 text-foreground w-[50%] text-center rounded-2xl text-pink-300">
-                      {meta.error}
-                    </p>
-                  )}
-                </div>
-              )}
-            </Field>
-            <Field name="incorrect_answer3">
-              {({ field, meta }: any) => (
-                <div className="form-control">
-                  <label>Incorrect Answer</label>
-                  <textarea
-                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border mb-6 dark:text-black"
-                    {...field}
-                    placeholder="Enter incorrect answer 3"
-                    id="incorrect_answer3"
                   />
                   {meta.error && meta.touched && (
                     <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
@@ -175,12 +103,84 @@ export default function QuizCreation() {
                 </div>
               )}
             </Field>
+            <Field name="correct_answer">
+              {({ field, meta }: any) => (
+                <div className="form-control">
+                  <label className="font-bold">Correct Answer</label>
+                  <textarea
+                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border m-6 dark:text-black"
+                    {...field}
+                    placeholder="Enter the correct answer"
+                    id="correct_answer"
+                  />
+                  {meta.error && meta.touched && (
+                    <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
+                      {meta.error}
+                    </p>
+                  )}
+                </div>
+              )}
+            </Field>
+            <Field name="incorrect_answer1">
+              {({ field, meta }: any) => (
+                <div className="form-control">
+                  <label className="font-bold">Incorrect Answer</label>
+                  <textarea
+                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border m-6 dark:text-black"
+                    {...field}
+                    placeholder="Enter incorrect answer 1"
+                    id="incorrect_answer1"
+                  />
+                  {meta.error && meta.touched && (
+                    <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
+                      {meta.error}
+                    </p>
+                  )}
+                </div>
+              )}
+            </Field>
+            <Field name="incorrect_answer2">
+              {({ field, meta }: any) => (
+                <div className="form-control">
+                  <label className="font-bold">Incorrect Answer</label>
+                  <textarea
+                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border m-6 dark:text-black"
+                    {...field}
+                    placeholder="Enter incorrect answer 2"
+                    id="incorrect_answer2"
+                  />
+                  {meta.error && meta.touched && (
+                    <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
+                      {meta.error}
+                    </p>
+                  )}
+                </div>
+              )}
+            </Field>
+            <Field name="incorrect_answer3">
+              {({ field, meta }: any) => (
+                <div className="form-control">
+                  <label className="font-bold">Incorrect Answer</label>
+                  <textarea
+                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border m-6 dark:text-black"
+                    {...field}
+                    placeholder="Enter incorrect answer 3"
+                    id="incorrect_answer3"
+                  />
+                  {meta.error && meta.touched && (
+                    <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center m-6 rounded-2xl text-pink-300">
+                      {meta.error}
+                    </p>
+                  )}
+                </div>
+              )}
+            </Field>
 
-            <div className="button-container">
+            <div className="button-container items-center flex justify-center">
               {feedback && <p>{feedback}</p>}
               <button
                 type="submit"
-                className="submit-button bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black dark:text-black mx-[15%]"
+                className="submit-button w-[60%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-6 text-foreground text-center text-black dark:text-black"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>

@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "@/components/Sign-Up-In";
+import { SubmitButton } from "@/components/Submit";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -90,10 +90,6 @@ export default async function SignUp({
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
         <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl">
-          <div
-            className="tooltip tooltip-left "
-            data-tip="Return to login"
-          ></div>
           <label className="text-md text-white" htmlFor="first_name">
             First name
           </label>

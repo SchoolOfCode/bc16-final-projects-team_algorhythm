@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "@/components/Sign-Up-In";
+import { SubmitButton } from "@/components/Submit";
 import Link from "next/link";
 import Image from "next/image";
 

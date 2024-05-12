@@ -11,12 +11,23 @@ export default async function Footer() {
 
   return user ? (
     <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
-      <Link href="/">
-        <p>
-          Powered by
-          <Image src="/algologo.png" alt="SoC Logo" width={200} height={200} />
-        </p>
-      </Link>
+      <p>
+        Powered by
+        <Image
+          className="block dark:hidden"
+          src="/algologo.png"
+          alt="SoC Logo"
+          width={150}
+          height={150}
+        />
+        <Image
+          className="hidden dark:block"
+          src="/algologolight.png"
+          alt="SoC Logo"
+          width={150}
+          height={150}
+        />
+      </p>
     </footer>
   ) : null;
 }

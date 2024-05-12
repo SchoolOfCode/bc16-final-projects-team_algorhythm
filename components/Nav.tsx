@@ -24,16 +24,16 @@ export default async function Nav() {
         .from("profiles")
         .select("uuid, first_name, last_name, email");
       if (data) {
-        return (`Hey, ${data[0].first_name}`);
+        return `Hey, ${data[0].first_name}`;
       }
     } catch (error) {
       console.log(error);
-      return null
+      return null;
     }
   };
 
   return user ? (
-    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50">
+    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50 sticky top-0">
       <div className="flex-1">
         <Link href="/">
           <Image src="/logoblack.png" alt="SoC Logo" width={250} height={200} />
@@ -46,8 +46,11 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/dashboard">
           Dashboard
         </Link>
-        <Link className="px-3 dark:text-black" href="/allQuizzes">
+        <Link className="px-3 dark:text-black" href="/quizselection">
           Quizzes
+        </Link>
+        <Link className="px-3 dark:text-black" href="/quizcreation">
+          Quiz Creator
         </Link>
         <Link
           className="px-5 dark:text-black"
@@ -56,9 +59,7 @@ export default async function Nav() {
         >
           SoCBot
         </Link>
-        <p className="pl-10 pr-10 dark:text-black">
-          {userData()}!
-        </p>
+        <p className="pl-10 pr-10 dark:text-black">{userData()}!</p>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}

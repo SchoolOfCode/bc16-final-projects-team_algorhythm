@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "@/components/Sign-Up-In";
+import { SubmitButton } from "@/components/Submit";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -48,8 +48,20 @@ export default async function SignUp({
       return redirect("/signup?message=Could not authenticate user");
     }
 
+    // Inserting role to Roles table
+    const { error: rolesError } = await supabase
+    .from("roles")
+    .insert([{ 
+      uuid: data.user!.id, 
+      role: 'student'
+    }])
+    if (rolesError) {
+      console.error("Error inserting data to table roles:", rolesError);
+    }
+    // Ends
+
     // Inserting data to Profiles table
-    const { error: roleError } = await supabase
+    const { error: profileError } = await supabase
     .from("profiles")
     .insert([{ 
       uuid: data.user!.id, 
@@ -57,8 +69,8 @@ export default async function SignUp({
       last_name, 
       email 
     }])
-    if (roleError) {
-      console.error("Error inserting data to table roles:", roleError);
+    if (profileError) {
+      console.error("Error inserting data to table profiles:", profileError);
     }
     // Ends
 
@@ -78,10 +90,6 @@ export default async function SignUp({
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
         <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl">
-          <div
-            className="tooltip tooltip-left "
-            data-tip="Return to login"
-          ></div>
           <label className="text-md text-white" htmlFor="first_name">
             First name
           </label>
@@ -132,12 +140,7 @@ export default async function SignUp({
           >
             Submit
           </SubmitButton>
-          <Link
-            href="/login"
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black dark:text-black mx-[15%]"
-          >
-            Return to login
-          </Link>
+          <p className="text-center text-white">Already have an account? <Link href="/login" className="font-bold underline hover:text-black">Login</Link></p>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
               {searchParams.message}

@@ -48,7 +48,7 @@ export default async function Profile({
       return redirect("?message=Profile updated successfully");
     };
     return( 
-      <div className="flex-1 w-full flex items-center justify-evenly"> 
+      <div className="flex-1 w-full flex items-center justify-evenly animate-fade"> 
         <div className="flex bg-loginblue rounded-2xl p-10 justify-evenly gap-10">
           <Image className="bg-white rounded-full w-fit h-fit" src="/usericon.png" alt="User image" width={100} height={100}/>
           <div className="flex flex-col">

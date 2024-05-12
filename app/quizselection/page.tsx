@@ -3,62 +3,62 @@ import QuizCard from "@/components/QuizCard";
 export default function QuizSelection() {
   const quizData = [
     {
-      title: "Quiz 1",
+      title: "Week 1",
       description: "Description for Quiz 1",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 2",
+      title: "Week 2",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 3",
+      title: "Week 3",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 4",
+      title: "Week 4",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 5",
+      title: "Week 5",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 6",
+      title: "Week 6",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 7",
+      title: "Week 7",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 8",
+      title: "Week 8",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 9",
+      title: "Week 9",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 10",
+      title: "Week 10",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 11",
+      title: "Week 11",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },
     {
-      title: "Quiz 12",
+      title: "Week 12",
       description: "Description for Quiz 2",
       imageUrl: "/soclogo.png",
     },

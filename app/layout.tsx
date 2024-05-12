@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lexend.variable} font-sans`}>
-      <body className="bg-background text-foreground dark:bg-slate-600">
+      <body className="bg-background text-foreground dark:bg-slate-600 select-none">
         <main className="min-h-screen flex flex-col items-center">
           <Nav />
           {children}

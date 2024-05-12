@@ -15,7 +15,7 @@ export default async function Profile({
     } = await supabase.auth.getUser();
 
     if (!user) {
-      return redirect("/");
+      return redirect("/login");
     }
     // const { data } = await supabase
     // .from("roles")
@@ -77,7 +77,7 @@ export default async function Profile({
               <SubmitButton
               formAction={updateProfile}
               className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-2 text-foreground mt-2 text-black dark:text-black mx-[20%]"
-              pendingText="Signing Up..."
+              pendingText="Updating..."
               >
                 Submit
               </SubmitButton>

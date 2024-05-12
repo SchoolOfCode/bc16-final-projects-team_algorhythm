@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { SubmitButton } from "@/components/Sign-Up-In";
+import { SubmitButton } from "@/components/Submit";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -75,14 +75,10 @@ export default async function Login({
             className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%]"
             pendingText="Signing In..."
           >
-            Sign in
+            Login
           </SubmitButton>
-          <Link
-            href="/signup"
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-center text-black dark:text-black mx-[15%]"
-          >
-            Register
-          </Link>
+          <Link href="/" className="hover:text-black text-center text-white">Forgot Password?</Link>
+          <p className="text-center text-white">Need an account? <Link href="/signup" className="font-bold underline hover:text-black">Signup</Link></p>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
               {searchParams.message}

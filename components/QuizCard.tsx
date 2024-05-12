@@ -11,10 +11,10 @@ export default function QuizCard({ props }: any) {
         </div>
         <figure className="bg-sky-200">
           <Image
-            src={props.imageUrl}
+            src={props.img}
             alt={props.title}
             width={200}
-            height={200}
+            height={133}
           />
         </figure>
       </div>

@@ -13,7 +13,8 @@ export default function WeekCard({ props }: any) {
           <p>{props.description}</p>
         </div>
         <figure className="bg-sky-200">
-          <Image src={props.img} alt={props.title} width={200} height={133} />
+          <Image src={props.img} alt={props.title} width={200} height={200} />{" "}
+          {/* please leave the width and height at 200 otherwise the browser console cries about it */}
         </figure>
       </div>
     </Link>

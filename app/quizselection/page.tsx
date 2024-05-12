@@ -1,4 +1,4 @@
-import QuizCard from "@/components/QuizCard";
+import WeekCard from "@/components/WeekCard";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function QuizSelection() {
@@ -9,7 +9,7 @@ export default async function QuizSelection() {
     data ? (
     <div className="grid grid-cols-4 gap-4 animate-fade-up">
         {data.map((data, index) => (
-          <QuizCard props={data} key={index} />
+          <WeekCard props={data} key={index} />
         ))}
       </div>
     ) : (

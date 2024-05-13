@@ -95,10 +95,9 @@ export default async function modules({
             <h1>Failed to load</h1>
           )}
         </div>
-        <div>
-          <p>Progress</p>
-          <div className="w-4 h-64 bg-gray-300 rounded-full overflow-hidden">
-            <div className="w-full h-[80%] bg-green-500 rounded-t-full"></div>
+        <div className="w-6 h-64 bg-white rounded-full overflow-hidden">
+          <div className="w-full bg-green-300 rounded-t-full align-bottom flex flex-col  justify-center" style={{ height: `50%` }}>
+            <p className="text-xs pb-2">50%</p>
           </div>
         </div>
       </div>

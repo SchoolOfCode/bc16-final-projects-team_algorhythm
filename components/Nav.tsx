@@ -49,11 +49,8 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/modules">
           Modules
         </Link>
-        <Link className="px-3 dark:text-black" href="/quizcreation">
-          Quiz Creator
-        </Link>
         <Link
-          className="px-5 dark:text-black"
+          className="px-3 dark:text-black"
           href="https://bot.schoolofcode.com/"
           target="_blank"
         >

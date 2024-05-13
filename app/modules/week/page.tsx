@@ -12,7 +12,7 @@ export default async function modules({
     .from("quizzes")
     .select("*")
     .eq("week_number", searchParams.q);
-  console.log(searchParams.content);
+
   return (
     <div className="flex-1 flex-col w-[80%] flex items-center gap-10 animate-fade-up m-10 rounded-3xl bg-loginblue">
       <h1 className="text-white font-semibold text-4xl mt-5">
@@ -67,7 +67,7 @@ export default async function modules({
             </Link>
           </li>
         </ul>
-        <div className="flex-1 flex flex-col w-full items-center">
+        <div className="flex-1 flex flex-col w-full items-center absolute">
           <h1 className="text-white font-semibold text-2xl">
             Time to test your knowledge
           </h1>

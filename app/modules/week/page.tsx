@@ -11,6 +11,7 @@ export default async function modules({
   const supabase = createClient();
 
   let data: any = false;
+  let total: number = 0;
 
   if (searchParams.day) {
     data = await supabase
@@ -18,14 +19,14 @@ export default async function modules({
       .select("*")
       .eq("week_number", searchParams.q)
       .eq("day_number", searchParams.day);
+    total = data.data.length
   }
-
   return (
     <div className="flex-1 flex-col w-[80%] flex items-center gap-10 animate-fade-up m-10 rounded-3xl bg-loginblue">
       <h1 className="text-white font-semibold text-4xl mt-5">
         {searchParams.t}
       </h1>
-      <div className="flex w-full items-center justify-between px-10">
+      <div className="flex w-full items-center px-10">
         <ul className="steps steps-vertical z-50">
           <li className="step step-primary">
             <Link
@@ -88,11 +89,16 @@ export default async function modules({
               />
             </>
           ) : data.data[0] !== undefined ? (
+            <form>
             <div className="carousel w-[70%]">
-              {data.data.map((item: any, index: number) => (
-                <Quiz props={item} index={index} key={index} />
-              ))}
+
+                {data.data.map((item: any, index: number) => (
+                  <Quiz props={item} index={index} total={total}  key={index} />
+                ))}
+          
             </div>
+            <button type="submit">Submit</button>
+            </form>
           ) : (
             <h1>Failed to load</h1>
           )}

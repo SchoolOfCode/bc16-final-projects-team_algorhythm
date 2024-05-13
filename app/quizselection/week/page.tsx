@@ -15,7 +15,7 @@ export default async function QuizSelection({
 
   console.log(data);
   return (
-    <div className="flex-1 flex-col w-full flex  items-center justify-evenly animate-fade-up">
+    <div className="flex-1 flex-col w-[80%] flex  items-center justify-evenly animate-fade-up m-10 rounded-3xl bg-loginblue">
       <ul className="steps w-6/12">
         <li className="step step-primary">
           <Link

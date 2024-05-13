@@ -95,8 +95,11 @@ export default async function modules({
             <h1>Failed to load</h1>
           )}
         </div>
-        <div className="w-4 h-64 bg-gray-300 rounded-full">
-          <div className="w-full h-[50%] bg-green-500 rounded-t-full"></div>
+        <div>
+          <p>Progress</p>
+          <div className="w-4 h-64 bg-gray-300 rounded-full overflow-hidden">
+            <div className="w-full h-[80%] bg-green-500 rounded-t-full"></div>
+          </div>
         </div>
       </div>
     </div>

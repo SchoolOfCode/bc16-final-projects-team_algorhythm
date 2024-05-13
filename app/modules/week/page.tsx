@@ -19,8 +19,8 @@ export default async function modules({
         {searchParams.t}
       </h1>
       <div className="flex w-full">
-        <ul className="steps steps-vertical p-5">
-          <li className="step step-primary">
+        <ul className="steps steps-vertical p-5 z-">
+          <li className="step step-primary ">
             <Link
               href="/modules/week?q=[week_number]&day=1"
               as={`/modules/week?q=${searchParams.q}&day=1`}

@@ -5,21 +5,21 @@ export default function DashBoard() {
     return (
         <div className="flex flex-col  pt-10 px-10 w-full">
           <div className=" flex flex-row justify-between mb-5 ">
-            <h1 className="font-black text-4xl pb-5 text-left ">Welcome to your dashboard</h1>
+            <h1 className="font-black text-4xl pb-3 text-left ">Welcome to your dashboard</h1>
             <Link
               href="#"
-              className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-3 text-foreground hover:text-white font-semibold text-sm text-left h-9 flex items-center"
+              className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-3 text-foreground hover:text-white font-semibold text-sm text-left h-9 flex items-center mt-1"
             >
               Modify quizzes
             </Link>
             </div>
-            <div className="flex flex-row justify-between">
-            <select className="select select-bordered w-1/5 max-w-xs bg-loginblue text-white " >
+            <div className="flex flex-row justify-start">
+            <select className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 " >
   <option disabled selected>Select module</option>
   <option>1. Onboarding</option>
   <option>2. Front End</option>
 </select>
-<select className="select select-bordered w-1/5 max-w-xs bg-loginblue text-white " >
+<select className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 " >
   <option disabled selected>Select day</option>
   <option>Monday</option>
   <option>Tuesday</option>
@@ -27,7 +27,7 @@ export default function DashBoard() {
   <option>Thursday</option>
   <option>Friday</option>
 </select>
-<select className="select select-bordered w-3/5 max-w-xs bg-loginblue text-white " >
+<select className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 " >
   <option disabled selected>Select name</option>
   <option>Annamaria Koutsoras</option>
   <option>Jack White</option>
@@ -41,7 +41,7 @@ export default function DashBoard() {
 </div>
   <div className="grid grid-cols-subgrid col-span-7 justify-items-center ">
             <div className=" mt-5 radial-progress text-loginblue col-start-2  " style={{"--value":70, "--size": "8rem"}} role="progressbar">70%</div>
-            <div className=" mt-5 radial-progress text-black  col-start-3 " style={{"--value":70, "--size": "8rem"}} role="progressbar">70%</div>
+            <div className=" mt-5 radial-progress text-black  col-start-3  " style={{"--value":70, "--size": "8rem"}} role="progressbar">70%</div>
             <div className=" mt-5 radial-progress text-loginblue col-start-5 " style={{"--value":70, "--size": "8rem"}} role="progressbar">70%</div>
             <div className=" mt-5 radial-progress text-black col-start-6 " style={{"--value":70, "--size": "8rem"}} role="progressbar">70%</div>
             </div>

@@ -10,9 +10,9 @@ export default async function modules({
 }) {
   const supabase = createClient();
 
-  let data: any = false
+  let data: any = false;
 
-  if(searchParams.day){
+  if (searchParams.day) {
     data = await supabase
       .from("quizzes")
       .select("*")
@@ -77,15 +77,15 @@ export default async function modules({
         <div className="flex-1 flex flex-col w-full items-center">
           {!searchParams.day ? (
             <>
-            <h1 className="text-white font-semibold text-2xl">
-            Time to test your knowledge
-            </h1>
-            <Image
-            src={`/quizicons/${searchParams.content}.png`}
-            alt="Content"
-            width={350}
-            height={350}
-            />
+              <h1 className="text-white font-semibold text-2xl">
+                Time to test your knowledge
+              </h1>
+              <Image
+                src={`/quizicons/${searchParams.content}.png`}
+                alt="Content"
+                width={350}
+                height={350}
+              />
             </>
           ) : data.data[0] !== undefined ? (
             data.data.map((item: any, index: number) => (
@@ -93,13 +93,10 @@ export default async function modules({
             ))
           ) : (
             <h1>Failed to load</h1>
-          )
-        }
-
+          )}
         </div>
-        <div className="flex flex-col items-center mx-5 my-10 rounded-full bg-gray-200">
-          <div className="h-20 w-full rounded-full bg-red-500"></div>
-          <span className="py-2 text-sm font-medium text-gray-900">50%</span>
+        <div className="w-4 h-64 bg-gray-300 rounded-full">
+          <div className="w-full h-[50%] bg-green-500 rounded-t-full"></div>
         </div>
       </div>
     </div>

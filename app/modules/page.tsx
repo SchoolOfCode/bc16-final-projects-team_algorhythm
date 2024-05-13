@@ -1,7 +1,7 @@
 import WeekCard from "@/components/WeekCard";
 import { createClient } from "@/utils/supabase/server";
 
-export default async function QuizSelection() {
+export default async function Modules() {
   const supabase = createClient();
   const { data } = await supabase.from("weeks").select().order("week_number");
 

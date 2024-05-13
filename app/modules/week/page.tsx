@@ -27,7 +27,7 @@ export default async function modules({
       </h1>
       <div className="flex w-full items-center justify-between px-10">
         <ul className="steps steps-vertical z-50">
-          <li className="step step-primary ">
+          <li className="step step-primary">
             <Link
               href="/modules/week?q=[week_number]&t=[title]&day=1"
               as={`/modules/week?q=${searchParams.q}&t=${searchParams.t}&day=1`}
@@ -95,11 +95,13 @@ export default async function modules({
             <h1>Failed to load</h1>
           )}
         </div>
+        {searchParams.day ? (
         <div className="w-6 h-64 bg-white rounded-full overflow-hidden">
           <div className="w-full bg-green-300 rounded-t-full align-bottom flex flex-col  justify-center" style={{ height: `50%` }}>
             <p className="text-xs pb-2">50%</p>
           </div>
         </div>
+        ) : null }
       </div>
     </div>
   );

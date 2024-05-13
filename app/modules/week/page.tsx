@@ -88,9 +88,11 @@ export default async function modules({
               />
             </>
           ) : data.data[0] !== undefined ? (
-            data.data.map((item: any, index: number) => (
-              <Quiz props={item} key={index} />
-            ))
+            <div className="carousel w-[70%]">
+              {data.data.map((item: any, index: number) => (
+                <Quiz props={item} index={index} key={index} />
+              ))}
+            </div>
           ) : (
             <h1>Failed to load</h1>
           )}

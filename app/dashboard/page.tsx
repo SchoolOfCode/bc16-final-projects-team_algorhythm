@@ -8,12 +8,12 @@ export default function DashBoard() {
             <h1 className="font-black text-4xl pb-5 text-left ">Welcome to your dashboard</h1>
             <Link
               href="#"
-              className="hover:bg-loginblue bg-sky-300 text-black rounded-lg px-6 py-3 text-foreground hover:text-white font-semibold text-lg text-left "
+              className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-3 text-foreground hover:text-white font-semibold text-sm text-left h-9 flex items-center"
             >
               Modify quizzes
             </Link>
             </div>
-            <div className="flex flex-row justify-between ">
+            <div className="flex flex-row justify-between">
             <select className="select select-bordered w-1/5 max-w-xs bg-loginblue text-white " >
   <option disabled selected>Select module</option>
   <option>1. Onboarding</option>

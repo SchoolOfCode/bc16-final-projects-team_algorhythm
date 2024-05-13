@@ -31,6 +31,7 @@ module.exports = {
         loginblue: "#32A4DC",
         socskyblue: "#CDF6FF",
         orangetheme: "#FD7566",
+        lightblue: "#CDF6FF",
       },
     },
   },

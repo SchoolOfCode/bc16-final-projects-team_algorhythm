@@ -5,8 +5,8 @@ export default function WeekCard({ props }: any) {
   return (
       <div className="card w-96 bg-base-100 m-10 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer">
         <Link
-        href="/modules/week?q=[week_number]&content=[content]"
-        as={`/modules/week?q=${props.week_number}&content=${props.img}`}
+        href="/modules/week?q=[week_number]&content=[img]&t=[title]"
+        as={`/modules/week?q=${props.week_number}&content=${props.img}&t=${props.title}`}
         >
           <div className="card-body">
             <h2 className="card-title">{props.title}</h2>

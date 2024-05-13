@@ -19,14 +19,14 @@ export default async function modules({
       .eq("week_number", searchParams.q)
       .eq("day_number", searchParams.day);
   }
-  console.log(data)
+
   return (
     <div className="flex-1 flex-col w-[80%] flex items-center gap-10 animate-fade-up m-10 rounded-3xl bg-loginblue">
       <h1 className="text-white font-semibold text-4xl mt-5">
         {searchParams.t}
       </h1>
-      <div className="flex w-full">
-        <ul className="steps steps-vertical p-5 z-50">
+      <div className="flex w-full items-center justify-between px-10">
+        <ul className="steps steps-vertical z-50">
           <li className="step step-primary ">
             <Link
               href="/modules/week?q=[week_number]&t=[title]&day=1"
@@ -74,7 +74,7 @@ export default async function modules({
             </Link>
           </li>
         </ul>
-        <div className="flex-1 flex flex-col w-full items-center absolute">
+        <div className="flex-1 flex flex-col w-full items-center">
           {!searchParams.day ? (
             <>
             <h1 className="text-white font-semibold text-2xl">
@@ -88,14 +88,18 @@ export default async function modules({
             />
             </>
           ) : data.data[0] !== undefined ? (
-            {data.map((data, index) => (
-              <Quiz props={data} key={index} />
-            ))}
+            data.data.map((item: any, index: number) => (
+              <Quiz props={item} key={index} />
+            ))
           ) : (
             <h1>Failed to load</h1>
           )
         }
 
+        </div>
+        <div className="flex flex-col items-center mx-5 my-10 rounded-full bg-gray-200">
+          <div className="h-20 w-full rounded-full bg-red-500"></div>
+          <span className="py-2 text-sm font-medium text-gray-900">50%</span>
         </div>
       </div>
     </div>

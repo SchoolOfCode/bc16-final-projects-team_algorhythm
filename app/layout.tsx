@@ -1,16 +1,16 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { Lexend } from 'next/font/google'
+import { Lexend } from "next/font/google";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
 const lexend = Lexend({
-  subsets: ['latin'],
-  variable: '--font-lexend',
-})
+  subsets: ["latin"],
+  variable: "--font-lexend",
+});
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),

@@ -7,7 +7,7 @@ export default function DayProgress({
   }: {
     searchParams: { q: number; content: string; t: string; day: number; r: any };
   }) {
-    const success = searchParams.r.data[0].success
+    const success = searchParams.r.data[0].success ?? false
 
     const [day1, setDay1] = useState(false)
     const [day2, setDay2] = useState(false)
@@ -20,7 +20,7 @@ export default function DayProgress({
     }
 
     return(
-      <ul className="steps steps-vertical">
+      <ul className="steps steps-vertical ">
           {!success ? ( 
             <li className="step">
               <Link
@@ -33,7 +33,7 @@ export default function DayProgress({
             </li>
           ) : (
             <li className="step step-info">
-              <div className="tooltip tooltip-right fixed left-[6.5%]" data-tip="Completed">
+              <div className="tooltip tooltip-right" data-tip="Completed">
                 <button className="btn bg-gray-300 cursor-not-allowed pointer-events-none">Day 1</button>
               </div>
             </li>

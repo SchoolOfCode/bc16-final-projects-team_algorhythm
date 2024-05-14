@@ -1,9 +1,33 @@
+import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 /* imports as required */
 
-/* API call */
+export default async function DashBoard({
+  searchParams,
+}: {
+  searchParams: { w: number; d: number; user: string };
+}) {
+  const supabase = createClient();
 
-export default function DashBoard() {
+  let data: any = false;
+  if (searchParams.w && searchParams.d && searchParams.user) {
+    data = await supabase
+      .from("results")
+      .select("*")
+      .eq("week_number", searchParams.w)
+      .eq("day_number", searchParams.d)
+      .eq("user_uuid", searchParams.user);
+    console.log(`data = ${data}`);
+  }
+
+  const progressBar1 = await supabase
+    .from("results")
+    .select("*")
+    .eq("week_number", searchParams.w)
+    .eq("day_number", searchParams.d)
+    .eq("user_uuid", searchParams.user);
+  console.log(`pb1 = ${progressBar1}`);
+
   return (
     <div className="flex flex-col  pt-10 px-10 w-full">
       <div className=" flex flex-row justify-between mb-5 ">
@@ -17,41 +41,32 @@ export default function DashBoard() {
           Modify quizzes
         </Link>
       </div>
-      <div className="flex flex-row justify-start">
+      <form className="flex flex-row justify-start">
         <select className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4">
-          <option disabled selected>
-            Select module
-          </option>
-          {/*
-            link to individual week in each option tag
-          */}
-          <option>1. Onboarding</option>
-          <option>2. Front End</option>
-          <option>3. Software Engineer</option>
-          <option>4. Back End Engineer</option>
-          <option>5. Database Engineer</option>
-          <option>6. QA Engineer</option>
-          <option>7. Web Developer 1</option>
-          <option>8. Web Developer 2</option>
-          <option>9. Product</option>
-          <option>10. DevOps</option>
-          <option>11. Cyber Security</option>
-          <option>12. AI and Data</option>
+          <option>Select module</option>
+          <option value="1">1. Onboarding</option>
+          <option value="2">2. Front End</option>
+          <option value="3">3. Software Engineer</option>
+          <option value="4">4. Back End Engineer</option>
+          <option value="5">5. Database Engineer</option>
+          <option value="6">6. QA Engineer</option>
+          <option value="7">7. Web Developer 1</option>
+          <option value="8">8. Web Developer 2</option>
+          <option value="9">9. Product</option>
+          <option value="10">10. DevOps</option>
+          <option value="11">11. Cyber Security</option>
+          <option value="12">12. AI and Data</option>
         </select>
         <select className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 ">
-          <option disabled selected>
-            Select day
-          </option>
-          <option>Monday</option>
-          <option>Tuesday</option>
-          <option>Wednesday</option>
-          <option>Thursday</option>
-          <option>Friday</option>
+          <option>Select day</option>
+          <option value="1">Monday</option>
+          <option value="2">Tuesday</option>
+          <option value="3">Wednesday</option>
+          <option value="4">Thursday</option>
+          <option value="5">Friday</option>
         </select>
         <select className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 ">
-          <option disabled selected>
-            Select name
-          </option>
+          <option>Select name</option>
           {/* For all names, should be able to be added by the table called 'Profiles' 
           
           call the profiles table
@@ -69,8 +84,12 @@ export default function DashBoard() {
           <option>Annamaria Koutsoras</option>
           <option>Jack White</option>
           <option>Stephen Boyce</option>
+          <option value="9efbb99c-82f9-4251-9a78-2939cf3616b0">
+            Igor Silva
+          </option>
         </select>
-      </div>
+        <button type="submit">Submit</button>
+      </form>
       <div className="grid grid-rows-[10vh, 30vh, 10vh] ">
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center items-end h-24 mb-2 ">
           <p className="col-start-2 col-span-2 text-2xl font-bold	">
@@ -82,7 +101,7 @@ export default function DashBoard() {
           <div
             className=" mt-5 radial-progress text-loginblue col-start-2  "
             style={{
-              "--value": 63,
+              "--value": { progressBar1 },
               /* call the correct row of the answers table for daily score */ "--size":
                 "8rem",
             }}

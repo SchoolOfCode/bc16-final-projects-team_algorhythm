@@ -8,7 +8,7 @@ export default function DayProgress({
     searchParams: { q: number; content: string; t: string; day: number; r: any };
   }) {
     let success = false
-    if(searchParams.r.data[0].success){
+    if(searchParams.r.data[0]){
       success = searchParams.r.data[0].success
     }
 

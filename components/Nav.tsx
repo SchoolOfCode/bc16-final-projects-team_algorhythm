@@ -33,10 +33,10 @@ export default async function Nav() {
   };
 
   return user ? (
-    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50 sticky top-0">
+    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50 sticky top-0 shadow-md">
       <div className="flex-1">
         <Link href="/">
-          <Image src="/logoblack.png" alt="SoC Logo" width={250} height={200} />
+          <Image src="/logoblack.png" alt="SoC Logo" width={200} height={200} />
         </Link>
       </div>
       <div className="">

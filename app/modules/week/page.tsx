@@ -2,12 +2,11 @@ import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 import Quiz from "@/components/Quiz";
 import DayProgress from "@/components/DayProgress";
-import { WheelProgress } from "@/components/WheelProgress";
 
 export default async function modules({
   searchParams,
 }: {
-  searchParams: { q: number; content: string; t: string; day: number; r: any };
+  searchParams: { q: number; content: string; t: string; day: number; r: any};
 }) {
   const supabase = createClient();
 
@@ -26,52 +25,41 @@ export default async function modules({
     total = data.data.length
   }
   
-  const results = await supabase
+  searchParams.r = await supabase
     .from('results')
     .select('*')
     .eq('user_uuid', user!.id)
     .eq('week_number', searchParams.q)
     .order('day_number')
 
-  searchParams.r = results
-
   return (
-    <div className="flex-1 w-full flex  items-center justify-evenly">
-      <div className="flex-col w-[70%] pb-[5%] flex items-center gap-10 animate-fade-up m-10 rounded-3xl">
-        <h1 className="text-white font-semibold text-4xl mt-5">
-          {searchParams.t}
-        </h1>
-        <div className="flex w-full items-center px-10">
-          <DayProgress searchParams={searchParams}/>
-          <div className="flex-1 flex flex-col w-full items-center">
-            {!searchParams.day ? (
-              <>
-                <h1 className="text-white font-semibold text-2xl">
-                  Time to test your knowledge
-                </h1>
-                <Image
-                  src={`/quizicons/${searchParams.content}.png`}
-                  alt="Content"
-                  width={350}
-                  height={350}
-                />
-              </>
-            ) : data.data[0] !== undefined ? (
-              <form className="flex flex-col justify-center items-center">
-                <div className="carousel items-center  w-[70%]">
-
-                  {data.data.map((item: any, index: number) => (
-                    <Quiz props={item} index={index} total={total}  key={index} />
-                  ))}
-                  
-                </div>
-              </form>
-            ) : (
-              <h1>Failed to load</h1>
-            )}
-          </div>
-          <WheelProgress/>
-        </div>
+    <div className="flex-1 flex flex-col items-center w-full">
+      <h1 className="text-black font-semibold text-4xl m-5">
+        {searchParams.t}
+      </h1>
+      <div className="flex items-center w-full justify-evenly">
+        <DayProgress searchParams={searchParams}/>
+          {!searchParams.day ? (
+            <div className="flex flex-col w-[50%] items-center">
+              <h1 className="text-black font-semibold text-2xl m-2">
+                 Time to test your knowledge
+              </h1>
+              <Image
+                src={`/quizicons/${searchParams.content}.png`}
+                alt="Content"
+                width={400}
+                height={400}
+                className="w-full max-w-[400px]"
+              />
+            </div>
+          ) : data.data[0] !== undefined ? (
+            <form className="flex flex-col w-[50%] items-center">
+              <Quiz data={data} total={total}/>
+            </form>
+          ) : (
+            <h1>Failed to load</h1>
+          )}
+        <div className="w-64"/>
       </div>
     </div>
   );

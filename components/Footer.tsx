@@ -10,7 +10,7 @@ export default async function Footer() {
   } = await supabase.auth.getUser();
 
   return user ? (
-    <footer className="w-full border-t border-t-foreground/10 p-8 flex flex-row justify-center text-center text-xs">
+    <footer className="animate-fade-up w-full border-t border-t-foreground/10 p-8 flex flex-row justify-center text-center text-xs">
       <p>
         Powered by
         <Image

@@ -29,6 +29,8 @@ export default async function modules({
     .from('results')
     .select('*')
     .eq('user_uuid', user!.id)
+    .eq('week_number', searchParams.q)
+    .order('day_number')
 
   searchParams.r = results
 

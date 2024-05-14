@@ -7,24 +7,24 @@ export default function DayProgress({
   }: {
     searchParams: { q: number; content: string; t: string; day: number; r: any };
   }) {
-    let success = false
+    let success;
     if(searchParams.r.data[0]){
-      success = searchParams.r.data[0].success
+      success = searchParams.r.data
     }
-
-    const [day1, setDay1] = useState(false)
-    const [day2, setDay2] = useState(false)
-    const [day3, setDay3] = useState(false)
-    const [day4, setDay4] = useState(false)
-    const [day5, setDay5] = useState(false)
+    
+    const [day1, setDay1] = useState(success[0] ? true : false)
+    const [day2, setDay2] = useState(success[1] ? true : false)
+    const [day3, setDay3] = useState(success[2] ? true : false)
+    const [day4, setDay4] = useState(success[3] ? true : false)
+    const [day5, setDay5] = useState(success[4] ? true : false)
 
     const handleClick = (setday:any,day:any) => {
       setday(!day)
     }
 
     return(
-      <ul className="steps steps-vertical ">
-          {!success ? ( 
+      <ul className="steps steps-vertical w-56">
+          {!day1 ? ( 
             <li className="step">
               <Link
               href="/modules/week?q=[week_number]&t=[title]&day=1"
@@ -37,7 +37,7 @@ export default function DayProgress({
           ) : (
             <li className="step step-info">
               <div className="tooltip tooltip-right" data-tip="Completed">
-                <button className="btn bg-gray-300 cursor-not-allowed pointer-events-none">Day 1</button>
+                <p className="btn bg-gray-300 cursor-not-allowed pointer-events-none">Day 1</p>
               </div>
             </li>
           )

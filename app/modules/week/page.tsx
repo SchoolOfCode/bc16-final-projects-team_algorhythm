@@ -6,15 +6,16 @@ import DayProgress from "@/components/DayProgress";
 export default async function modules({
   searchParams,
 }: {
-  searchParams: { q: number; content: string; t: string; day: number };
+  searchParams: { q: number; content: string; t: string; day: number; r: any };
 }) {
-
-
   const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   let data: any = false;
   let total: number = 0;
-
   if (searchParams.day) {
     data = await supabase
       .from("quizzes")
@@ -23,6 +24,13 @@ export default async function modules({
       .eq("day_number", searchParams.day);
     total = data.data.length
   }
+  
+  const results = await supabase
+    .from('results')
+    .select('*')
+    .eq('user_uuid', user!.id)
+
+  searchParams.r = results
 
   return (
     <div className="flex-1 w-full flex  items-center justify-evenly">

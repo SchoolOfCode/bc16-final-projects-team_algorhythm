@@ -13,7 +13,7 @@ export default async function Index() {
   if (!user) {
     return redirect("/login");
   }
-
+  
   return (
     <div className="flex-1 w-full flex  items-center justify-evenly">
       <div className="animate-fade-right">

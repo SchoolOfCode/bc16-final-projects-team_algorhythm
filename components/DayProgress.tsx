@@ -5,8 +5,10 @@ import { useState } from "react";
 export default function DayProgress({
     searchParams,
   }: {
-    searchParams: { q: number; content: string; t: string; day: number };
+    searchParams: { q: number; content: string; t: string; day: number; r: any };
   }) {
+    const success = searchParams.r.data[0].success
+
     const [day1, setDay1] = useState(false)
     const [day2, setDay2] = useState(false)
     const [day3, setDay3] = useState(false)
@@ -19,16 +21,24 @@ export default function DayProgress({
 
     return(
       <ul className="steps steps-vertical">
-        <li className="step step-info">
-          <Link
-            href="/modules/week?q=[week_number]&t=[title]&day=1"
-            as={`/modules/week?q=${searchParams.q}&t=${searchParams.t}&day=1`}
-            className="btn bg-socskyblue"
-          >
-            Day 1
-          </Link>
-        </li>
-
+          {!success ? ( 
+            <li className="step">
+              <Link
+              href="/modules/week?q=[week_number]&t=[title]&day=1"
+              as={`/modules/week?q=${searchParams.q}&t=${searchParams.t}&day=1`}
+              className="btn bg-socskyblue"
+              >
+                Day 1
+              </Link>
+            </li>
+          ) : (
+            <li className="step step-info">
+              <div className="tooltip tooltip-right fixed left-[6.5%]" data-tip="Completed">
+                <button className="btn bg-gray-300 cursor-not-allowed pointer-events-none">Day 1</button>
+              </div>
+            </li>
+          )
+        }  
         <li className="step">
           <Link
             href="/modules/week?q=[week_number]&t=[title]&day=2"

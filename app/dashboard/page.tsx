@@ -1,32 +1,32 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import { SubmitButton } from "@/components/Submit";
 /* imports as required */
 
 
-export default async function DashBoard({
-  searchParams,
-}: {
-  searchParams: { w: number; d: number; user: string };
-}) {
+export default async function DashBoard() {
   const supabase = createClient();
-
-  let data: any = false;
-  if (searchParams.user && searchParams.w && searchParams.d) {
-    data = await supabase
-      .from("results")
-      .select("*")
-      .eq("week_number", searchParams.w)
-      .eq("day_number", searchParams.d)
-      .eq("user_uuid", searchParams.user);
-    console.log(`data = ${data}`);
-  }
 
   const progressBar1 = await supabase
     .from("results")
     .select("*")
     .eq("week_number", 1)
-  console.log(progressBar1.data);
+  //console.log(progressBar1.data);
   
+  const handleSubmit = async(formData: FormData) => {
+    'use server'
+    const module = formData.get("module") as string;
+    const day = formData.get('day') as string;
+    const user = formData.get('user') as string;
+    console.log(module, day, user)
+    // const {data} = await supabase
+    // .from("results")
+    // .select("*")
+    // .eq("week_number", module)
+    // .eq("day_number", day)
+    // .eq("user_uuid", user);
+    // console.log(`data = ${data}`);
+  }
 
   return (
     <div className="flex flex-col  pt-10 px-10 w-full">
@@ -42,8 +42,8 @@ export default async function DashBoard({
         </Link>
       </div>
       <form className="flex flex-row justify-start">
-        <select className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4">
-          <option>Select module</option>
+        <select name="module" className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4" required>
+          <option value=''>Select module</option>
           <option value="1">1. Onboarding</option>
           <option value="2">2. Front End</option>
           <option value="3">3. Software Engineer</option>
@@ -57,16 +57,16 @@ export default async function DashBoard({
           <option value="11">11. Cyber Security</option>
           <option value="12">12. AI and Data</option>
         </select>
-        <select className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 ">
-          <option>Select day</option>
+        <select name="day" className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 " required>
+          <option value=''>Select day</option>
           <option value="1">Monday</option>
           <option value="2">Tuesday</option>
           <option value="3">Wednesday</option>
           <option value="4">Thursday</option>
           <option value="5">Friday</option>
         </select>
-        <select className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 ">
-          <option>Select name</option>
+        <select name="user" className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 " required>
+          <option value=''>Select name</option>
           {/* For all names, should be able to be added by the table called 'Profiles' 
           
           call the profiles table
@@ -88,7 +88,12 @@ export default async function DashBoard({
             Igor Silva
           </option>
         </select>
-        <button type="submit">Submit</button>
+        <SubmitButton
+          formAction={handleSubmit}
+          pendingText="Submitting..."
+        >
+            Submit
+        </SubmitButton>
       </form>
       <div className="grid grid-rows-[10vh, 30vh, 10vh] ">
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center items-end h-24 mb-2 ">

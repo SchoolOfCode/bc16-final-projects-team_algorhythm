@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { SubmitButton } from "@/components/Submit";
-import { handleChanges } from './WheelProgress';
+
 
 export default function Quiz({ props, index, total }: any) {
   const [selected, setSelected] = useState(false);
@@ -15,10 +15,6 @@ export default function Quiz({ props, index, total }: any) {
     const first = formData.get("question_0") as any;
     console.log(first)
   }
-  const handleClick = () => {
-    handleChanges(20)
-  }
-  
   return (
     <div id={`slide${index}`} className="carousel-item flex-col items-center w-full">
         <h1 className="text-xl font-bold pb-5">{props.question}</h1>
@@ -45,7 +41,7 @@ export default function Quiz({ props, index, total }: any) {
 
       <div className="join grid grid-cols-2 py-5 px-20">
 
-        <a onClick={handleClick} href={`#slide${index - 1}`} className={`${index ? 'join-item btn btn-outline' : `join-item btn btn-outline text-gray-500 pointer-events-none`}`}>Previous</a>
+        <a  href={`#slide${index - 1}`} className={`${index ? 'join-item btn btn-outline' : `join-item btn btn-outline text-gray-500 pointer-events-none`}`}>Previous</a>
 
         {index === total -1 && selected ? (
           <SubmitButton

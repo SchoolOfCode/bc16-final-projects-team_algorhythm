@@ -8,13 +8,13 @@ export default function DayProgress({
   searchParams: { q: number; content: string; t: string; day: number; r: any };
 }) {
   const defaultSuccess = [false, false, false, false, false];
-  const successs = searchParams.r.data || defaultSuccess;
+  const success = searchParams.r.data || defaultSuccess;
   
-  const [day1, setDay1] = useState(successs[0]?.success === true);
-  const [day2, setDay2] = useState(successs[1]?.success === true);
-  const [day3, setDay3] = useState(successs[2]?.success === true);
-  const [day4, setDay4] = useState(successs[3]?.success === true);
-  const [day5, setDay5] = useState(successs[4]?.success === true);
+  const [day1, setDay1] = useState(success[0]?.success === true);
+  const [day2, setDay2] = useState(success[1]?.success === true);
+  const [day3, setDay3] = useState(success[2]?.success === true);
+  const [day4, setDay4] = useState(success[3]?.success === true);
+  const [day5, setDay5] = useState(success[4]?.success === true);
   
   return (
     <ul className="steps steps-vertical w-56">

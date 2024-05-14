@@ -7,7 +7,10 @@ export default function DayProgress({
   }: {
     searchParams: { q: number; content: string; t: string; day: number; r: any };
   }) {
-    const success = searchParams.r.data[0].success ?? false
+    let success = false
+    if(searchParams.r.data[0].success){
+      success = searchParams.r.data[0].success
+    }
 
     const [day1, setDay1] = useState(false)
     const [day2, setDay2] = useState(false)

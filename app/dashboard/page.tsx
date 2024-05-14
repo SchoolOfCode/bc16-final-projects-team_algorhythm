@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 /* imports as required */
 
+
 export default async function DashBoard({
   searchParams,
 }: {
@@ -10,7 +11,7 @@ export default async function DashBoard({
   const supabase = createClient();
 
   let data: any = false;
-  if (searchParams.w && searchParams.d && searchParams.user) {
+  if (searchParams.user && searchParams.w && searchParams.d) {
     data = await supabase
       .from("results")
       .select("*")
@@ -23,10 +24,9 @@ export default async function DashBoard({
   const progressBar1 = await supabase
     .from("results")
     .select("*")
-    .eq("week_number", searchParams.w)
-    .eq("day_number", searchParams.d)
-    .eq("user_uuid", searchParams.user);
-  console.log(`pb1 = ${progressBar1}`);
+    .eq("week_number", 1)
+  console.log(progressBar1.data);
+  
 
   return (
     <div className="flex flex-col  pt-10 px-10 w-full">

@@ -37,10 +37,10 @@ export default async function modules({
       <h1 className="text-black font-semibold text-4xl m-5">
         {searchParams.t}
       </h1>
-      <div className="flex items-center w-full justify-evenly">
+      <div className="flex items-center w-full justify-center">
         <DayProgress searchParams={searchParams}/>
           {!searchParams.day ? (
-            <div className="flex flex-col w-[50%] items-center">
+            <div className="flex flex-col w-[30%] items-center">
               <h1 className="text-black font-semibold text-2xl m-2">
                  Time to test your knowledge
               </h1>
@@ -53,7 +53,7 @@ export default async function modules({
               />
             </div>
           ) : data.data[0] !== undefined ? (
-            <form className="flex flex-col w-[50%] items-center">
+            <form className="flex flex-col w-[30%] items-center">
               <Quiz data={data} total={total}/>
             </form>
           ) : (

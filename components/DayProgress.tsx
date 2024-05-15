@@ -49,7 +49,7 @@ export default function DayProgress({
         </li>
       ) : !day1 ? (
         <li  className="step h-24">
-          <div className="tooltip tooltip-right" data-tip="Previous">
+          <div className="tooltip tooltip-right" data-tip="Locked">
             <p className="btn shadow-md cursor-not-allowed pointer-events-none">
               Day 2
             </p>
@@ -77,7 +77,7 @@ export default function DayProgress({
         </li>
       ) : !day2 ? (
         <li className="step h-24">
-          <div className="tooltip tooltip-right" data-tip="Previous">
+          <div className="tooltip tooltip-right" data-tip="Locked">
             <p className="btn shadow-md cursor-not-allowed pointer-events-none">
               Day 3
             </p>
@@ -105,7 +105,7 @@ export default function DayProgress({
         </li>
       ) : !day3 ? (
         <li className="step h-24">
-          <div className="tooltip tooltip-right" data-tip="Previous">
+          <div className="tooltip tooltip-right" data-tip="Locked">
             <p className="btn shadow-md cursor-not-allowed pointer-events-none">
               Day 4
             </p>
@@ -133,7 +133,7 @@ export default function DayProgress({
         </li>
       ) : !day4 ? (
         <li className="step h-24">
-          <div className="tooltip tooltip-right" data-tip="Previous">
+          <div className="tooltip tooltip-right" data-tip="Locked">
             <p className="btn shadow-md cursor-not-allowed pointer-events-none">
               Day 5
             </p>

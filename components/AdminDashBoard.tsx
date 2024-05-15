@@ -9,37 +9,73 @@ export default function AdminDashBoard({ data }:any){
     const [user, setUser] = useState('')
     const [submited,  setSubmited] = useState(false)
     const isFirstRender = useRef(true)
+    const [dayCount, setDayCount] = useState(0);
     const [progressBar1, setProgressBar1] = useState(0)
     const [progressBar2, setProgressBar2] = useState(0)
     const [progressBar3, setProgressBar3] = useState(0)
     const [progressBar4, setProgressBar4] = useState(0)
 
+
+    // function countDayNumbers(data, weekNumber, userUuid) {
+    //     let filteredData = data.filter(item => item.week_number === weekNumber && item.user_uuid === userUuid);
+    //     let dayNumbers = new Set();
+    //     for (let item of filteredData) {
+    //         dayNumbers.add(item.day_number);
+    //     }
+        
+    //     return dayNumbers.size;
+    // }
+    
+    
+
     useEffect(() => {
         if(isFirstRender.current){
             isFirstRender.current = false
         }else{
-            // Here we ll add the logic for the dashboard to render using the selected options
-            const bootCamper = allData.data.filter((obj: { day_number: number; week_number: number; user_uuid: string }) => obj.day_number === Number(day) && obj.week_number === Number(module) && obj.user_uuid === user)
+            const bootCamper = allData.data.filter((obj: { week_number: number; user_uuid: string }) => obj.week_number === Number(module) && obj.user_uuid === user)
             
-            // Catch error, if this person didnt completed the Module and Day selected
             if(!bootCamper.length){
-                console.log('Quiz not completed on this module and day')
+                console.log('No quizzes completed in this module')
                 return
             }
-            setProgressBar1((bootCamper[0].correct_answers / bootCamper[0].total_questions) * 100)
+    
+            const dayData = bootCamper.filter((obj: { day_number: number }) => obj.day_number === Number(day));
+            if (!dayData.length) {
+                console.log('No quizzes completed on this day')
+                return
+            }
+            if (dayData.length) {
+                setProgressBar1((dayData[dayData.length-1].correct_answers / dayData[dayData.length-1].total_questions) * 100)
+            }
+    
+            let totalCorrectAnswers = 0;
+            let totalQuestions = 0;
+            for (let item of bootCamper) {
+                totalCorrectAnswers += item.correct_answers;
+                totalQuestions += item.total_questions;
+            }
+    
+            let weeklyAverage = totalCorrectAnswers / totalQuestions;
+    
+            setProgressBar2(weeklyAverage * 100);
         }
-        
     }, [submited])
+    
+    
 
     const handleSubmit = async(formData: FormData) => {
         const module = formData.get("module") as unknown as number;
         const day = formData.get('day') as unknown as number;
         const user = formData.get('user') as unknown as string;
+    //     const dayCount = countDayNumbers(allData.data, module, user);
+    // setDayCount(dayCount);
         setModule(module)
         setDay(day)
         setUser(user)
         setSubmited(!submited)
     }
+
+   
 
     // Create a option for each person on dropdown menu
     const uniqueKeys = new Set();
@@ -129,13 +165,13 @@ export default function AdminDashBoard({ data }:any){
             <div
                 className=" mt-5 radial-progress text-black  col-start-3  "
                 style={{
-                "--value": 90,
+                "--value": progressBar2,
                 /* take the mean average - 5 calls, sum them, divide by number of quizzes that week */ "--size":
                     "8rem",
                 }}
                 role="progressbar"
             >
-                90%{" "}
+                {progressBar2 ? `${progressBar2}%` : ''}{" "}
                 {/* take the mean average - 5 calls, sum them, divide by number of quizzes that week */}
             </div>
 

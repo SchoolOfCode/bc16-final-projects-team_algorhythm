@@ -4,14 +4,11 @@ import React,{ useEffect, useState, useRef, use } from "react";
 
 export default function AdminDashBoard({ data }:any){
     const [allData, setAllData] = useState(data)
-
     const [module, setModule] = useState(0)
     const [day, setDay] = useState(0)
     const [user, setUser] = useState('')
-
     const [submited,  setSubmited] = useState(false)
     const isFirstRender = useRef(true)
-
     const [progressBar1, setProgressBar1] = useState(0)
     const [progressBar2, setProgressBar2] = useState(0)
     const [progressBar3, setProgressBar3] = useState(0)
@@ -24,23 +21,15 @@ export default function AdminDashBoard({ data }:any){
             // Here we ll add the logic for the dashboard to render using the selected options
             const bootCamper = allData.data.filter((obj: { day_number: number; week_number: number; user_uuid: string }) => obj.day_number === Number(day) && obj.week_number === Number(module) && obj.user_uuid === user)
             
+            // Catch error, if this person didnt completed the Module and Day selected
+            if(!bootCamper.length){
+                console.log('Quiz not completed on this module and day')
+                return
+            }
             setProgressBar1((bootCamper[0].correct_answers / bootCamper[0].total_questions) * 100)
         }
         
-        //setDailyAverage((cohortData[0].correct_answers / cohortData[0].total_questions) * 100 + (cohortData[1].correct_answers / cohortData[1].total_questions) * 100)
     }, [submited])
-
-    //const filteredData= allData.data.filter((obj: { first_name: string; week_number: number }) => obj.first_name === 'Annamaria' && obj.week_number === 1)
-
-    //console.log(filteredData)
-
-    const cohortData = allData.data.filter((obj: { day_number: number; week_number: number }) => obj.day_number === 1 && obj.week_number === 1)
-
-    //console.log(cohortData.length)
-
-    
-    //console.log(dailyAverage / cohortData.length)
-    //console.log((cohortData[0].correct_answers / cohortData[0].total_questions) * 100)
 
     const handleSubmit = async(formData: FormData) => {
         const module = formData.get("module") as unknown as number;
@@ -49,11 +38,24 @@ export default function AdminDashBoard({ data }:any){
         setModule(module)
         setDay(day)
         setUser(user)
-
         setSubmited(!submited)
-        //console.log(module, day, user)
     }
-    //console.log(data)
+
+    // Create a option for each person on dropdown menu
+    const uniqueKeys = new Set();
+    const uniqueOptions = allData.data.map((person: any) => {
+        const key = `${person.first_name} ${person.last_name}`;
+        if (!uniqueKeys.has(key)) {
+            uniqueKeys.add(key);
+            return (
+                <option key={person.user_uuid} value={person.user_uuid}>
+                    {person.first_name} {person.last_name}
+                </option>
+            );
+        }
+        return null;
+    });
+
     return (
         <>
         <form className="flex flex-row justify-start">
@@ -95,13 +97,7 @@ export default function AdminDashBoard({ data }:any){
           </option>
 
           */}
-
-          <option>Annamaria Koutsoras</option>
-          <option>Jack White</option>
-          <option>Stephen Boyce</option>
-          <option value="9efbb99c-82f9-4251-9a78-2939cf3616b0">
-            Igor Silva
-          </option>
+          {uniqueOptions}
         </select>
         <SubmitButton
           formAction={handleSubmit}

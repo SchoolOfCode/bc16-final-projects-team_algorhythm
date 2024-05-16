@@ -76,7 +76,7 @@ export default function QuizCreation() {
             <Field className="" name="week_number">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Week</label>
+                  <label className="font-semibold text-center text-white">Week</label>
                   <input
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -97,9 +97,9 @@ export default function QuizCreation() {
             <Field className="" name="day_number">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Day</label>
+                  <label className="font-semibold text-center text-white">Day</label>
                   <input
-                    className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
+                    className="bg-white text-center rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
                     placeholder="1"
                     id="day_number"
@@ -120,7 +120,7 @@ export default function QuizCreation() {
             <Field name="question">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Question</label>
+                  <label className="font-semibold  text-white">Question</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -139,7 +139,7 @@ export default function QuizCreation() {
             <Field name="correct_answer">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Correct Answer</label>
+                  <label className="font-semibold  text-white">Correct Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -158,7 +158,7 @@ export default function QuizCreation() {
             <Field name="incorrect_answer1">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Incorrect Answer</label>
+                  <label className="font-semibold  text-white">Incorrect Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -177,7 +177,7 @@ export default function QuizCreation() {
             <Field name="incorrect_answer2">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Incorrect Answer</label>
+                  <label className="font-semibold text-white">Incorrect Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -196,7 +196,7 @@ export default function QuizCreation() {
             <Field name="incorrect_answer3">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Incorrect Answer</label>
+                  <label className="font-semibold  text-white">Incorrect Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}

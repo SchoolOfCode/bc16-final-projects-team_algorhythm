@@ -5,14 +5,16 @@ import * as yup from "yup";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-import { EditQuizzes } from "@/components/EditQuizzes";
+import  EditQuizzes from "@/components/EditQuizzes";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-export default function QuizCreation() {
+
+
+export default function QuizCreation({data}) {
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({
@@ -227,7 +229,7 @@ export default function QuizCreation() {
           </Form>
         )}
       </Formik>
-      <EditQuizzes/>
+      <EditQuizzes data={data}/>
     </div>
   );
 }

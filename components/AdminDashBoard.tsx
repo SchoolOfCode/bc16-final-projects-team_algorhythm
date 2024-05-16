@@ -210,14 +210,14 @@ export default function AdminDashBoard({ data }: any) {
               style={{
                 "--value": progressBar1,
                 "--size": "8rem",
-              }}
+              } as React.CSSProperties}
               role="progressbar"
             >
               {progressBar1 ? `${progressBar1}%` : ""}{" "}
             </div>
             <div
               className="z-1 mt-5 radial-progress text-socskyblue"
-              style={{ "--value": 100, "--size": "8rem" }}
+              style={{ "--value": 100, "--size": "8rem" } as React.CSSProperties}
               role="progressbar"
             ></div>
           </div>
@@ -227,14 +227,14 @@ export default function AdminDashBoard({ data }: any) {
               style={{
                 "--value": progressBar2,
                 "--size": "8rem",
-              }}
+              } as React.CSSProperties}
               role="progressbar"
             >
               {progressBar2 ? `${progressBar2}%` : ""}{" "}
             </div>
             <div
               className="z-1 mt-5 radial-progress text-lightgrey"
-              style={{ "--value": 100, "--size": "8rem" }}
+              style={{ "--value": 100, "--size": "8rem" } as React.CSSProperties}
               role="progressbar"
             ></div>
           </div>
@@ -246,14 +246,14 @@ export default function AdminDashBoard({ data }: any) {
               style={{
                 "--value": progressBar3,
                 "--size": "8rem",
-              }}
+              } as React.CSSProperties}
               role="progressbar"
             >
               {progressBar3 ? `${progressBar3}%` : ""}{" "}
             </div>
             <div
               className="z-1 mt-5 radial-progress text-socskyblue"
-              style={{ "--value": 100, "--size": "8rem" }}
+              style={{ "--value": 100, "--size": "8rem" }as React.CSSProperties}
               role="progressbar"
             ></div>
           </div>
@@ -264,14 +264,14 @@ export default function AdminDashBoard({ data }: any) {
               style={{
                 "--value": progressBar4,
                 "--size": "8rem",
-              }}
+              } as React.CSSProperties}
               role="progressbar"
             >
               {progressBar4 ? `${progressBar4}%` : ""}{" "}
             </div>
             <div
               className="z-1 mt-5 radial-progress text-lightgrey"
-              style={{ "--value": 100, "--size": "8rem" }}
+              style={{ "--value": 100, "--size": "8rem" } as React.CSSProperties}
               role="progressbar"
             ></div>
           </div>

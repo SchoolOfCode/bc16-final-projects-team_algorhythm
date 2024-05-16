@@ -9,23 +9,15 @@ export default function AdminDashBoard({ data }:any){
     const [user, setUser] = useState('')
     const [submited,  setSubmited] = useState(false)
     const isFirstRender = useRef(true)
-    const [dayCount, setDayCount] = useState(0);
     const [progressBar1, setProgressBar1] = useState(0)
     const [progressBar2, setProgressBar2] = useState(0)
     const [progressBar3, setProgressBar3] = useState(0)
     const [progressBar4, setProgressBar4] = useState(0)
+    const [message, setMessage] = useState("");
 
 
-    // function countDayNumbers(data, weekNumber, userUuid) {
-    //     let filteredData = data.filter(item => item.week_number === weekNumber && item.user_uuid === userUuid);
-    //     let dayNumbers = new Set();
-    //     for (let item of filteredData) {
-    //         dayNumbers.add(item.day_number);
-    //     }
-        
-    //     return dayNumbers.size;
-    // }
-    
+
+
     
 
     useEffect(() => {
@@ -41,8 +33,9 @@ export default function AdminDashBoard({ data }:any){
     
             const dayData = bootCamper.filter((obj: { day_number: number }) => obj.day_number === Number(day));
             if (!dayData.length) {
-                console.log('No quizzes completed on this day')
-                return
+                setMessage('No quizzes completed on this day');
+    return;
+                
             }
             if (dayData.length) {
                 setProgressBar1((dayData[dayData.length-1].correct_answers / dayData[dayData.length-1].total_questions) * 100)
@@ -98,8 +91,6 @@ export default function AdminDashBoard({ data }:any){
         const module = formData.get("module") as unknown as number;
         const day = formData.get('day') as unknown as number;
         const user = formData.get('user') as unknown as string;
-    //     const dayCount = countDayNumbers(allData.data, module, user);
-    // setDayCount(dayCount);
         setModule(module)
         setDay(day)
         setUser(user)
@@ -172,6 +163,8 @@ export default function AdminDashBoard({ data }:any){
         >
             Submit
         </SubmitButton>
+         {/* No quizzes completed today message  */}
+        <p>{message}</p>
         </form>
         <div className="grid grid-rows-[10vh, 30vh, 10vh] ">
             <div className="grid grid-cols-subgrid col-span-7 justify-items-center items-end h-24 mb-2 ">

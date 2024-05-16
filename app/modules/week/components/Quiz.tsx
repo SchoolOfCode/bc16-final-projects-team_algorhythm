@@ -4,12 +4,14 @@ import { SubmitButton } from "@/components/Submit";
 import Submit from './Submit';
 
 export default function Quiz({ props }: any) {
+  // Get all quizzes from the selected Day
   const selectedDay = props.quizzes.data.filter((obj:any) => obj.day_number === props.selected)
+  // total of question for that day
   const total = selectedDay.length
   const valueProgressBar = 100 / total
   // Initialize an array to track selected state for each question
   const [selected, setSelected] = useState<boolean[]>(new Array(total).fill(false));
-  const [submited, setSubmited] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [progressBar, setProgressBar] = useState(valueProgressBar)
   const [retake, setRetake] = useState(false)
 
@@ -30,7 +32,7 @@ export default function Quiz({ props }: any) {
         answers.push(formData.get(`question_${i}`))
       }
     }
-    setSubmited(!submited)
+    setSubmitted(!submitted)
     //const passed: boolean = await Submit(answers,data,total)
     // if(passed){
     //   setRetake(passed)
@@ -68,12 +70,13 @@ export default function Quiz({ props }: any) {
   //////////////// Suffle the answers ///////////////////
   return (
     <div className='flex flex-col items-center gap-5 mt-5'>
-    {!submited ? (
+    {!submitted ? (
       <>
       <div className="carousel items-center w-[70%]">
       {selectedDay.map((item: any, index: number) => (
         <div id={`slide${index}`} key={index} className="carousel-item flex-col items-center w-full">
           <h1 className="text-xl font-bold mb-10">{item.question}</h1>
+          {/* All answers below */}
           {random(item,index)}
           <div className="join grid grid-cols-2 py-5 px-20 mt-5">
           {index ? (
@@ -104,10 +107,10 @@ export default function Quiz({ props }: any) {
         </div>
         ))}
     </div> 
-    <progress className="progress w-80 mt-5 h-5" value={progressBar} max="100">{`${progressBar}%`}</progress>
+    <progress className="progress w-80 mt-5 h-5" value={progressBar} max="100">{progressBar}%</progress>
     </>
     ) : (
-      <h1>Submited</h1>
+      <h1>Submitted</h1>
     )}
   </div>
   );

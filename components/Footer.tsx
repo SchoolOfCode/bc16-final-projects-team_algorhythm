@@ -33,18 +33,18 @@ export default async function Footer() {
   return user ? (
 <footer className="footer p-10 bg-base-300 text-base-content">
   <nav>
-    <h6 className="footer-title">Services</h6> 
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
+    <h6 className="footer-title">Help and Support</h6> 
+    <a className="link link-hover">Documentation</a>
+    <a className="link link-hover">SocBot</a>
+    <a className="link link-hover">FAQa</a>
+    <a className="link link-hover">Contact us</a>
   </nav> 
   <nav>
     <h6 className="footer-title">Company</h6> 
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
+    <a className="link link-hover">About us/a</a>
+    <a className="link link-hover">Terms of Use</a>
+    <a className="link link-hover">Privacy Policy</a>
+    <a className="link link-hover">Carbon Reduction Plan</a>
   </nav> 
   <nav>
     <h6 className="footer-title">Social</h6> 

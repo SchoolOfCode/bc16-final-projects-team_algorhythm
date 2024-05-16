@@ -33,10 +33,10 @@ export default async function Nav() {
   };
 
   return user ? (
-    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50 sticky top-0 shadow-md">
+    <div className="navbar bg-socskyblue px-10 animate-fade-down z-50 sticky top-0 shadow-md">
       <div className="flex-1 m-3">
         <Link href="/">
-          <Image src="/logoblack.png" alt="SoC Logo" width={200} height={200} />
+          <Image src="/logoblack.png" alt="SoC Logo" width={150} height={150} />
         </Link>
       </div>
       <div className="">
@@ -49,7 +49,7 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/modules">
           Modules
         </Link>
-        <Link className="px-3 dark:text-black" href="/socbot" target="_blank">
+        <Link className="px-3 dark:text-black" href="/socbot">
           SoCBot
         </Link>
         <p className="pl-10 pr-10 dark:text-black">{userData()}!</p>

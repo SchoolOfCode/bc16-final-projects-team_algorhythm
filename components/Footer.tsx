@@ -10,13 +10,24 @@ export default async function Footer() {
   } = await supabase.auth.getUser();
 
   return user ? (
-    <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
-      <Link href="/">
-        <p>
-          Powered by
-          <Image src="/algologo.png" alt="SoC Logo" width={200} height={200} />
-        </p>
-      </Link>
+    <footer className="animate-fade-up w-full border-t border-t-foreground/10 p-8 flex flex-row justify-center text-center text-xs">
+      <p>
+        Powered by
+        <Image
+          className="dark:hidden inline-block"
+          src="/algologo.png"
+          alt="SoC Logo"
+          width={100}
+          height={100}
+        />
+        <Image
+          className="hidden dark:inline-block"
+          src="/algologolight.png"
+          alt="SoC Logo"
+          width={100}
+          height={100}
+        />
+      </p>
     </footer>
   ) : null;
 }

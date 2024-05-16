@@ -33,10 +33,10 @@ export default async function Nav() {
   };
 
   return user ? (
-    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50 sticky top-0">
-      <div className="flex-1">
+    <div className="navbar bg-socskyblue px-10 py-5 animate-fade-down z-50 sticky top-0 shadow-md">
+      <div className="flex-1 m-3">
         <Link href="/">
-          <Image src="/logoblack.png" alt="SoC Logo" width={250} height={200} />
+          <Image src="/logoblack.png" alt="SoC Logo" width={200} height={200} />
         </Link>
       </div>
       <div className="">
@@ -46,14 +46,11 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/dashboard">
           Dashboard
         </Link>
-        <Link className="px-3 dark:text-black" href="/quizselection">
-          Quizzes
-        </Link>
-        <Link className="px-3 dark:text-black" href="/quizcreation">
-          Quiz Creator
+        <Link className="px-3 dark:text-black" href="/modules">
+          Modules
         </Link>
         <Link
-          className="px-5 dark:text-black"
+          className="px-3 dark:text-black"
           href="https://bot.schoolofcode.com/"
           target="_blank"
         >

@@ -36,6 +36,10 @@ export default function AdminDashBoard({ data }: any) {
       if (!dayData.length) {
         setMessage("No quizzes completed on this day");
         setMessageVisibility(true);
+        setProgressBar1(0);
+        setProgressBar2(0);
+        setProgressBar3(0);
+        setProgressBar4(0);
         return;
       } else if (dayData.length) {
         setMessage("");

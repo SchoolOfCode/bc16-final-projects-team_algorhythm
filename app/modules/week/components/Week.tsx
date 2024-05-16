@@ -40,7 +40,7 @@ export default function Week({ props }: any){
         <h1 className="text-black font-semibold text-4xl m-5 animate-fade">
             {props.data[0].title}
         </h1>
-        <div className="flex items-center w-full justify-evenly animate-fade">
+        <div className="flex items-start w-full justify-evenly animate-fade">
             <DayProgress props={props}/>
             {!selected ? (
                 <div className="flex flex-col w-[30%] items-center">
@@ -64,7 +64,8 @@ export default function Week({ props }: any){
             {!selected ? ( 
                 <div className="w-64"/>
             ) : ( 
-                <div className="w-64 flex flex-col items-center">
+                <div className="w-64 flex flex-col items-center justify-between">
+                    <div className="h-full"/>
                     <div className="radial-progress text-loginblue bg-socskyblue" 
                         style={{ 
                             "--value": radialProgress,
@@ -74,6 +75,7 @@ export default function Week({ props }: any){
                         role="progressbar">
                         {radialProgress}%
                     </div>
+                    <div className="h-24"/>
                 </div>
             )}
         </div>

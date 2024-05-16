@@ -58,7 +58,7 @@ export default function AdminDashBoard({ data }:any){
             let weeklyAverage = totalCorrectAnswers / totalQuestions;
     
             setProgressBar2(weeklyAverage * 100);
-            
+
             let totalDailyCorrectAnswers = 0;
             let totalDailyQuestions = 0;
             for (let item of allData.data) {
@@ -73,6 +73,21 @@ export default function AdminDashBoard({ data }:any){
             dailyAverage = Math.round(dailyAverage * 100);
     
             setProgressBar3(dailyAverage);
+
+            let totalWeeklyCorrectAnswers = 0;
+        let totalWeeklyQuestions = 0;
+        for (let item of allData.data) {
+            if (item.week_number === Number(module)) {
+                totalWeeklyCorrectAnswers += item.correct_answers;
+                totalWeeklyQuestions += item.total_questions;
+            }
+        }
+
+        let weeklyAverageAll = totalWeeklyCorrectAnswers / totalWeeklyQuestions;
+
+        weeklyAverageAll = Math.round(weeklyAverageAll * 100);
+
+        setProgressBar4(weeklyAverageAll);
         }
     }, [module, day, user]);
     
@@ -196,7 +211,7 @@ export default function AdminDashBoard({ data }:any){
                 <div
                     className=" mt-5 radial-progress text-loginblue col-start-5 "
                     style={{
-                    "--value": 78,
+                    "--value": progressBar3,
                     /* take the cohort mean average for the day - sum all daily answers and divide by number of bootcampers who attempted it */ "--size":
                         "8rem",
                     }}
@@ -209,13 +224,13 @@ export default function AdminDashBoard({ data }:any){
                 <div
                     className=" mt-5 radial-progress text-black col-start-6 "
                     style={{
-                    "--value": 70,
+                    "--value": progressBar4,
                     /* take the cohort mean average for the week - sum all daily averages and divide by number of quizzes that week */ "--size":
                         "8rem",
                     }}
                     role="progressbar"
                 >
-                    70%{" "}
+                    {progressBar4 ? `${progressBar4}%` : ''}{" "}
                     {/* take the cohort mean average for the week - sum all daily averages and divide by number of quizzes that week */}
                 </div>
             </div>

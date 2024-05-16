@@ -6,7 +6,8 @@ export default function SoCBot() {
       <h1>SoCBot</h1>
       <iframe
         src="https://soc-llm.vercel.app"
-        className="w-[80%] h-[80vh] border-none"
+        width="720"
+        height="1080"
         allowFullScreen
       ></iframe>
     </div>

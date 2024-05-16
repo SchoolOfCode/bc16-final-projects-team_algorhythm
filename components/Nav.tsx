@@ -49,11 +49,7 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/modules">
           Modules
         </Link>
-        <Link
-          className="px-3 dark:text-black"
-          href="https://bot.schoolofcode.com/"
-          target="_blank"
-        >
+        <Link className="px-3 dark:text-black" href="/socbot" target="_blank">
           SoCBot
         </Link>
         <p className="pl-10 pr-10 dark:text-black">{userData()}!</p>

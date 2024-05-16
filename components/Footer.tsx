@@ -36,7 +36,7 @@ export default async function Footer() {
     <h6 className="footer-title">Help and Support</h6> 
     <a className="link link-hover">Documentation</a>
     <a className="link link-hover">SocBot</a>
-    <a className="link link-hover">FAQa</a>
+    <a className="link link-hover">FAQs</a>
     <a className="link link-hover">Contact us</a>
   </nav> 
   <nav>

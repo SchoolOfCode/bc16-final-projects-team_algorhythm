@@ -20,7 +20,7 @@ export default async function DashBoard() {
           Welcome to your dashboard
         </h1>
         <Link
-          href="#"
+          href="/quizcreation"
           className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-3 text-foreground hover:text-white font-semibold text-sm text-left h-9 flex items-center mt-1"
         >
           Modify quizzes

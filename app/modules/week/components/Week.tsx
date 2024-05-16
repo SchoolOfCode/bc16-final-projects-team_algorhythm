@@ -14,6 +14,10 @@ export default function Week({ props }: any){
     const [selected, setSelected] = useState(false)
     const [radialProgress, setRadialProgress] = useState(0)
     
+    useEffect(()=>{
+        setRadialProgress(0)
+    },[selected])
+
     props.setRadialProgress = setRadialProgress
     props.radialProgress = radialProgress
     props.setSelected = setSelected
@@ -61,7 +65,15 @@ export default function Week({ props }: any){
                 <div className="w-64"/>
             ) : ( 
                 <div className="w-64 flex flex-col items-center">
-                    <div className="radial-progress text-loginblue bg-socskyblue" style={{ "--value": radialProgress , "--size": "10rem", "--thickness": "15px" }} role="progressbar">{radialProgress}%</div>
+                    <div className="radial-progress text-loginblue bg-socskyblue" 
+                        style={{ 
+                            "--value": radialProgress,
+                            "--size": "10rem",
+                            "--thickness": "15px" 
+                        } as React.CSSProperties} // Explicitly type as React.CSSProperties
+                        role="progressbar">
+                        {radialProgress}%
+                    </div>
                 </div>
             )}
         </div>

@@ -10,9 +10,8 @@ export default function Quiz({ props }: any) {
   const total = dayQuestions.length
   const valueProgressBar = 100 / total
 
-  useEffect(()=>{
-    props.setRadialProgress(valueProgressBar)
-  },[])
+  // State to allow condition to move progress Bar below
+  const [answeredQuestions, setAnsweredQuestions] = useState<boolean[]>(new Array(total).fill(false));
   
   // Initialize an array to track selected state for each question
   const [selected, setSelected] = useState<boolean[]>(new Array(total).fill(false));
@@ -24,7 +23,20 @@ export default function Quiz({ props }: any) {
     const newSelected = [...selected];
     newSelected[index] = inputs.length > 0; // Set to true if at least one input is checked
     setSelected(newSelected);
-  };
+
+    //Condition to allow progressbar to move
+    // Only increase progress bar if the question hasn't been answered before
+    if (!answeredQuestions[index]) {
+      props.setRadialProgress((prev: number) => prev + valueProgressBar);
+      // Set the question as answered
+      const newAnsweredQuestions = [...answeredQuestions];
+      newAnsweredQuestions[index] = true;
+      setAnsweredQuestions(newAnsweredQuestions);
+      if(props.radialProgress >= 100){
+        props.setRadialProgress(100)
+      }
+    };
+  }
 
   // function to handle button submit
   const submit = async (formData: FormData) => {
@@ -112,7 +124,7 @@ export default function Quiz({ props }: any) {
               Submit
             </SubmitButton>
           ) : selected[index] ? (
-            <a href={`#slide${index + 1}`} className='join-item btn btn-outline' onClick={()=>props.setRadialProgress((prev:number) => prev + valueProgressBar)}>Next</a>
+            <a href={`#slide${index + 1}`} className='join-item btn btn-outline'>Next</a>
           ) : (
             <div className="tooltip tooltip-right w-full" data-tip="Select a answer">
               <a href={`#slide${index + 1}`} className='join-item btn btn-outline w-full text-gray-500 pointer-events-none'>

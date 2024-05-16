@@ -22,17 +22,26 @@ export default async function modules({
     .select("*")
     .eq("week_number", searchParams.w) : null
 
-  const quizzes :any = searchParams.w ? await supabase
+  const quizzes : any = searchParams.w ? await supabase
     .from('quizzes')
     .select('*')
     .eq('week_number', searchParams.w)
     .order('day_number') : null
+
+  const results : any = searchParams.w ? await supabase
+    .from('results')
+    .select('*')
+    .eq('week_number', searchParams.w)
+    .eq('user_uuid', user.id)
+    .order('day_number') : null
   
   const props = {
     data,
-    quizzes
+    quizzes,
+    results,
+    user
   }
-  
+
   return (
     <div className="flex-1 flex flex-col items-center w-full">
       {data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>}  

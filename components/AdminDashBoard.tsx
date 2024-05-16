@@ -124,68 +124,77 @@ export default function AdminDashBoard({ data }: any) {
 
   return (
     <>
-      <form className="flex flex-row justify-start">
-        <select
-          name="module"
-          className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4"
-          required
-        >
-          <option value="">Select module</option>
-          <option value="1">1. Onboarding</option>
-          <option value="2">2. Front End</option>
-          <option value="3">3. Software Engineer</option>
-          <option value="4">4. Back End Engineer</option>
-          <option value="5">5. Database Engineer</option>
-          <option value="6">6. QA Engineer</option>
-          <option value="7">7. Web Developer 1</option>
-          <option value="8">8. Web Developer 2</option>
-          <option value="9">9. Product</option>
-          <option value="10">10. DevOps</option>
-          <option value="11">11. Cyber Security</option>
-          <option value="12">12. AI and Data</option>
-        </select>
-        <select
-          name="day"
-          className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 "
-          required
-        >
-          <option value="">Select day</option>
-          <option value="1">Monday</option>
-          <option value="2">Tuesday</option>
-          <option value="3">Wednesday</option>
-          <option value="4">Thursday</option>
-          <option value="5">Friday</option>
-        </select>
-        <select
-          name="user"
-          className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 "
-          required
-        >
-          <option value="">Select name</option>
-          {uniqueOptions}
-        </select>
-        <SubmitButton formAction={handleSubmit} pendingText="Submitting...">
-          Submit
-        </SubmitButton>
-        {/* No quizzes completed today message  */}
-        {messageVisibility && (
-          <div role="alert" className="alert w-1/2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="stroke-info shrink-0 w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span>{message}</span>
-          </div>
-        )}
+      <form>
+        <div className="flex flex-row justify-start align-middle">
+          <select
+            name="module"
+            className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4"
+            required
+          >
+            <option value="">Select module</option>
+            <option value="1">1. Onboarding</option>
+            <option value="2">2. Front End</option>
+            <option value="3">3. Software Engineer</option>
+            <option value="4">4. Back End Engineer</option>
+            <option value="5">5. Database Engineer</option>
+            <option value="6">6. QA Engineer</option>
+            <option value="7">7. Web Developer 1</option>
+            <option value="8">8. Web Developer 2</option>
+            <option value="9">9. Product</option>
+            <option value="10">10. DevOps</option>
+            <option value="11">11. Cyber Security</option>
+            <option value="12">12. AI and Data</option>
+          </select>
+          <select
+            name="day"
+            className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 "
+            required
+          >
+            <option value="">Select day</option>
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+          </select>
+          <select
+            name="user"
+            className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 "
+            required
+          >
+            <option value="">Select name</option>
+            {uniqueOptions}
+          </select>
+
+          <SubmitButton
+            className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-1 text-foreground hover:text-white font-semibold mr-5"
+            formAction={handleSubmit}
+            pendingText="Submitting..."
+          >
+            Track progress
+          </SubmitButton>
+        </div>
+        <div className="mt-5 flex flex-row justify-start align-middle">
+          {/* No quizzes completed today message  */}
+          {messageVisibility && (
+            <div role="alert" className="alert w-auto h-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-info shrink-0 w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>{message}</span>
+            </div>
+          )}
+        </div>
       </form>
       <div className="grid grid-rows-[10vh, 30vh, 10vh] ">
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center items-end h-24 mb-2 ">

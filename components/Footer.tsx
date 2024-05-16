@@ -41,7 +41,7 @@ export default async function Footer() {
   </nav> 
   <nav>
     <h6 className="footer-title">Company</h6> 
-    <a className="link link-hover">About us/a</a>
+    <a className="link link-hover">About us </a>
     <a className="link link-hover">Terms of Use</a>
     <a className="link link-hover">Privacy Policy</a>
     <a className="link link-hover">Carbon Reduction Plan</a>

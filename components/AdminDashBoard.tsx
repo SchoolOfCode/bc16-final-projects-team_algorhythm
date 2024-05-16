@@ -195,57 +195,76 @@ export default function AdminDashBoard({ data }: any) {
           <p className="col-start-5 col-span-2 text-2xl font-bold	">Cohort</p>
         </div>
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center ">
-          <div
-            className=" mt-5 radial-progress text-loginblue col-start-2  "
-            style={{
-              "--value": progressBar1,
-              /* call the correct row of the answers table for daily score */ "--size":
-                "8rem",
-            }}
-            role="progressbar"
-          >
-            {progressBar1 ? `${progressBar1}%` : ""}{" "}
-            {/* call the correct row of the answers table for daily score */}
+          <div className="col-start-2">
+            <div
+              className="absolute z-20 mt-5 radial-progress text-loginblue "
+              style={{
+                "--value": progressBar1,
+                "--size": "8rem",
+              }}
+              role="progressbar"
+            >
+              {progressBar1 ? `${progressBar1}%` : ""}{" "}
+            </div>
+            <div
+              className="z-1 mt-5 radial-progress text-socskyblue"
+              style={{ "--value": 100, "--size": "8rem" }}
+              role="progressbar"
+            ></div>
           </div>
-          <div
-            className=" mt-5 radial-progress text-black  col-start-3  "
-            style={{
-              "--value": progressBar2,
-              /* take the mean average - 5 calls, sum them, divide by number of quizzes that week */ "--size":
-                "8rem",
-            }}
-            role="progressbar"
-          >
-            {progressBar2 ? `${progressBar2}%` : ""}{" "}
-            {/* take the mean average - 5 calls, sum them, divide by number of quizzes that week */}
+          <div className="col-start-3">
+            <div
+              className="absolute z-20 mt-5 radial-progress text-black    "
+              style={{
+                "--value": progressBar2,
+                "--size": "8rem",
+              }}
+              role="progressbar"
+            >
+              {progressBar2 ? `${progressBar2}%` : ""}{" "}
+            </div>
+            <div
+              className="z-1 mt-5 radial-progress text-lightgrey"
+              style={{ "--value": 100, "--size": "8rem" }}
+              role="progressbar"
+            ></div>
           </div>
-
           {/* <div className="border-r-2 border-black col-start-4 h-40 justify-end"></div> */}
           {/* COHORT DAILY AVERAGE */}
-          <div
-            className=" mt-5 radial-progress text-loginblue col-start-5 "
-            style={{
-              "--value": progressBar3,
-              /* take the cohort mean average for the day - sum all daily answers and divide by number of bootcampers who attempted it */ "--size":
-                "8rem",
-            }}
-            role="progressbar"
-          >
-            {progressBar3 ? `${progressBar3}%` : ""}{" "}
-            {/* take the cohort mean average for the day - sum all daily answers and divide by number of bootcampers who attempted it */}
+          <div className="col-start-5">
+            <div
+              className="absolute z-20 mt-5 radial-progress text-loginblue  "
+              style={{
+                "--value": progressBar3,
+                "--size": "8rem",
+              }}
+              role="progressbar"
+            >
+              {progressBar3 ? `${progressBar3}%` : ""}{" "}
+            </div>
+            <div
+              className="z-1 mt-5 radial-progress text-socskyblue"
+              style={{ "--value": 100, "--size": "8rem" }}
+              role="progressbar"
+            ></div>
           </div>
           {/* COHORT WEEKLY AVERAGE */}
-          <div
-            className=" mt-5 radial-progress text-black col-start-6 "
-            style={{
-              "--value": progressBar4,
-              /* take the cohort mean average for the week - sum all daily averages and divide by number of quizzes that week */ "--size":
-                "8rem",
-            }}
-            role="progressbar"
-          >
-            {progressBar4 ? `${progressBar4}%` : ""}{" "}
-            {/* take the cohort mean average for the week - sum all daily averages and divide by number of quizzes that week */}
+          <div className="col-start-6">
+            <div
+              className="absolute z-20 mt-5 radial-progress text-black  "
+              style={{
+                "--value": progressBar4,
+                "--size": "8rem",
+              }}
+              role="progressbar"
+            >
+              {progressBar4 ? `${progressBar4}%` : ""}{" "}
+            </div>
+            <div
+              className="z-1 mt-5 radial-progress text-lightgrey"
+              style={{ "--value": 100, "--size": "8rem" }}
+              role="progressbar"
+            ></div>
           </div>
         </div>
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center text-lg mt-5 mb-10">

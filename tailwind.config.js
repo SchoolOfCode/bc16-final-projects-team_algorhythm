@@ -32,6 +32,7 @@ module.exports = {
         socskyblue: "#CDF6FF",
         orangetheme: "#FD7566",
         lightblue: "#CDF6FF",
+        lightgrey: "#d1d5db",
       },
     },
   },

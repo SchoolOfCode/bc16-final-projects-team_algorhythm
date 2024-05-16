@@ -54,6 +54,16 @@ export default async function Footer() {
       <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
     </div>
   </nav>
+<nav>
+ <div className="flex items-center justify-center">
+      <p className="mr-4">
+        © Copyright 2024 School of Code. All Rights Reserved. School of Code Ltd is registered in England, Company No. 09793790. School of Code, Custard Factory, Gibb Street, Birmingham, B9 4AA
+         </p>
+        </div>
+      <div>
+        <Image src="/algologo.png" alt="SoC Logo" width={100} height={100} />
+      </div>
+      </nav>
 </footer>
 
     ) : null;

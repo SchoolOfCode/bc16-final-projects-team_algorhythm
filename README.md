@@ -4,11 +4,11 @@
 </a>
 
 <h4 align="center">
- The School of Code quiz and progress tracking app built by Algorhythm.<br />
+ The School of Code quiz and progress tracking app built by Algorhythm.<br /> <br />
  For information on how to use functions within the app, please use <a href="https://www.notion.so/algorhythmdocs/SoCBrain-Docs-1c9124260da64589ad52303490438d79">SoCBrain Docs</a>.
 </h4>
 
-## How to
+## How To
 
 - The deployed site is live at https://algorhythm-quiz.vercel.app/. All bootcampers should be directed here and should not be given access to this repository.
 - If you are looking to use the development environment:
@@ -16,7 +16,7 @@
   - Use `npm install`.
   - Create a .env file and input the `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` which will have been provided if you have authorisation to use this repository. <br />If you believe you should have access, but do not have these credentials, please contact the team at Algorhythm to discuss.
   - Use `npm run dev` to see your local changes.
-- Any git pushes will reflect in the deployment environment through the Continuous Deployment phase of this project.
+- Any git pushes will reflect in the deployment environment through the Continuous Deployment phase of this project via Vercel.
 
 ## Algorhythm
 

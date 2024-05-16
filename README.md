@@ -1,23 +1,36 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
+<a href="https://algorhythm-quiz.vercel.app/">
+  <img alt="SoCBrain - the School of Code quiz and progress tracking app built by Algorhythm" src="./public/soclarge.png">
+  <h1 align="center">SoCBrain</h1>
 </a>
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
+<h4 align="center">
+ The School of Code quiz and progress tracking app built by Algorhythm.<br />
+ For information on how to use functions within the app, please use <a href="https://www.notion.so/algorhythmdocs/SoCBrain-Docs-1c9124260da64589ad52303490438d79">SoCBrain Docs</a>.
+</h4>
+
+## How to
+
+- The deployed site is live at https://algorhythm-quiz.vercel.app/. All bootcampers should be directed here and should not be given access to this repository.
+- If you are looking to use the development environment:
+  - Clone down this repo to your local machine.
+  - Use `npm install`.
+  - Create a .env file and input the `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` which will have been provided if you have authorisation to use this repository. <br />If you believe you should have access, but do not have these credentials, please contact the team at Algorhythm to discuss.
+  - Use `npm run dev` to see your local changes.
+- Any git pushes will reflect in the deployment environment through the Continuous Deployment phase of this project.
+
+## Algorhythm
+
+<img src="./public/soclogo.png" width="100" align="right">
+Algorhythm is a School of Code team who came together in the final four weeks of their bootcamp to plan, build and deploy a solution to a unique problem posed by their stakeholder, who in this case turned out to be the School of Code themselves.<br /><br />
+
+After learning that the current learning management system was not nearly up to scratch, a solution had to be found, and the idea for SoCBrain was founded. It would be able to enhance the learning experience for all future bootcampers whilst simultaneously giving easy access to tracking metrics for the coaches to be able to tailor individual learning plans better for their students. <br /> <br />
+
+<p><img align="right" alt="Algorhythm logo" src="./public/algologo.png" width="300">This fantastic team was made up by the following developers:
+
+- Jack White
+- Annamaria Koutsoras
+- Igor Silva
+- Callum Basnett
+- Stephen Boyce
+- Livia Genevieve Busseni
 </p>
-
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
-
-## Features
-
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router

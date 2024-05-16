@@ -167,7 +167,7 @@ export default function AdminDashBoard({ data }: any) {
           </select>
 
           <SubmitButton
-            className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-1 text-foreground hover:text-white font-semibold mr-5"
+            className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-1 text-foreground text-sm hover:text-white font-semibold mr-5"
             formAction={handleSubmit}
             pendingText="Submitting..."
           >
@@ -177,7 +177,7 @@ export default function AdminDashBoard({ data }: any) {
         <div className="mt-5 flex flex-row justify-start align-middle">
           {/* No quizzes completed today message  */}
           {messageVisibility && (
-            <div role="alert" className="alert w-auto h-auto">
+            <div role="alert" className="alert  w-auto h-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -188,7 +188,7 @@ export default function AdminDashBoard({ data }: any) {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                 ></path>
               </svg>
               <span>{message}</span>

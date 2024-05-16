@@ -5,16 +5,15 @@ import DayProgress from "./DayProgress"
 import Quiz from "./Quiz"
 
 export default function Week({ props }: any){
+    const [loaded, setLoaded] = useState(false)
     const [selected, setSelected] = useState(false)
     const [radialProgress, setRadialProgress] = useState(0)
     props.setRadialProgress = setRadialProgress
     props.radialProgress = radialProgress
     props.setSelected = setSelected
     props.selected = selected
-
-    useEffect(()=>{
-        //console.log(selected)
-    },[selected])
+    props.loaded = loaded
+    props.setLoaded = setLoaded
 
     return (
         <>

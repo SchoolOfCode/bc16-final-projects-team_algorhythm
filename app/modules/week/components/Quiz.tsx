@@ -5,9 +5,9 @@ import Submit from './Submit';
 
 export default function Quiz({ props }: any) {
   // Get all quizzes from the selected Day
-  const selectedDay = props.quizzes.data.filter((obj:any) => obj.day_number === props.selected)
+  const dayQuestions = props.quizzes.data.filter((obj:any) => obj.day_number === props.selected)
   // total of question for that day
-  const total = selectedDay.length
+  const total = dayQuestions.length
   const valueProgressBar = 100 / total
 
   useEffect(()=>{
@@ -17,7 +17,6 @@ export default function Quiz({ props }: any) {
   // Initialize an array to track selected state for each question
   const [selected, setSelected] = useState<boolean[]>(new Array(total).fill(false));
   const [submitted, setSubmitted] = useState(false)
-  const [retake, setRetake] = useState(false)
 
   // Update the selected state for a specific question index
   const handleInputChange = (index: number) => {
@@ -29,18 +28,31 @@ export default function Quiz({ props }: any) {
 
   // function to handle button submit
   const submit = async (formData: FormData) => {
-    // Array to store each response in order
+
+    const day = dayQuestions[0].day_number
     let answers = []
+
     for(let i = 0; i < 30; i++){
       if(formData.get(`question_${i}`)){
         answers.push(formData.get(`question_${i}`))
       }
     }
+
     setSubmitted(!submitted)
-    //const passed: boolean = await Submit(answers,data,total)
-    // if(passed){
-    //   setRetake(passed)
-    // }
+    const passed: boolean = await Submit(answers,dayQuestions,total)
+    if(passed){
+      if(day === 1){
+        props.setDay1(true)
+      } else if(day === 2){
+        props.setDay2(true)
+      } else if(day === 3){
+        props.setDay3(true)
+      } else if(day === 4){
+        props.setDay4(true)
+      } else if(day === 5){
+        props.setDay5(true)
+      }
+    }
   }
   
   //////////////// Suffle the answers ///////////////////
@@ -77,7 +89,7 @@ export default function Quiz({ props }: any) {
     {!submitted ? (
       <>
       <div className="carousel items-center w-[70%]">
-      {selectedDay.map((item: any, index: number) => (
+      {dayQuestions.map((item: any, index: number) => (
         <div id={`slide${index}`} key={index} className="carousel-item flex-col items-center w-full">
           <h1 className="text-xl font-bold mb-10">{item.question}</h1>
           {/* All answers below */}

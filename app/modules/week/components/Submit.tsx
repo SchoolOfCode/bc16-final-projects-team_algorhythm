@@ -1,7 +1,7 @@
 'use server'
 import { createClient } from "@/utils/supabase/server";
 
-export default async function Submit(answers: any, data : any, total: number) {
+export default async function Submit(answers : any, dayQuestions : any, total: number) {
 
     const supabase = createClient();
 
@@ -18,7 +18,7 @@ export default async function Submit(answers: any, data : any, total: number) {
     let count = 0;
     // Calculate the score based on the user's answers
     for (let i = 0; i < answers.length; i++) {
-        if (answers[i] === data.data[i].correct_answer) {
+        if (answers[i] === dayQuestions[i].correct_answer) {
             score += number;
             count++
         }
@@ -35,8 +35,8 @@ export default async function Submit(answers: any, data : any, total: number) {
             user_uuid: user.data![0].uuid, 
             first_name: user.data![0].first_name,
             last_name: user.data![0].last_name,
-            week_number: data.data[0].week_number,
-            day_number: data.data[0].day_number,
+            week_number: dayQuestions[0].week_number,
+            day_number: dayQuestions[0].day_number,
             correct_answers: count,
             total_questions: total,
             attempts: 1,
@@ -49,11 +49,11 @@ export default async function Submit(answers: any, data : any, total: number) {
 
         console.log('Congratulations! You passed the quiz.');
 
-        return false
+        return true
     } else {
 
         console.log('Sorry, you did not pass the quiz.');
 
-        return true
+        return false
     }
 }

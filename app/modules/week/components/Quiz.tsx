@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SubmitButton } from "@/components/Submit";
 import Submit from './Submit';
 
@@ -9,10 +9,14 @@ export default function Quiz({ props }: any) {
   // total of question for that day
   const total = selectedDay.length
   const valueProgressBar = 100 / total
+
+  useEffect(()=>{
+    props.setRadialProgress(valueProgressBar)
+  },[])
+  
   // Initialize an array to track selected state for each question
   const [selected, setSelected] = useState<boolean[]>(new Array(total).fill(false));
   const [submitted, setSubmitted] = useState(false)
-  const [progressBar, setProgressBar] = useState(valueProgressBar)
   const [retake, setRetake] = useState(false)
 
   // Update the selected state for a specific question index
@@ -96,7 +100,7 @@ export default function Quiz({ props }: any) {
               Submit
             </SubmitButton>
           ) : selected[index] ? (
-            <a href={`#slide${index + 1}`} className='join-item btn btn-outline' onClick={()=>setProgressBar(prev => prev + valueProgressBar)}>Next</a>
+            <a href={`#slide${index + 1}`} className='join-item btn btn-outline' onClick={()=>props.setRadialProgress((prev:number) => prev + valueProgressBar)}>Next</a>
           ) : (
             <div className="tooltip tooltip-right w-full" data-tip="Select a answer">
               <a href={`#slide${index + 1}`} className='join-item btn btn-outline w-full text-gray-500 pointer-events-none'>
@@ -107,7 +111,6 @@ export default function Quiz({ props }: any) {
         </div>
         ))}
     </div> 
-    <progress className="progress w-80 mt-5 h-5" value={progressBar} max="100">{progressBar}%</progress>
     </>
     ) : (
       <h1>Submitted</h1>

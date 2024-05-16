@@ -35,13 +35,15 @@ export default async function modules({
     .eq('user_uuid', user.id)
     .order('day_number') : null
   
+  const week = searchParams.w
+  
   const props = {
     data,
     quizzes,
     results,
-    user
+    user,
+    week
   }
-
   return (
     <div className="flex-1 flex flex-col items-center w-full">
       {data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>}  

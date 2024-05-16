@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import  result  from '../func/result'
 
 export default function DayProgress({ props }: any) {
   const [day1, setDay1] = useState(true)
@@ -9,6 +10,7 @@ export default function DayProgress({ props }: any) {
   const [day4, setDay4] = useState(true)
   const [day5, setDay5] = useState(true) 
   const selected = props.selected
+
   const completed = (props.results.data).length !== 0 ? props.results.data : false
 
   useEffect(()=>{
@@ -17,9 +19,13 @@ export default function DayProgress({ props }: any) {
     setDay3(completed.some((item: any) => item.day_number === 3 && item.success === true) ? true : false)
     setDay4(completed.some((item: any) => item.day_number === 4 && item.success === true) ? true : false)
     setDay5(completed.some((item: any) => item.day_number === 5 && item.success === true) ? true : false)
-  }, [props.loaded])
 
-  console.log(day1, day2, day3, day4, day5)
+    const data = result(props.week)
+    console.log(data)
+
+  }, [])
+
+  //console.log(day1, day2, day3, day4, day5)
 
   return (
     <ul className="steps steps-vertical w-64 pt-2 animate-fade-right">

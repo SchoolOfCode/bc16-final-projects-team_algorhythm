@@ -1,4 +1,4 @@
-<a href="https://algorhythm-quiz.vercel.app/">
+<a href="https://socbrain.vercel.app/">
   <img alt="SoCBrain - the School of Code quiz and progress tracking app built by Algorhythm" src="./public/soclarge.png">
   <h1 align="center">SoCBrain</h1>
 </a>
@@ -10,7 +10,7 @@
 
 ## How To
 
-- The deployed site is live at https://algorhythm-quiz.vercel.app/. All bootcampers should be directed here and should not be given access to this repository.
+- The deployed site is live at https://socbrain.vercel.app/. All bootcampers should be directed here and should not be given access to this repository.
 - If you are looking to use the development environment:
   - Clone down this repo to your local machine.
   - Use `npm install`.

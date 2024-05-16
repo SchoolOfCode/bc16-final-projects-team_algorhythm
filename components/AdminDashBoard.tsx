@@ -58,8 +58,24 @@ export default function AdminDashBoard({ data }:any){
             let weeklyAverage = totalCorrectAnswers / totalQuestions;
     
             setProgressBar2(weeklyAverage * 100);
+            
+            let totalDailyCorrectAnswers = 0;
+            let totalDailyQuestions = 0;
+            for (let item of allData.data) {
+                if (item.day_number === Number(day)) {
+                    totalDailyCorrectAnswers += item.correct_answers;
+                    totalDailyQuestions += item.total_questions;
+                }
+            }
+    
+            let dailyAverage = totalDailyCorrectAnswers / totalDailyQuestions;
+    
+            dailyAverage = Math.round(dailyAverage * 100);
+    
+            setProgressBar3(dailyAverage);
         }
-    }, [submited])
+    }, [module, day, user]);
+    
     
     
 
@@ -186,7 +202,7 @@ export default function AdminDashBoard({ data }:any){
                     }}
                     role="progressbar"
                 >
-                    78%{" "}
+                    {progressBar3 ? `${progressBar3}%` : ''}{" "}
                     {/* take the cohort mean average for the day - sum all daily answers and divide by number of bootcampers who attempted it */}
                 </div>
                 {/* COHORT WEEKLY AVERAGE */}

@@ -2,8 +2,9 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { Lexend } from "next/font/google";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+import Chatbot from "@/components/Chatbot";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -27,11 +28,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lexend.variable} font-sans`}>
-      <SpeedInsights/>
-      <Analytics/>
+      <SpeedInsights />
+      <Analytics />
       <body className="bg-background text-foreground dark:bg-slate-600 select-none">
         <main className="min-h-screen flex flex-col items-center">
           <Nav />
+          <Chatbot />
           {children}
           <Footer />
         </main>

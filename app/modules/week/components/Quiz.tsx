@@ -87,9 +87,9 @@ export default function Quiz({ props }: any) {
   return (
       <>
         {shuffledLabels.map((label:any, idx:any) => (
-          <label key={idx} className="bg-socskyblue p-4 mb-2 rounded-md" htmlFor={`question${index}${label.id}`}>
+          <label key={idx} className="bg-socskyblue p-4 mb-2 rounded-md dark:text-black" htmlFor={`question${index}${label.id}`}>
             {label.text}
-            <input className="ml-2 radio radio-xs bg-white border-loginblue" type="radio" id={`question${index}${label.id}`} name={`question_${index}`} value={label.text} onChange={() => handleInputChange(index)} required />
+            <input className="ml-2 radio radio-xs bg-white border-loginblue dark:focus:bg-loginblue" type="radio" id={`question${index}${label.id}`} name={`question_${index}`} value={label.text} onChange={() => handleInputChange(index)} required />
           </label>
         ))}
       </>
@@ -100,7 +100,7 @@ export default function Quiz({ props }: any) {
     <div className='flex flex-col items-center gap-5 mt-5'>
     {!submitted ? (
       <>
-      <div className="carousel items-center w-[70%]">
+        <div className="carousel items-center w-[70%]">
       {dayQuestions.map((item: any, index: number) => (
         <div id={`slide${index}`} key={index} className="carousel-item flex-col items-center w-full">
           <h1 className="text-xl font-bold mb-10">{item.question}</h1>
@@ -118,7 +118,7 @@ export default function Quiz({ props }: any) {
           {index === total -1 && selected[index] ? (
             <SubmitButton
             formAction={submit}
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%]"
+            className=" bg-loginblue hover:bg-socskyblue text-white border-black hover:text-black join-item btn btn-outline"
             pendingText="Signing Up..."
             >
               Submit
@@ -134,11 +134,19 @@ export default function Quiz({ props }: any) {
           </div>
         </div>
         ))}
-    </div> 
-    </>
+        </div> 
+        <div>
+          <p className='btn dark:hover:bg-gray-700' onClick={()=>props.setSelected(false)}>
+          Exit
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+          </svg>
+          </p>
+        </div>
+      </>
     ) : (
       <h1>Submitted</h1>
     )}
-  </div>
+    </div>
   );
 }

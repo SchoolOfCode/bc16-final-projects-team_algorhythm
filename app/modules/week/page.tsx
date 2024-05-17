@@ -36,7 +36,6 @@ export default async function modules({
     .order('day_number') : null
   
   const week = searchParams.w
-  
   const props = {
     data,
     quizzes,
@@ -46,7 +45,15 @@ export default async function modules({
   }
   return (
     <div className="flex-1 flex flex-col items-center w-full">
-      {data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>}  
+      {week < 12 ? (
+        data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>
+      ) : (
+        <div className="flex-1 flex flex-col justify-center items center">
+          <h1>This module isnt available.</h1>
+        </div>
+      )}
+      
+
     </div>
   );
 }

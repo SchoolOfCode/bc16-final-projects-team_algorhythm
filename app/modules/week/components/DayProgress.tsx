@@ -30,60 +30,60 @@ export default function DayProgress({ props }: any) {
   return (
     <ul className="steps steps-vertical w-64 pt-2 animate-fade-right">
       <li className="step h-24">
-        {selected || props.day1 ? (<p className={selected === 1 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none"}
+        {selected || props.day1 ? (<p className={selected === 1 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
         onClick={selected === 1 ? ()=>props.setSelected(false) : undefined}
         >Day 1
         </p>
         ) : (
-        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue"
+        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue dark:text-black dark:hover:text-white"
         onClick={()=>props.setSelected(1)}
         >Day 1
         </p>
         )}
       </li>
       <li className="step h-24">
-        {selected || props.day2 ? (<p className={selected === 2 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none"}
+        {selected || props.day2 ? (<p className={selected === 2 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
         onClick={selected === 2 ? ()=>props.setSelected(false) : undefined}
         >Day 2
         </p>
         ) : (
-        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue"
+        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue dark:text-black dark:hover:text-white"
         onClick={()=>props.setSelected(2)}
         >Day 2
         </p>
         )}
       </li>
       <li className="step h-24">
-        {selected || props.day3 ? (<p className={selected === 3 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none"}
+        {selected || props.day3 ? (<p className={selected === 3 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
         onClick={selected === 3 ? ()=>props.setSelected(false) : undefined}
         >Day 3
         </p>
         ) : (
-        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue"
+        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue dark:text-black dark:hover:text-white"
         onClick={()=>props.setSelected(3)}
         >Day 3
         </p>
         )}
       </li>
       <li className="step h-24">
-        {selected || props.day4 ? (<p className={selected === 4 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none"}
+        {selected || props.day4 ? (<p className={selected === 4 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
         onClick={selected === 4 ? ()=>props.setSelected(false) : undefined}
         >Day 4
         </p>
         ) : (
-        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue"
+        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue dark:text-black dark:hover:text-white"
         onClick={()=>props.setSelected(4)}
         >Day 4
         </p>
         )}
       </li>
       <li className="step h-24">
-        {selected || props.day5 ? (<p className={selected === 5 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none"}
+        {selected || props.day5 ? (<p className={selected === 5 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
         onClick={selected === 5 ? ()=>props.setSelected(false) : undefined}
         >Day 5
         </p>
         ) : (
-        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue"
+        <p className="btn btn-ghost bg-socskyblue hover:bg-loginblue dark:text-black dark:hover:text-white"
         onClick={()=>props.setSelected(5)}
         >Day 5
         </p>

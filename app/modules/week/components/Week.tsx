@@ -37,14 +37,14 @@ export default function Week({ props }: any){
 
     return (
         <>
-        <h1 className="text-black font-semibold text-4xl m-5 animate-fade">
+        <h1 className="text-black font-semibold text-4xl m-5 animate-fade dark:text-white">
             {props.data[0].title}
         </h1>
         <div className="flex items-start w-full justify-evenly animate-fade">
             <DayProgress props={props}/>
             {!selected ? (
                 <div className="flex flex-col w-[30%] items-center">
-                  <h1 className="text-black font-semibold text-2xl m-5">
+                  <h1 className="text-black font-semibold text-2xl m-5 dark:text-white">
                     Time to test your knowledge
                   </h1>
                   <Image

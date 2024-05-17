@@ -49,9 +49,6 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/modules">
           Modules
         </Link>
-        <Link className="px-3 dark:text-black" href="/socbot">
-          SoCBot
-        </Link>
         <p className="pl-10 pr-10 dark:text-black">{userData()}!</p>
         <div className="dropdown dropdown-end">
           <div

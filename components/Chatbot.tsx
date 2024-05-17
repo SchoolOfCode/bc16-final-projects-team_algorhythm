@@ -33,7 +33,7 @@ export default function Chatbot() {
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
         style={{
-          width: "400px",
+          width: "500px",
           height: "800px",
         }}
       >

@@ -17,6 +17,7 @@ export default function Quiz({ props }: any) {
   // Initialize an array to track selected state for each question
   const [selected, setSelected] = useState<boolean[]>(new Array(total).fill(false));
   const [submitted, setSubmitted] = useState(false)
+  const [attempts, setAttempts] = useState(1)
 
   useEffect(()=>{
     setSelected(new Array(total).fill(false))
@@ -59,10 +60,10 @@ export default function Quiz({ props }: any) {
       }
     }
 
-    const passed = await Submit(answers,dayQuestions,total)
+    const passed = await Submit(answers,dayQuestions,total,attempts)
     
     info = passed
-
+    console.log(attempts)
     if(passed.success === true){
       if(day === 1){
         props.setDay1(true)
@@ -75,9 +76,14 @@ export default function Quiz({ props }: any) {
       } else if(day === 5){
         props.setDay5(true)
       }
+      props.setRefresh(!props.refresh)
+    }else{
+      // Increase the attempts
+      setAttempts((prev)=> prev + 1)
     }
-    setData({info,props,dayQuestions,total,day,answers,setSubmitted})
+    setData({info,props,dayQuestions,total,day,answers,setSubmitted,setAttempts})
     setSubmitted(!submitted)
+    
   }
   
   //////////////// Suffle the answers ///////////////////
@@ -158,7 +164,7 @@ export default function Quiz({ props }: any) {
         ))}
         </div> 
         <div>
-          <p className='btn dark:hover:bg-gray-700 bg-gray-300 text-black' onClick={()=>props.setSelected(false)}>
+          <p className='btn dark:hover:bg-gray-700 bg-gray-300 text-black' onClick={()=>{props.setSelected(false); props.setRadialProgress(0)}}>
           Exit
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />

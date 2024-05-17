@@ -4,17 +4,15 @@ import { useEffect, useState } from "react";
 
 export default function DayProgress({ props }: any) {
   const selected = props.selected
-
-  const [refresh, setRefresh] = useState(false)
   const completed = (props.results.data).length !== 0 ? props.results.data : false
 
   useEffect(()=>{
     if(completed){
-      props.day1 ? true : props.setDay1(completed.some((item: any) => item.day_number === 1 && item.success === true))
-      props.day2 ? true : props.setDay2(completed.some((item: any) => item.day_number === 2 && item.success === true))
-      props.day3 ? true : props.setDay3(completed.some((item: any) => item.day_number === 3 && item.success === true))
-      props.day4 ? true : props.setDay4(completed.some((item: any) => item.day_number === 4 && item.success === true))
-      props.day5 ? true : props.setDay5(completed.some((item: any) => item.day_number === 5 && item.success === true))
+      props.setDay1(completed.some((item: any) => item.day_number === 1 && item.success === true))
+      props.setDay2(completed.some((item: any) => item.day_number === 2 && item.success === true))
+      props.setDay3(completed.some((item: any) => item.day_number === 3 && item.success === true))
+      props.setDay4(completed.some((item: any) => item.day_number === 4 && item.success === true))
+      props.setDay5(completed.some((item: any) => item.day_number === 5 && item.success === true))
     } else{
       props.setDay1(false)
       props.setDay2(false)
@@ -22,15 +20,20 @@ export default function DayProgress({ props }: any) {
       props.setDay4(false)
       props.setDay5(false)
     }
-  }, [refresh])
+  }, [])
+  
+  useEffect(()=>{
+    props.setRadialProgress(0)
+  }, [props.refresh])
 
+  
   
 
   return (
     <ul className="steps steps-vertical w-64 pt-2 animate-fade-right">
-      <li className="step h-24">
+      <li className={props.day1 ? "step h-24 step-info" : "step h-24"} data-content={props.day1 ? "✓" : '1'}>
         {selected || props.day1 ? (<p className={selected === 1 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
-        onClick={selected === 1 ? () => { props.setSelected(false); setRefresh(!refresh); } : undefined}
+        onClick={selected === 1 ? () => { props.setSelected(false); props.setRefresh(!props.refresh); } : undefined}
         >Day 1
         </p>
         ) : (
@@ -40,9 +43,9 @@ export default function DayProgress({ props }: any) {
         </p>
         )}
       </li>
-      <li className="step h-24">
+      <li className={props.day2 ? "step h-24 step-info" : "step h-24"} data-content={props.day2 ? "✓" : '2'}>
         {selected || props.day2 ? (<p className={selected === 2 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
-        onClick={selected === 2 ? ()=>props.setSelected(false) : undefined}
+        onClick={selected === 2 ? () => { props.setSelected(false); props.setRefresh(!props.refresh); } : undefined}
         >Day 2
         </p>
         ) : (
@@ -52,9 +55,9 @@ export default function DayProgress({ props }: any) {
         </p>
         )}
       </li>
-      <li className="step h-24">
+      <li className={props.day3 ? "step h-24 step-info" : "step h-24"} data-content={props.day3 ? "✓" : '3'}>
         {selected || props.day3 ? (<p className={selected === 3 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
-        onClick={selected === 3 ? ()=>props.setSelected(false) : undefined}
+        onClick={selected === 3 ? () => { props.setSelected(false); props.setRefresh(!props.refresh); } : undefined}
         >Day 3
         </p>
         ) : (
@@ -64,9 +67,9 @@ export default function DayProgress({ props }: any) {
         </p>
         )}
       </li>
-      <li className="step h-24">
+      <li className={props.day4 ? "step h-24 step-info" : "step h-24"} data-content={props.day4 ? "✓" : '4'}>
         {selected || props.day4 ? (<p className={selected === 4 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
-        onClick={selected === 4 ? ()=>props.setSelected(false) : undefined}
+        onClick={selected === 4 ? () => { props.setSelected(false); props.setRefresh(!props.refresh); } : undefined}
         >Day 4
         </p>
         ) : (
@@ -76,9 +79,9 @@ export default function DayProgress({ props }: any) {
         </p>
         )}
       </li>
-      <li className="step h-24">
+      <li className={props.day5 ? "step h-24 step-info" : "step h-24"} data-content={props.day5 ? "✓" : '5'}>
         {selected || props.day5 ? (<p className={selected === 5 ? "btn btn-ghost bg-loginblue" : "btn btn-ghost bg-gray-300 pointer-events-none dark:text-black"}
-        onClick={selected === 5 ? ()=>props.setSelected(false) : undefined}
+        onClick={selected === 5 ? () => { props.setSelected(false); props.setRefresh(!props.refresh); } : undefined}
         >Day 5
         </p>
         ) : (

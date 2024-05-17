@@ -1,7 +1,7 @@
 'use server'
 import { createClient } from "@/utils/supabase/server";
 
-export default async function Submit(answers : any, dayQuestions : any, total: number) {
+export default async function Submit(answers : any, dayQuestions : any, total: number, attempts :any) {
     // score based of 100 / total
     // counter to check total of correct answers
     const passed = {
@@ -42,7 +42,7 @@ export default async function Submit(answers : any, dayQuestions : any, total: n
             day_number: dayQuestions[0].day_number,
             correct_answers: passed.count,
             total_questions: total,
-            attempts: 1,
+            attempts: attempts,
             success: true,
         }])
 
@@ -54,7 +54,7 @@ export default async function Submit(answers : any, dayQuestions : any, total: n
         passed.success = true
         return passed
     } else {
-
+        
         console.log('Sorry, you did not pass the quiz.');
         passed.success = false
         return passed

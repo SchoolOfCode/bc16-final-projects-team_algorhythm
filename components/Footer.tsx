@@ -34,24 +34,24 @@ export default async function Footer() {
   <footer className="footer p-10 bg-base-300 text-base-content">
       <nav>
         <h6 className="footer-title">Help and Support</h6> 
-        <a href="https://learn.schoolofcode.co.uk/"className="link link-hover">LearnWorlds</a>     
+        <a href="https://learn.schoolofcode.co.uk/" target="_blank" rel="noopener noreferrer" className="link link-hover">LearnWorlds</a>     
         <a className="link link-hover">Documentation</a>
         <a className="link link-hover">FAQs</a>
         <a href="mailto:info@schoolofcode.co.uk"className="link link-hover">Contact us</a>     
       </nav> 
        <nav>
         <h6 className="footer-title">Resources</h6> 
-        <a href="https://www.codewars.com/"className="link link-hover">CodeWars</a>
-        <a href="https://jsfiddle.net/"className="link link-hover">JSFiddle</a>
-        <a href="https://exercism.org/"className="link link-hover">Exercism</a>
-        <a href="https://freecodecamp.org/"className="link link-hover">Free Code Camp</a>
+        <a href="https://www.codewars.com/" target="_blank" rel="noopener noreferrer" className="link link-hover">CodeWars</a>
+        <a href="https://jsfiddle.net/" target="_blank" rel="noopener noreferrer" className="link link-hover">JSFiddle</a>
+        <a href="https://exercism.org/"target="_blank" rel="noopener noreferrer" className="link link-hover">Exercism</a>
+        <a href="https://freecodecamp.org/" target="_blank" rel="noopener noreferrer" className="link link-hover">Free Code Camp</a>
       </nav> 
       <nav>
         <h6 className="footer-title">Company</h6> 
-        <a href="https://www.schoolofcode.co.uk/"className="link link-hover">About us</a>
-        <a href="https://learn.schoolofcode.co.uk/"className="link link-hover">Terms of Use</a>
-        <a href="https://www.schoolofcode.co.uk/privacy/"className="link link-hover">Privacy and Cookie Policy</a>
-        <a href="https://www.schoolofcode.co.uk/carbon-reduction-plan/"className="link link-hover">Carbon Reduction Plan</a>
+        <a href="https://www.schoolofcode.co.uk/" target="_blank" rel="noopener noreferrer" className="link link-hover">About us</a>
+        <a href="https://learn.schoolofcode.co.uk/" target="_blank" rel="noopener noreferrer" className="link link-hover">Terms of Use</a>
+        <a href="https://www.schoolofcode.co.uk/privacy/" target="_blank" rel="noopener noreferrer" className="link link-hover">Privacy and Cookie Policy</a>
+        <a href="https://www.schoolofcode.co.uk/carbon-reduction-plan/" target="_blank" rel="noopener noreferrer" className="link link-hover">Carbon Reduction Plan</a>
  <div className="w-full mt-4 flex flex-col items-center">
         <Image src="/algologo.png" alt="SoC Logo" width={100} height={100} />
       </div>

@@ -9,58 +9,86 @@ const supabase = createClient(
 export default function EditQuizzes() {
     const [weeksData, setWeeksData] = useState([]);
     const [selectedDay, setSelectedDay] = useState(null);
+    const [selectedWeek, setSelectedWeek] = useState(null);
+
+    const handleSelectWeek = (week) => {
+        setSelectedWeek(week);
+        setSelectedDay(null);  // Clear the selected day when a new week is selected
+    };
+    
+    const handleSelectDay = (day) => {
+        setSelectedDay(day);
+    };
 
     useEffect(() => {
         async function fetchData() {
             let { data, error } = await supabase.from('quizzes').select('*');
             if (error) console.error('Error: ', error);
             else {
+                console.log('Fetched Data:', data);
                 const groupedByWeek = data.reduce((acc, curr) => {
                     const weekIndex = acc.findIndex(w => w.weekNumber === curr.week_number);
                     if (weekIndex !== -1) {
-                        acc[weekIndex].days.push(curr);
+                        const dayIndex = acc[weekIndex].days.findIndex(d => d.day_number === curr.day_number);
+                        if (dayIndex !== -1) {
+                            acc[weekIndex].days[dayIndex].questions.push(curr);
+                        } else {
+                            acc[weekIndex].days.push({ day_number: curr.day_number, questions: [curr] });
+                        }
                     } else {
-                        acc.push({ weekNumber: curr.week_number, days: [curr] });
+                        acc.push({ weekNumber: curr.week_number, days: [{ day_number: curr.day_number, questions: [curr] }] });
                     }
                     return acc;
                 }, []);
+                console.log('Processed Data:', groupedByWeek);  // Log the processed data
                 setWeeksData(groupedByWeek);
-                console.log('Fetched and Processed Data:', groupedByWeek);
             }
         }
 
         fetchData();
     }, []);
 
-    const handleSelectDay = (week, index) => {
-        const selectedDayObj = week.days[index];
+    const handleSelectDayInWeek = (week, dayNumber) => {
+        const selectedDayObj = week.days.find(day => day.day_number === dayNumber);
         setSelectedDay(selectedDayObj);
     };
 
     return (
-        <div>
-            <h2>Select a Week:</h2>
-            <ul>
-                {weeksData.map((week, index) => (
-                    <li key={week.weekNumber}>
-                        <button onClick={() => handleSelectDay(week, index)}>Week {week.weekNumber}</button>
-                    </li>
-                ))}
-            </ul>
-
-            {selectedDay && (
-                <div>
-                    <h3>Questions for Day {selectedDay.day_number} of Week {selectedDay.week_number}</h3>
-                    <p>{selectedDay.question}</p>
-                    <p>Correct Answer: {selectedDay.correct_answer}</p>
-                    <p>Incorrect Answers:</p>
-                    <ul>
-                        <li>{selectedDay.incorrect_answer1}</li>
-                        <li>{selectedDay.incorrect_answer2}</li>
-                        <li>{selectedDay.incorrect_answer3}</li>
-                    </ul>
+        <div className="w-1/4">
+            {weeksData.slice().reverse().map((week, index) => (
+                <div key={week.weekNumber} className="collapse collapse-arrow bg-socskyblue ">
+                    <input type="checkbox" /> 
+                    <div className="collapse-title text-xl font-medium">
+                        Week {week.weekNumber}
+                    </div>
+                    <div className="collapse-content"> 
+                        {week.days.slice().reverse().map((day, index) => (
+                            <div key={day.day_number} className="collapse bg-base-200">
+                                <input type="checkbox" /> 
+                                <div className="collapse-title text-xl font-medium">
+                                    Day {day.day_number}
+                                </div>
+                                <div className="collapse-content"> 
+                                    {day.questions.map((question, index) => (
+                                        <div key={index}>
+                                            <h3>Question {index + 1}</h3>
+                                            <p>{question.question}</p>
+                                            <p>Correct Answer: {question.correct_answer}</p>
+                                            <p>Incorrect Answers:</p>
+                                            <ul>
+                                                <li>{question.incorrect_answer1}</li>
+                                                <li>{question.incorrect_answer2}</li>
+                                                <li>{question.incorrect_answer3}</li>
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            )}
+            ))}
         </div>
     );
-}
+    
+     }

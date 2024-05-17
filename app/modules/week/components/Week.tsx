@@ -5,25 +5,26 @@ import DayProgress from "./DayProgress"
 import Quiz from "./Quiz"
 
 export default function Week({ props }: any){
-    const [day1, setDay1] = useState(true)
-    const [day2, setDay2] = useState(true)
-    const [day3, setDay3] = useState(true)
-    const [day4, setDay4] = useState(true)
-    const [day5, setDay5] = useState(true) 
+    const [day1, setDay1] = useState(false)
+    const [day2, setDay2] = useState(false)
+    const [day3, setDay3] = useState(false)
+    const [day4, setDay4] = useState(false)
+    const [day5, setDay5] = useState(false) 
     const [reload, setReload] = useState(false)
     const [selected, setSelected] = useState(false)
     const [radialProgress, setRadialProgress] = useState(0)
+
     
     useEffect(()=>{
         setRadialProgress(0)
-    },[selected])
+    },[selected,reload])
 
     props.setRadialProgress = setRadialProgress
     props.radialProgress = radialProgress
     props.setSelected = setSelected
     props.selected = selected
     props.reload = reload
-    props.setreload = setReload
+    props.setReload = setReload
     props.day1 = day1
     props.setDay1 = setDay1
     props.day2 = day2
@@ -61,22 +62,32 @@ export default function Week({ props }: any){
                 </form>
                 )
             }
-            {!selected ? ( 
-                <div className="w-64"/>
-            ) : ( 
+            {selected && radialProgress ? ( 
                 <div className="w-64 flex flex-col items-center justify-between">
-                    <div className="h-full"/>
-                    <div className="radial-progress text-loginblue bg-socskyblue" 
-                        style={{ 
-                            "--value": radialProgress,
-                            "--size": "10rem",
-                            "--thickness": "15px" 
-                        } as React.CSSProperties} // Explicitly type as React.CSSProperties
-                        role="progressbar">
-                        {radialProgress}%
-                    </div>
-                    <div className="h-24"/>
+                    <div className="h-28"/>
+                        <p className="pb-3">Progress bar</p>
+                        <div className="radial-progress text-gray-300 bg-socskyblue" 
+                            style={{ 
+                                "--value": 100,
+                                "--size": "10rem",
+                                "--thickness": "15px" 
+                            } as React.CSSProperties} // Explicitly type as React.CSSProperties
+                            role="progressbar">
+                            <div className="radial-progress text-loginblue  z-50" 
+                            style={{ 
+                                "--value": radialProgress,
+                                "--size": "10rem",
+                                "--thickness": "15px" 
+                            } as React.CSSProperties} // Explicitly type as React.CSSProperties
+                            role="progressbar">
+                            {radialProgress}%
+                        </div>
+                        </div>
+                    <div className="h-28"/>
                 </div>
+            ) : ( 
+                <div className="w-64"/>
+                
             )}
         </div>
       </>

@@ -35,7 +35,7 @@ export default async function Footer() {
       <nav>
         <h6 className="footer-title">Help and Support</h6> 
         <a href="https://learn.schoolofcode.co.uk/" target="_blank" rel="noopener noreferrer" className="link link-hover">LearnWorlds</a>     
-        <a className="link link-hover">Documentation</a>
+        <a href= "https://www.notion.so/algorhythmdocs/SoCBrain-Docs-1c9124260da64589ad52303490438d79" target="_blank" rel="noopener noreferrer" className="link link-hover">Documentation</a>
         <a className="link link-hover">FAQs</a>
         <a href="mailto:info@schoolofcode.co.uk"className="link link-hover">Contact us</a>     
       </nav> 

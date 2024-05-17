@@ -129,39 +129,48 @@ export default function Quiz({ props }: any) {
     {!submitted ? (
       <>
         <div className="carousel items-center w-[70%] ">
-      {dayQuestions.map((item: any, index: number) => (
-        <div id={`slide${index}`} key={index} className="carousel-item flex-col items-center w-full">
-          <h1 className="text-xl font-bold mb-10">{item.question}</h1>
-          {/* All answers below */}
-          {random(item,index)}
-          <div className="join grid grid-cols-2 py-5 px-20 mt-5">
-          {index ? (
-            <a  href={`#slide${index - 1}`} className='join-item btn btn-ghost bg-loginblue'>Previous</a>
-          ) : (
-            <div className="tooltip tooltip-left w-full" data-tip="First question">
-              <a href={`#slide${index - 1}`} className='join-item btn btn-ghost text-black bg-gray-300 pointer-events-none'>
-                Previous
-              </a>
-            </div>)}
-          {index === total -1 && selected[index] ? (
-            <SubmitButton
-            formAction={submit}
-            className=" bg-loginblue hover:bg-socskyblue text-black dark:text-white hover:text-black join-item btn btn-ghost"
-            pendingText="Submitting..."
-            >
-              Submit
-            </SubmitButton>
-          ) : selected[index] ? (
-            <a href={`#slide${index + 1}`} className='join-item btn btn-ghost bg-loginblue '>Next</a>
-          ) : (
-            <div className="tooltip tooltip-right w-full" data-tip="Select a answer">
-              <a href={`#slide${index + 1}`} className='join-item btn btn-ghost w-full bg-gray-300 text-black pointer-events-none'>
-                Next
-              </a>
-            </div>)}
-          </div>
-        </div>
-        ))}
+              {dayQuestions.length > 0 ? (
+                  dayQuestions.map((item: any, index: number) => (
+                    <div id={`slide${index}`} key={index} className="carousel-item flex-col items-center w-full">
+                      <h1 className="text-xl font-bold mb-10">{item.question}</h1>
+                      {/* All answers below */}
+                      {random(item, index)}
+                      <div className="join grid grid-cols-2 py-5 px-20 mt-5">
+                        {index ? (
+                          <a href={`#slide${index - 1}`} className='join-item btn btn-ghost bg-loginblue'>Previous</a>
+                        ) : (
+                          <div className="tooltip tooltip-left w-full" data-tip="First question">
+                            <a href={`#slide${index - 1}`} className='join-item btn btn-ghost text-black bg-gray-300 pointer-events-none'>
+                              Previous
+                            </a>
+                          </div>
+                        )}
+                        {index === total - 1 && selected[index] ? (
+                          <SubmitButton
+                            formAction={submit}
+                            className=" bg-loginblue hover:bg-socskyblue text-black dark:text-white hover:text-black join-item btn btn-ghost"
+                            pendingText="Submitting..."
+                          >
+                            Submit
+                          </SubmitButton>
+                        ) : selected[index] ? (
+                          <a href={`#slide${index + 1}`} className='join-item btn btn-ghost bg-loginblue '>Next</a>
+                        ) : (
+                          <div className="tooltip tooltip-right w-full" data-tip="Select an answer">
+                            <a href={`#slide${index + 1}`} className='join-item btn btn-ghost w-full bg-gray-300 text-black pointer-events-none'>
+                              Next
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center mt-10">
+                    <h2 className="text-xl font-semibold mb-2">Content Unavailable</h2>
+                    <p className="text-md text-gray-600">We're working hard to bring you new content. Please check back later.</p>
+                  </div>
+                )}
         </div> 
         <div>
           <p className='btn dark:hover:bg-gray-700 bg-gray-300 text-black' onClick={()=>{props.setSelected(false); props.setRadialProgress(0)}}>

@@ -16,7 +16,9 @@ export default async function modules({
   if(!user){
     redirect('/login')
   }
-
+  if(!searchParams.w){
+    redirect('/modules')
+  }
   const { data } : any = searchParams.w ? await supabase
     .from("weeks")
     .select("*")
@@ -36,7 +38,6 @@ export default async function modules({
     .order('day_number') : null
   
   const week = searchParams.w
-  
   const props = {
     data,
     quizzes,
@@ -46,7 +47,18 @@ export default async function modules({
   }
   return (
     <div className="flex-1 flex flex-col items-center w-full">
-      {data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>}  
+      {week < 12 ? (
+        data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>
+      ) : (
+        <div className="flex-1 flex flex-col justify-center items center">
+          <div className="text-center mt-10">
+              <h2 className="text-xl font-semibold mb-2">Oops, Module Unavailable</h2>
+              <p className="text-md text-gray-600">Try again later. 😁</p>
+          </div>
+        </div>
+      )}
+      
+
     </div>
   );
 }

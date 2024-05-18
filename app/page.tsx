@@ -23,7 +23,7 @@ export default async function Index() {
         <h1 className="font-black text-6xl pt-5">Welcome to</h1>
         <h1 className="font-black text-6xl pb-10 pt-2">SoCBrain</h1>
         <Link
-          href="/allQuizzes"
+          href="/modules"
           className="bg-loginblue hover:bg-sky-300 hover:text-black rounded-lg px-6 py-5 ml-1 text-foreground text-white font-semibold text-lg shadow-md"
         >
           Explore quizzes

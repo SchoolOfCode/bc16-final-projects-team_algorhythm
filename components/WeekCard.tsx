@@ -16,7 +16,7 @@ export default async function WeekCard() {
               <h2 className="card-title">{week.title}</h2>
               <p>{week.description}</p>
             </div>
-            <figure className="bg-sky-200">
+            <figure className="bg-sky-200 rounded-b-xl">
               <Image src={`/quizicons/${week.img}.png`} alt={week.title} width={200} height={200} />
             </figure>
           </Link>

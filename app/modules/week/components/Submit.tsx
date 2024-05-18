@@ -1,8 +1,14 @@
 'use server'
 import { createClient } from "@/utils/supabase/server";
 
-export default async function Submit(answers : any, dayQuestions : any, total: number) {
-
+export default async function Submit(answers : any, dayQuestions : any, total: number, attempts :any) {
+    // score based of 100 / total
+    // counter to check total of correct answers
+    const passed = {
+        score: 0,
+        count: 0,
+        success: false,
+    }
     const supabase = createClient();
 
     const user = await supabase
@@ -10,23 +16,20 @@ export default async function Submit(answers : any, dayQuestions : any, total: n
         .select("uuid, first_name, last_name, email");
 
     const number = 100 / total;
-    const goal = 70; // Percentage to pass! 70%
+    const goal = 90; // Percentage to pass! 90%
 
-    // score based of 100 / total
-    let score = 0;
-    // counter to check total of correct answers
-    let count = 0;
+    
+
     // Calculate the score based on the user's answers
     for (let i = 0; i < answers.length; i++) {
         if (answers[i] === dayQuestions[i].correct_answer) {
-            score += number;
-            count++
+            passed.score += number;
+            passed.count++
         }
     }
     // Check if the user has passed
-    const hasPassed = score >= goal;
-    // Output the score to the console
-    console.log('Score:', score);
+    const hasPassed = passed.score >= goal;
+
     // Output whether the user has passed or failed
     if (hasPassed && user) {
         const { error } = await supabase
@@ -37,9 +40,9 @@ export default async function Submit(answers : any, dayQuestions : any, total: n
             last_name: user.data![0].last_name,
             week_number: dayQuestions[0].week_number,
             day_number: dayQuestions[0].day_number,
-            correct_answers: count,
+            correct_answers: passed.count,
             total_questions: total,
-            attempts: 1,
+            attempts: attempts,
             success: true,
         }])
 
@@ -47,13 +50,13 @@ export default async function Submit(answers : any, dayQuestions : any, total: n
             console.log('Failed to store result')
         }
 
-        console.log('Congratulations! You passed the quiz.');
-
-        return true
+        //console.log('Congratulations! You passed the quiz.');
+        passed.success = true
+        return passed
     } else {
-
-        console.log('Sorry, you did not pass the quiz.');
-
-        return false
+        
+        //console.log('Sorry, you did not pass the quiz.');
+        passed.success = false
+        return passed
     }
 }

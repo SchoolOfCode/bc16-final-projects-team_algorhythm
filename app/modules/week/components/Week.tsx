@@ -10,20 +10,15 @@ export default function Week({ props }: any){
     const [day3, setDay3] = useState(true)
     const [day4, setDay4] = useState(true)
     const [day5, setDay5] = useState(true) 
-    const [reload, setReload] = useState(false)
+    const [refresh, setRefresh] = useState(false)
     const [selected, setSelected] = useState(false)
     const [radialProgress, setRadialProgress] = useState(0)
-    
-    useEffect(()=>{
-        setRadialProgress(0)
-    },[selected])
-
     props.setRadialProgress = setRadialProgress
     props.radialProgress = radialProgress
     props.setSelected = setSelected
     props.selected = selected
-    props.reload = reload
-    props.setreload = setReload
+    props.setRefresh = setRefresh
+    props.refresh = refresh
     props.day1 = day1
     props.setDay1 = setDay1
     props.day2 = day2
@@ -37,14 +32,14 @@ export default function Week({ props }: any){
 
     return (
         <>
-        <h1 className="text-black font-semibold text-4xl m-5 animate-fade">
+        <h1 className="text-black font-semibold text-4xl m-5 animate-fade dark:text-white">
             {props.data[0].title}
         </h1>
         <div className="flex items-start w-full justify-evenly animate-fade">
             <DayProgress props={props}/>
             {!selected ? (
                 <div className="flex flex-col w-[30%] items-center">
-                  <h1 className="text-black font-semibold text-2xl m-5">
+                  <h1 className="text-black font-semibold text-2xl m-5 dark:text-white">
                     Time to test your knowledge
                   </h1>
                   <Image
@@ -61,22 +56,32 @@ export default function Week({ props }: any){
                 </form>
                 )
             }
-            {!selected ? ( 
-                <div className="w-64"/>
-            ) : ( 
+            {selected && radialProgress ? ( 
                 <div className="w-64 flex flex-col items-center justify-between">
-                    <div className="h-full"/>
-                    <div className="radial-progress text-loginblue bg-socskyblue" 
-                        style={{ 
-                            "--value": radialProgress,
-                            "--size": "10rem",
-                            "--thickness": "15px" 
-                        } as React.CSSProperties} // Explicitly type as React.CSSProperties
-                        role="progressbar">
-                        {radialProgress}%
-                    </div>
-                    <div className="h-24"/>
+                    <div className="h-28"/>
+                        <p className="pb-3">Quiz Progress   </p>
+                        <div className="radial-progress text-gray-300 bg-transparent shadow-lg" 
+                            style={{ 
+                                "--value": 100,
+                                "--size": "10rem",
+                                "--thickness": "15px" 
+                            } as React.CSSProperties} // Explicitly type as React.CSSProperties
+                            role="progressbar">
+                            <div className="radial-progress text-loginblue  z-50" 
+                            style={{ 
+                                "--value": radialProgress,
+                                "--size": "10rem",
+                                "--thickness": "15px" 
+                            } as React.CSSProperties} // Explicitly type as React.CSSProperties
+                            role="progressbar">
+                            {radialProgress}%
+                        </div>
+                        </div>
+                    <div className="h-28"/>
                 </div>
+            ) : ( 
+                <div className="w-64"/>
+                
             )}
         </div>
       </>

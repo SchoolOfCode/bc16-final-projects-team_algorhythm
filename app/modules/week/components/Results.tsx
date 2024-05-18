@@ -130,16 +130,14 @@ export default function Results({ data }: any) {
                     {loading ? (
                         <p className=" font-semibold p-2">Loading inspirational quote...</p>
                     ) : (
-                        quote && (
-                            <>        
-                                <p className=" font-semibold p-2">Inspirational quote:</p>
-                                <div className=" bg-gray-200 rounded-xl p-2">  
-                                    <p>{quote}</p>
-                                </div>
-                            </> 
+                        quote && (  
+                            <div className=" bg-gray-200 rounded-xl p-2 my-8 dark:text-black">  
+                                <p>{quote}</p>
+                            </div>
+                        
                         )
                     )}
-                    <p className="btn btn-ghost w-[50%] my-5 text-black bg-loginblue shadow-lg border-0 dark:text-white"
+                    <p className="btn btn-ghost w-[50%] text-black bg-loginblue shadow-lg border-0 dark:text-white"
                         onClick={data.day < 5 ? () => { data.setSubmitted(false); data.props.setSelected(data.day + 1); data.setAttempts(1) }: undefined}
                     >
                         Next Day

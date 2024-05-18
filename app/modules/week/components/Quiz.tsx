@@ -139,11 +139,7 @@ export default function Quiz({ props }: any) {
                         {index ? (
                           <a href={`#slide${index - 1}`} className='join-item btn btn-ghost bg-loginblue'>Previous</a>
                         ) : (
-                          <div className="tooltip tooltip-left w-full" data-tip="First question">
-                            <a href={`#slide${index - 1}`} className='join-item btn btn-ghost text-black bg-gray-300 pointer-events-none'>
-                              Previous
-                            </a>
-                          </div>
+                          <a href={`#slide${index - 1}`} className='join-item btn btn-ghost text-black bg-gray-300 pointer-events-none'>Previous</a>
                         )}
                         {index === total - 1 && selected[index] ? (
                           <SubmitButton
@@ -168,12 +164,12 @@ export default function Quiz({ props }: any) {
                 ) : (
                   <div className="text-center mt-20 mb-10">
                     <h2 className="text-xl font-semibold mb-2">Content Unavailable</h2>
-                    <p className="text-md text-gray-600">We're working hard to bring you new content. Please check back later.</p>
+                    <p className="text-md text-gray-600 dark:text-white">We're working hard to bring you new content. Please check back later.</p>
                   </div>
                 )}
         </div> 
         <div>
-          <p className='btn dark:hover:bg-gray-700 bg-gray-300 text-black' onClick={()=>{props.setSelected(false); props.setRadialProgress(0)}}>
+          <p className='btn btn-ghost bg-loginblue' onClick={()=>{props.setSelected(false); props.setRadialProgress(0)}}>
           Exit
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />

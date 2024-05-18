@@ -59,7 +59,7 @@ export default function Week({ props }: any){
             {selected && radialProgress ? ( 
                 <div className="w-64 flex flex-col items-center justify-between">
                     <div className="h-28"/>
-                        <p className="pb-3">Progress bar</p>
+                        <p className="pb-3">Quiz Progress   </p>
                         <div className="radial-progress text-gray-300 bg-transparent shadow-lg" 
                             style={{ 
                                 "--value": 100,

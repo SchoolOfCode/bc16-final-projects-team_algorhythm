@@ -170,7 +170,7 @@ export default function Results({ data }: any) {
                         {data.info.count}/{data.total}
                     </div>
                 </div>
-                <h2 className="my-5 text-xl font-bold">Here&apos;s what you got wrong:</h2>
+                <h2 className="my-6 text-xl font-bold">Here&apos;s what you got wrong:</h2>
             </div>
             <table className="table">
                 <thead>
@@ -192,7 +192,7 @@ export default function Results({ data }: any) {
             </table>
             <div className="flex flex-col justify-center items-center">
                 <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
-                <p className="btn btn-ghost w-[50%] px-20 my-5 text-black bg-loginblue shadow-lg border-0 dark:text-white"
+                <p className="btn btn-ghost w-[50%] px-20 my-8 text-black bg-loginblue shadow-lg border-0 dark:text-white"
                     onClick={handleTryAgain}
                 >
                     Retake

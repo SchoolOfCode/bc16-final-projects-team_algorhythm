@@ -63,7 +63,7 @@ export default function Quiz({ props }: any) {
     const passed = await Submit(answers,dayQuestions,total,attempts)
     
     info = passed
-    console.log(attempts)
+  
     if(passed.success === true){
       if(day === 1){
         props.setDay1(true)
@@ -166,7 +166,7 @@ export default function Quiz({ props }: any) {
                     </div>
                   ))
                 ) : (
-                  <div className="text-center mt-10">
+                  <div className="text-center mt-20 mb-10">
                     <h2 className="text-xl font-semibold mb-2">Content Unavailable</h2>
                     <p className="text-md text-gray-600">We're working hard to bring you new content. Please check back later.</p>
                   </div>

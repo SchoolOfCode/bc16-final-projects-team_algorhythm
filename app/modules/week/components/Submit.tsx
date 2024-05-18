@@ -50,12 +50,12 @@ export default async function Submit(answers : any, dayQuestions : any, total: n
             console.log('Failed to store result')
         }
 
-        console.log('Congratulations! You passed the quiz.');
+        //console.log('Congratulations! You passed the quiz.');
         passed.success = true
         return passed
     } else {
         
-        console.log('Sorry, you did not pass the quiz.');
+        //console.log('Sorry, you did not pass the quiz.');
         passed.success = false
         return passed
     }

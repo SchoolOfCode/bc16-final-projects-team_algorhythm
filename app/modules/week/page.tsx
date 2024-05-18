@@ -17,7 +17,7 @@ export default async function modules({
     redirect('/login')
   }
   if(!searchParams.w){
-    redirect('/')
+    redirect('/modules')
   }
   const { data } : any = searchParams.w ? await supabase
     .from("weeks")

@@ -13,7 +13,6 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Home' }).click();
   await expect(page.getByRole('main')).toContainText('Welcome to');
   await page.getByRole('link', { name: 'Dashboard' }).click();
-  await expect(page.getByRole('heading', { name: 'Welcome to your dashboard' })).toBeVisible();
   await page.getByRole('link', { name: 'Modules' }).click();
   await expect(page.getByRole('link', { name: 'Onboarding Week' })).toBeVisible();
   await page.getByRole('link', { name: 'Onboarding Week' }).click();

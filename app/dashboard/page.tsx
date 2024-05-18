@@ -1,16 +1,37 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import AdminDashBoard from "@/components/AdminDashBoard";
+import { redirect } from "next/navigation";
+import StudentDashBoard from "@/components/StudentDashBoard";
 /* imports as required */
 
 
 export default async function DashBoard() {
   const supabase = createClient();
+  //Checking if the user is loged in
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirect("/login");
+  }
+  // Check ends
+
+  //Checking if the user is Coach or Student
+  const role = await supabase
+    .from('roles')
+    .select("*")
+
+  const admin = role.data![0].role === 'admin'
+  // Check ends, now it applies to JSX to render based on role
 
   const data = await supabase
     .from("results")
     .select("*")
   //console.log(progressBar1.data);
+
+
 
 
   return (
@@ -26,7 +47,12 @@ export default async function DashBoard() {
           Modify quizzes
         </Link>
       </div>
-      <AdminDashBoard data={data}/>
+      {admin ? (
+        <AdminDashBoard data={data}/>
+      ) : (
+        <StudentDashBoard/>
+      )}
+      
     </div>
   );
 }

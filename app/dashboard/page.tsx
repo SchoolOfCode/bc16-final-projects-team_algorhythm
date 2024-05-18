@@ -31,10 +31,14 @@ export default async function DashBoard() {
     .select("*")
   //console.log(progressBar1.data);
 
-
+  // Gets user name (applied only on student dashboard)
+  const userData = await supabase
+    .from("profiles")
+    .select('*')
 
 
   return (
+    admin ? (
     <div className="flex flex-col  pt-10 px-10 w-full">
       <div className=" flex flex-row justify-between mb-5 ">
         <h1 className="font-black text-4xl pb-3 text-left ">
@@ -47,12 +51,10 @@ export default async function DashBoard() {
           Modify quizzes
         </Link>
       </div>
-      {admin ? (
-        <AdminDashBoard data={data}/>
-      ) : (
-        <StudentDashBoard/>
-      )}
-      
+        <AdminDashBoard data={data}/> 
     </div>
+    ) : (
+        <StudentDashBoard data={data} userData={userData}/>
+    )
   );
 }

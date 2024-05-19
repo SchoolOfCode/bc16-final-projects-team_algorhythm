@@ -5,6 +5,7 @@ import StudentOverview from "./StudentOverview"
 import StudentScore from "./StudentScore"
 import Image from "next/image"
 import Link from "next/link"
+import StudentTodo from "./StudentToDo"
 
 export default function StudentDashBoard({ data, userData }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
@@ -57,7 +58,7 @@ export default function StudentDashBoard({ data, userData }: any){
                     </p>
                 </div>
             </div>
-            {!overView ? (
+            {!overView && !todo ? (
                 <div className="card w-full bg-base-100 shadow-xl">
                     <div className="bg-gradient-to-t from-transparent to-socskyblue w-full h-fit rounded-t-xl flex items-center p-4">
                         <Image
@@ -158,9 +159,12 @@ export default function StudentDashBoard({ data, userData }: any){
                         </div>
                     </div>
                 </div>
-            ) : ( 
+            ) : !todo ? ( 
                 <StudentOverview data={data} userData={userData}/>
-            )}
+            ) : (
+                <StudentTodo/>
+            )
+            }
         </div>
     )
 }

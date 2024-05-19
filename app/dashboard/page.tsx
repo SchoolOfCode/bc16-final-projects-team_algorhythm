@@ -2,7 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import AdminDashBoard from "@/components/AdminDashBoard";
 import { redirect } from "next/navigation";
-import StudentDashBoard from "@/components/StudentDashBoard";
+import StudentDashBoard from "./student/StudentDashBoard";
 /* imports as required */
 
 

@@ -1,5 +1,5 @@
 "use client";
-import { SubmitButton } from "./Submit";
+import { SubmitButton } from "../../../components/Submit";
 import React, { useEffect, useState, useRef } from "react";
 
 export default function StudentOverview({ data, userData }: any) {

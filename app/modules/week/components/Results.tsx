@@ -120,6 +120,7 @@ export default function Results({ data }: any) {
                         ))}
                     </tbody>
                 </table>
+                <p className="text-gray-500 text-sm text-center">Added to your to-do</p>
                 <div className="flex flex-col justify-center items-center">
                     <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
                     <p className="btn btn-ghost w-[50%] my-5 text-black bg-loginblue shadow-lg border-0 dark:text-white"
@@ -193,6 +194,7 @@ export default function Results({ data }: any) {
                     ))}
                 </tbody>
             </table>
+            <p className="text-gray-500 text-sm text-center">Added to your to-do</p>
             <div className="flex flex-col justify-center items-center">
                 <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
                 <p className="btn btn-ghost w-[50%] px-20 my-8 text-black bg-loginblue shadow-lg border-0 dark:text-white"

@@ -36,6 +36,12 @@ export default async function DashBoard() {
     .from("profiles")
     .select('*')
 
+  // Get user todo list
+  const todoData = await supabase
+    .from('todo')
+    .select('*')
+    .eq('user_uuid', user.id)
+  
 
   return (
     admin ? (
@@ -54,7 +60,7 @@ export default async function DashBoard() {
         <AdminDashBoard data={data}/> 
     </div>
     ) : (
-        <StudentDashBoard data={data} userData={userData}/>
+        <StudentDashBoard data={data} userData={userData} todoData={todoData}/>
     )
   );
 }

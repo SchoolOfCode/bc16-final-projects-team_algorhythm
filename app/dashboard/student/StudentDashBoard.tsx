@@ -7,13 +7,12 @@ import Image from "next/image"
 import Link from "next/link"
 import StudentTodo from "./StudentTodo"
 
-export default function StudentDashBoard({ data, userData }: any){
+export default function StudentDashBoard({ data, userData, todoData }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
     const [backBtn, setBackBtn] = useState(false)
     const [recommended, setRecommended] = useState(false)
-
     const [userInfo, setUserInfo] = useState<any>({});
     
     useEffect(()=>{
@@ -32,9 +31,9 @@ export default function StudentDashBoard({ data, userData }: any){
     
     
     return(
-        <div className="flex-1 flex flex-col pt-10 px-10 w-full">
+        <div className="flex-1 flex flex-col pt-10 px-10 w-full dark:text-black">
             <div className=" flex flex-row justify-between mb-5 ">
-                <h1 className="font-black text-4xl pb-3 text-left ">
+                <h1 className="font-black text-4xl pb-3 text-left dark:text-white">
                     {userData.data![0].first_name}&apos;s Dashboard
                 </h1>
                 <div className="flex gap-5">
@@ -59,16 +58,16 @@ export default function StudentDashBoard({ data, userData }: any){
                 </div>
             </div>
             {!overView && !todo ? (
-                <div className="card w-full bg-base-100 shadow-xl">
-                    <div className="bg-gradient-to-t from-transparent to-socskyblue w-full h-fit rounded-t-xl flex items-center p-4">
+                <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue">
+                    <div className=" w-full h-fit rounded-t-xl flex items-center p-4 dark:bg-gray-600">
                         <Image
-                            className="bg-white rounded-full w-fit h-fit m-5 shadow-xl"
+                            className="bg-white rounded-full w-fit h-fit m-5 shadow-xl dark:bg-gray-600"
                             src="/usericon.png"
                             alt="User image"
                             width={100}
                             height={100}
                         />
-                        <table className="text-center w-full table-auto text-lg bg-gradient-to-t from-socskyblue to-white rounded-xl shadow-md">
+                        <table className="text-center w-full table-auto text-lg bg-gradient-to-t from-socskyblue to-white rounded-xl shadow-md dark:to-socskyblue dark:from-transparent">
                             <thead>
                             <tr className="flex w-full justify-between rounded-t-xl">
                                 <th className="flex-1">Rank</th>
@@ -89,7 +88,7 @@ export default function StudentDashBoard({ data, userData }: any){
                             </tbody>
                         </table>
                     </div>
-                    <div className="bg-white rounded-b-xl p-5">
+                    <div className=" rounded-b-xl p-5 dark:bg-gray-600 dark:text-white">
                         <div className="flex justify-evenly">
                             <div className="flex flex-col items-center mb-3">
                                 <h2 className="card-title px-2">
@@ -162,7 +161,7 @@ export default function StudentDashBoard({ data, userData }: any){
             ) : !todo ? ( 
                 <StudentOverview data={data} userData={userData}/>
             ) : (
-                <StudentTodo/>
+                <StudentTodo todoData={todoData} modules={modules}/>
             )
             }
         </div>

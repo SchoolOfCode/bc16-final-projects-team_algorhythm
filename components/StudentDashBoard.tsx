@@ -2,20 +2,34 @@
 
 import { useEffect, useState } from "react"
 import StudentOverview from "./StudentOverview"
+import StudentScore from "./StudentScore"
 import Image from "next/image"
 import Link from "next/link"
 
 export default function StudentDashBoard({ data, userData }: any){
+    const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
     const [backBtn, setBackBtn] = useState(false)
     const [recommended, setRecommended] = useState(false)
 
+    const [userInfo, setUserInfo] = useState<any>({});
+    
     useEffect(()=>{
         setBackBtn(todo || overView)
         setRecommended(false)
+
     },[todo,overView])
 
+    useEffect(() => {
+        const getScore = async () => {
+          const result = await StudentScore(data,userData);
+          setUserInfo(result);
+        };
+        getScore();
+    }, [data]);
+    
+    
     return(
         <div className="flex-1 flex flex-col pt-10 px-10 w-full">
             <div className=" flex flex-row justify-between mb-5 ">
@@ -53,12 +67,11 @@ export default function StudentDashBoard({ data, userData }: any){
                             width={100}
                             height={100}
                         />
-                        <table className="text-center w-full table-auto text-lg">
+                        <table className="text-center w-full table-auto text-lg bg-gradient-to-t from-socskyblue to-white rounded-xl shadow-md">
                             <thead>
-                            <tr className="flex w-full justify-between rounded-t-xl ">
+                            <tr className="flex w-full justify-between rounded-t-xl">
                                 <th className="flex-1">Rank</th>
                                 <th className="flex-1">Leaderboard</th>
-                                <th className="flex-1">Hours</th>
                                 <th className="flex-1">Modules</th>
                                 <th className="flex-1">Correct answers</th>
                                 <th className="flex-1">Achievements</th>
@@ -67,57 +80,55 @@ export default function StudentDashBoard({ data, userData }: any){
                             <tbody>
                             <tr className="flex w-full justify-between rounded-b-xl ">
                                 <td className="flex-1">Noob</td>
-                                <td className="flex-1">4</td>
-                                <td className="flex-1">30</td>
-                                <td className="flex-1">1</td>
-                                <td className="flex-1">10</td>
-                                <td className="flex-1">3</td>
+                                <td className="flex-1">{userInfo.leaderboard ? userInfo.leaderboard : userInfo.leaderboard === undefined ? '0' : 'Loading...'}</td>
+                                <td className="flex-1">{userInfo.modules > -1 ? userInfo.modules : 'Loading...'}</td>
+                                <td className="flex-1">{userInfo.totalCorrect > -1 ? userInfo.totalCorrect : "Loading..."}</td>
+                                <td className="flex-1">0</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div className="bg-white rounded-b-xl p-5">
-                        <div className="flex items-center mb-3">
-                            <h2 className="card-title px-2">
-                                Achievements : 
-                                {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
-                            </h2>
-                            <p>
-                                item1
-                            </p>
-                            <p>
-                                item2
-                            </p>
-                        </div>
-                        <div className="flex items-center mb-3">
-                            <h2 className="card-title px-2">
-                                Modules completed : 
-                                {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
-                            </h2>
-                            <p>
-                                item1
-                            </p>
-                            <p>
-                                item2
-                            </p>
-                        </div>
-                        <div className="flex items-center mb-3">
-                            <h2 className="card-title px-2">
-                                Your leading module : 
-                                {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
-                            </h2>
-                            <p>
-                                item1
-                            </p>
-                        </div>
-                        <div className="flex items-center mb-3">
-                            <h2 className="card-title px-2">
-                                Your weakest module : 
-                                {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
-                            </h2>
-                            <p>
-                                item1
-                            </p>
+                        <div className="flex justify-evenly">
+                            <div className="flex flex-col items-center mb-3">
+                                <h2 className="card-title px-2">
+                                    Your achievements : 
+                                    {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
+                                </h2>
+                                <p>
+                                    N/A
+                                </p>
+                            </div>
+                            <div className="flex flex-col items-center mb-3">
+                                <h2 className="card-title px-2">
+                                    Your leading module : 
+                                    {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
+                                </h2>
+                                <p>
+                                    {userInfo.bestAndWorst ?
+                                        userInfo.bestAndWorst.bestWeek !== undefined ?
+                                        modules[`${Number(userInfo.bestAndWorst.bestWeek)-1}`]
+                                        : 'N/A'
+                                        : 'Loading...'
+                                    } 
+                                </p>
+                            </div>
+                            <div className="flex flex-col items-center mb-3">
+                                <h2 className="card-title px-2">
+                                    Your weakest module : 
+                                    {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
+                                </h2>
+                                <p>
+                                    {userInfo.bestAndWorst ? 
+                                        Number(userInfo.bestAndWorst.worstWeek) !== Number(userInfo.bestAndWorst.bestWeek) ?
+                                        userInfo.bestAndWorst.worstWeek !== undefined ?
+                                        modules[Number(userInfo.bestAndWorst.worstWeek) - 1] 
+                                        : 'N/A'
+                                        : 'N/A'
+                                        : 'Loading...'
+                                    }
+                                </p>
+                            </div>
                         </div>
                         <div className="flex justify-around mt-10 text-center">
                             <details className="collapse">
@@ -132,7 +143,7 @@ export default function StudentDashBoard({ data, userData }: any){
                                 <div className="collapse-content"> 
                                     <div className="flex justify-around">
                                         <div className="flex flex-col">
-                                            <h2 className="card-title">To elevate your skills</h2>
+                                            <h2 className="card-title">To elevate your leading area</h2>
                                         </div>
                                         <div className="flex flex-col">
                                             <h2 className="card-title">To strengthen your weakest area</h2>
@@ -143,7 +154,7 @@ export default function StudentDashBoard({ data, userData }: any){
                             </details>
                         </div>
                         <div className="card-actions justify-end absolute right-3 bottom-3">
-                            <div className="badge bg-loginblue text-white p-3 cursor-pointer hover:bg-socskyblue hover:text-black">Share progress</div>
+                            <div className="badge bg-loginblue text-white p-3 cursor-pointer hover:bg-socskyblue hover:text-black rounded-lg">Share progress</div>
                         </div>
                     </div>
                 </div>

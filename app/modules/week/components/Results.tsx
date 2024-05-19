@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
+import Todo from "./Todo";
 import Image from "next/image";
 
 export default function Results({ data }: any) {
@@ -9,7 +10,8 @@ export default function Results({ data }: any) {
     const [failedQuestions, setFailedQuestions] = useState<string[]>([]);
     const [failedAnswers, setFailedAnswers] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
-
+    const week = data.dayQuestions[0].week_number
+    const day = data.dayQuestions[0].day_number
 
     useEffect(() => {
         // Store the loop here
@@ -27,13 +29,17 @@ export default function Results({ data }: any) {
         setFailedAnswers(failedA);
 
         // If there`s 1 or more wrong answers we will display them and give advices
-        if (failedQ.length > 0) {
-            setImprove(true);
+        if (failedQ.length > 0) {   
+            setImprove(true);     
+            const add = async()=>{
+                await Todo(failedQ, failedA, week, day)
+            }
+            add()
         }
-
+        
         // Set if the student passed or not
         setPassed(data.info.success);
-    }, [data]);
+    }, [data]);    
 
     // Fetch a quote and display to user if passed without 1 wrong answer 
     useEffect(() => {
@@ -59,7 +65,6 @@ export default function Results({ data }: any) {
                 setLoading(false);
             }
         };
-    
         fetchData();
     }, []); // Empty dependency array means this runs once on mount
 
@@ -93,7 +98,7 @@ export default function Results({ data }: any) {
                 <h1 className=" text-2xl font-medium mt-5 py-2">
                  Congratulations, you passed!
                 </h1>       
-            </div>
+            </div>         
             {improve ? ( 
                 <>
                 <h2 className="my-8 text-xl">Here&apos;s what you can improve on:</h2>

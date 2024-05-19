@@ -5,7 +5,7 @@ import StudentOverview from "./StudentOverview"
 import StudentScore from "./StudentScore"
 import Image from "next/image"
 import Link from "next/link"
-import StudentTodo from "./StudentToDo"
+import StudentTodo from "./StudentTodo"
 
 export default function StudentDashBoard({ data, userData }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']

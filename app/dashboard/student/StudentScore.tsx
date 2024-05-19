@@ -36,7 +36,7 @@ export default async function StudentScore(data:any,userData:any){
         leaderboard,
         totalCorrect
     }
-    console.log(userInfo)
+    //console.log(userInfo)
     return userInfo
 }
 ////////////////////// Functions to calculate student data below ///////////////////////////

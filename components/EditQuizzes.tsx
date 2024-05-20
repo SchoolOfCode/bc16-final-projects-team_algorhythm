@@ -23,7 +23,7 @@ export default function EditQuizzes() {
         const { uuid, week_number, day_number, question } = updatedQuestion;
     const { error } = await supabase
         .from('quizzes')
-        .update(question)  // Only update the question object
+        .update(question)  
         .match({ uuid });
 
         if (!error) {
@@ -36,7 +36,7 @@ export default function EditQuizzes() {
                     } : day),
                 } : week);
     
-                // Sort the weeksData array by week_number in reverse order
+                
                 return updatedWeeksData.sort((a, b) => b.week_number - a.week_number);
             });
     
@@ -74,10 +74,9 @@ export default function EditQuizzes() {
                     return acc;
                 }, []);
     
-                // Sort the weeksData array by week_number in reverse order
                 const sortedWeeksData = groupedByWeek.sort((a, b) => b.week_number - a.week_number);
     
-                console.log('Processed Data:', sortedWeeksData);  // Log the processed data
+                console.log('Processed Data:', sortedWeeksData);  
                 setWeeksData(sortedWeeksData);
             }
         }
@@ -109,7 +108,7 @@ export default function EditQuizzes() {
                                     {day.questions.map((question, questionIndex) => (
     <div key={questionIndex}>
         {editingQuestion?.week_number === week.week_number && editingQuestion?.day_number === day.day_number && editingQuestion?.questionIndex === questionIndex ? (
-            // Render the edit form
+           
             <div>
         <label>Question:</label>
         <input

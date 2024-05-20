@@ -26,23 +26,23 @@ export default function EditQuizzes() {
         .update(question)  // Only update the question object
         .match({ uuid });
 
-        if (error) {
-            console.error('Error updating question:', error);
-        } else {
-           
-            setWeeksData(weeksData.map(week => week.week_number === updatedQuestion.week_number ? {
-                ...week,
-                days: week.days.map(day => day.day_number === updatedQuestion.day_number ? {
-                    ...day,
-                    questions: day.questions.map((question, index) => index === updatedQuestion.questionIndex ? updatedQuestion.question : question),
-                } : day),
-            } : week));
-
-           
+        if (!error) {
+            setWeeksData(prevWeeksData => {
+                const updatedWeeksData = prevWeeksData.map(week => week.week_number === updatedQuestion.week_number ? {
+                    ...week,
+                    days: week.days.map(day => day.day_number === updatedQuestion.day_number ? {
+                        ...day,
+                        questions: day.questions.map((question, index) => index === updatedQuestion.questionIndex ? updatedQuestion.question : question),
+                    } : day),
+                } : week);
+    
+                // Sort the weeksData array by week_number in reverse order
+                return updatedWeeksData.sort((a, b) => b.week_number - a.week_number);
+            });
+    
             setEditingQuestion(null);
         }
     };
-
 
     const handleSelectWeek = (week) => {
         setSelectedWeek(week);
@@ -73,14 +73,18 @@ export default function EditQuizzes() {
                     }
                     return acc;
                 }, []);
-                console.log('Processed Data:', groupedByWeek);  // Log the processed data
-                setWeeksData(groupedByWeek);
+    
+                // Sort the weeksData array by week_number in reverse order
+                const sortedWeeksData = groupedByWeek.sort((a, b) => b.week_number - a.week_number);
+    
+                console.log('Processed Data:', sortedWeeksData);  // Log the processed data
+                setWeeksData(sortedWeeksData);
             }
         }
-
+    
         fetchData();
     }, []);
-
+    
     const handleSelectDayInWeek = (week, day_number) => {
         const selectedDayObj = week.days.find(day => day.day_number === day_number);
         setSelectedDay(selectedDayObj);

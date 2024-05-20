@@ -12,26 +12,27 @@ export default function EditQuizzes() {
     const [selectedWeek, setSelectedWeek] = useState(null);
     const [editingQuestion, setEditingQuestion] = useState(null);
 
-    const handleEditQuestion = (weekNumber, dayNumber, questionIndex, question, field, value) => {
-        setEditingQuestion({ weekNumber, dayNumber, questionIndex, question: { ...question, [field]: value } });
+    const handleEditQuestion = (uuid, week_number, day_number, questionIndex, question) => {
+        setEditingQuestion({ uuid, week_number, day_number, questionIndex, question });
     };
     
 
 
     const handleSaveQuestion = async (updatedQuestion) => {
        
-        const { error } = await supabase
-            .from('quizzes')
-            .update(updatedQuestion)
-            .match({ id: updatedQuestion.id });
+        const { uuid, week_number, day_number, question } = updatedQuestion;
+    const { error } = await supabase
+        .from('quizzes')
+        .update(question)  // Only update the question object
+        .match({ uuid });
 
         if (error) {
             console.error('Error updating question:', error);
         } else {
            
-            setWeeksData(weeksData.map(week => week.weekNumber === updatedQuestion.weekNumber ? {
+            setWeeksData(weeksData.map(week => week.week_number === updatedQuestion.week_number ? {
                 ...week,
-                days: week.days.map(day => day.day_number === updatedQuestion.dayNumber ? {
+                days: week.days.map(day => day.day_number === updatedQuestion.day_number ? {
                     ...day,
                     questions: day.questions.map((question, index) => index === updatedQuestion.questionIndex ? updatedQuestion.question : question),
                 } : day),
@@ -59,7 +60,7 @@ export default function EditQuizzes() {
             else {
                 console.log('Fetched Data:', data);
                 const groupedByWeek = data.reduce((acc, curr) => {
-                    const weekIndex = acc.findIndex(w => w.weekNumber === curr.week_number);
+                    const weekIndex = acc.findIndex(w => w.week_number === curr.week_number);
                     if (weekIndex !== -1) {
                         const dayIndex = acc[weekIndex].days.findIndex(d => d.day_number === curr.day_number);
                         if (dayIndex !== -1) {
@@ -68,7 +69,7 @@ export default function EditQuizzes() {
                             acc[weekIndex].days.push({ day_number: curr.day_number, questions: [curr] });
                         }
                     } else {
-                        acc.push({ weekNumber: curr.week_number, days: [{ day_number: curr.day_number, questions: [curr] }] });
+                        acc.push({ week_number: curr.week_number, days: [{ day_number: curr.day_number, questions: [curr] }] });
                     }
                     return acc;
                 }, []);
@@ -80,18 +81,18 @@ export default function EditQuizzes() {
         fetchData();
     }, []);
 
-    const handleSelectDayInWeek = (week, dayNumber) => {
-        const selectedDayObj = week.days.find(day => day.day_number === dayNumber);
+    const handleSelectDayInWeek = (week, day_number) => {
+        const selectedDayObj = week.days.find(day => day.day_number === day_number);
         setSelectedDay(selectedDayObj);
     };
 
    return (
         <div className="w-2/3">
             {weeksData.slice().reverse().map((week, index) => (
-                <div key={week.weekNumber} className="collapse collapse-arrow bg-socskyblue ">
+                <div key={week.week_number} className="collapse collapse-arrow bg-socskyblue ">
                     <input type="checkbox" /> 
                     <div className="collapse-title text-xl font-medium">
-                        Week {week.weekNumber}
+                        Week {week.week_number}
                     </div>
                     <div className="collapse-content"> 
                         {week.days.slice().reverse().map((day, index) => (
@@ -103,37 +104,37 @@ export default function EditQuizzes() {
                                 <div className="collapse-content"> 
                                     {day.questions.map((question, questionIndex) => (
     <div key={questionIndex}>
-        {editingQuestion?.weekNumber === week.weekNumber && editingQuestion?.dayNumber === day.day_number && editingQuestion?.questionIndex === questionIndex ? (
+        {editingQuestion?.week_number === week.week_number && editingQuestion?.day_number === day.day_number && editingQuestion?.questionIndex === questionIndex ? (
             // Render the edit form
             <div>
-                <label>Question:</label>
-                <input
-                    value={editingQuestion.question.question}
-                    onChange={e => handleEditQuestion(week.weekNumber, day.day_number, questionIndex, question, 'question', e.target.value)}
-                />
-                                                    <label>Correct Answer:</label>
-                                                    <input
-                                                        value={question.correct_answer}
-                                                        onChange={e => handleEditQuestion({ ...question, correct_answer: e.target.value })}
-                                                    />
-                                                    <label>Incorrect Answer 1:</label>
-                                                    <input
-                                                        value={question.incorrect_answer1}
-                                                        onChange={e => handleEditQuestion({ ...question, incorrect_answer1: e.target.value })}
-                                                    />
-                                                    <label>Incorrect Answer 2:</label>
-                                                    <input
-                                                        value={question.incorrect_answer2}
-                                                        onChange={e => handleEditQuestion({ ...question, incorrect_answer2: e.target.value })}
-                                                    />
-                                                    <label>Incorrect Answer 3:</label>
-                                                    <input
-                                                        value={question.incorrect_answer3}
-                                                        onChange={e => handleEditQuestion({ ...question, incorrect_answer3: e.target.value })}
-                                                    />
-                                                   <button onClick={() => handleSaveQuestion(editingQuestion)}>Save</button>
-            </div>
-        ) : (
+        <label>Question:</label>
+        <input
+            value={editingQuestion.question.question}
+            onChange={e => setEditingQuestion(prevState => ({ ...prevState, question: { ...prevState.question, question: e.target.value } }))}
+        />
+        <label>Correct Answer:</label>
+        <input
+            value={editingQuestion.question.correct_answer}
+            onChange={e => setEditingQuestion(prevState => ({ ...prevState, question: { ...prevState.question, correct_answer: e.target.value } }))}
+        />
+        <label>Incorrect Answer 1:</label>
+        <input
+            value={editingQuestion.question.incorrect_answer1}
+            onChange={e => setEditingQuestion(prevState => ({ ...prevState, question: { ...prevState.question, incorrect_answer1: e.target.value } }))}
+        />
+        <label>Incorrect Answer 2:</label>
+        <input
+            value={editingQuestion.question.incorrect_answer2}
+            onChange={e => setEditingQuestion(prevState => ({ ...prevState, question: { ...prevState.question, incorrect_answer2: e.target.value } }))}
+        />
+        <label>Incorrect Answer 3:</label>
+        <input
+            value={editingQuestion.question.incorrect_answer3}
+            onChange={e => setEditingQuestion(prevState => ({ ...prevState, question: { ...prevState.question, incorrect_answer3: e.target.value } }))}
+        />
+        <button onClick={() => handleSaveQuestion(editingQuestion)}>Save</button>
+    </div>
+) : (
                                     
             <div>
             <h3>Question {questionIndex + 1}</h3>
@@ -145,7 +146,8 @@ export default function EditQuizzes() {
                                                         <li>{question.incorrect_answer2}</li>
                                                         <li>{question.incorrect_answer3}</li>
                                                     </ul>
-                                                    <button onClick={() => handleEditQuestion(week.weekNumber, day.day_number, questionIndex, 'question', question.question)}>Edit</button>
+                                                    <button onClick={() => handleEditQuestion(question.uuid, week.week_number, day.day_number, questionIndex, question, 'question', question.question)}>Edit</button>
+
             </div>
                                             )}
                                         </div>

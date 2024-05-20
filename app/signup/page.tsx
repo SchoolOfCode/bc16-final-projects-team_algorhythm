@@ -79,7 +79,7 @@ export default async function SignUp({
 
   return (
     <div className="flex-1 flex w-full justify-center">
-      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center">
+      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center shadow-2xl">
         <Image
           className="pb-10 animate-fade-right"
           src="/soclarge.png"
@@ -89,7 +89,7 @@ export default async function SignUp({
         />
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
-        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl">
+        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl shadow-md">
           <label className="text-md text-white" htmlFor="first_name">
             First name
           </label>
@@ -135,7 +135,7 @@ export default async function SignUp({
           />
           <SubmitButton
             formAction={signUp}
-            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%]"
+            className="bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-4 py-2 text-foreground mb-2 text-black dark:text-black mx-[15%] shadow-md"
             pendingText="Signing Up..."
           >
             Submit

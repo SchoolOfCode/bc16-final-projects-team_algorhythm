@@ -40,7 +40,7 @@ export default async function Footer() {
         <a href="mailto:info@schoolofcode.co.uk"className="link link-hover">Contact us</a>     
       </nav> 
        <nav>
-        <h6 className="footer-title">Resources</h6> 
+        <h6 className="footer-title">Knowledge Base</h6> 
         <a href="https://www.codewars.com/" target="_blank" rel="noopener noreferrer" className="link link-hover">CodeWars</a>
         <a href="https://jsfiddle.net/" target="_blank" rel="noopener noreferrer" className="link link-hover">JSFiddle</a>
         <a href="https://exercism.org/"target="_blank" rel="noopener noreferrer" className="link link-hover">Exercism</a>

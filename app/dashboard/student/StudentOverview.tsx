@@ -24,7 +24,7 @@ export default function StudentOverview({ data, userData }: any) {
       const roundedValue = Math.ceil(start * 100) / 100; // Round to two decimal places
       if (roundedValue >= value) {
         clearInterval(interval);
-        bar(value);
+        bar(Math.ceil(value));
       } else {
         bar(roundedValue);
       }
@@ -165,7 +165,7 @@ export default function StudentOverview({ data, userData }: any) {
             </select>
 
             <SubmitButton
-              className="hover:bg-socskyblue bg-loginblue text-white rounded-lg px-6 py-1 text-foreground text-sm hover:text-black font-semibold mr-5 dark:text-white"
+              className="hover:bg-sky-400 bg-loginblue text-white rounded-lg px-6 py-1 text-foreground text-sm hover:text-black font-semibold mr-5 dark:text-white"
               formAction={handleSubmit}
               pendingText="Submitting..."
             >

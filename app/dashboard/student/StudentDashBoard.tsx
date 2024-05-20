@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import StudentTodo from "./StudentTodo"
 
-export default function StudentDashBoard({ data, userData, todoData }: any){
+export default function StudentDashBoard({ data, userData }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
@@ -59,9 +59,9 @@ export default function StudentDashBoard({ data, userData, todoData }: any){
             </div>
             {!overView && !todo ? (
                 <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue">
-                    <div className=" w-full h-fit rounded-t-xl flex items-center p-4 dark:bg-gray-600">
+                    <div className=" w-full h-fit gap-6 rounded-t-xl flex items-center p-4 dark:bg-gray-600">
                         <Image
-                            className="bg-white rounded-full w-fit h-fit m-5 shadow-xl dark:bg-gray-600"
+                            className="bg-white rounded-full w-fit h-fit m-5 shadow-xl  dark:bg-gray-600"
                             src="/usericon.png"
                             alt="User image"
                             width={100}
@@ -144,9 +144,11 @@ export default function StudentDashBoard({ data, userData, todoData }: any){
                                     <div className="flex justify-around">
                                         <div className="flex flex-col">
                                             <h2 className="card-title">To elevate your leading area</h2>
+                                            <p>Some Content...</p>
                                         </div>
                                         <div className="flex flex-col">
                                             <h2 className="card-title">To strengthen your weakest area</h2>
+                                            <p>Some Content...</p>
                                         </div>
 
                                     </div>
@@ -161,7 +163,7 @@ export default function StudentDashBoard({ data, userData, todoData }: any){
             ) : !todo ? ( 
                 <StudentOverview data={data} userData={userData}/>
             ) : (
-                <StudentTodo todoData={todoData} modules={modules}/>
+                <StudentTodo modules={modules}/>
             )
             }
         </div>

@@ -1,20 +1,44 @@
-import React,{ useState } from "react"
+import React,{ useEffect, useState } from "react";
+import {GetUserTodo, UpdateTodo} from "./UpdateTodo";
 
-
-export default function StudentTodo({ todoData, modules }: any){
-    const [todo, setTodo] = useState(todoData.data) 
-
-    // Group tasks by week and day
-    const groupedTasks = todo.reduce((weeks:any, task:any) => {
-        if (!weeks[task.week_number]) {
-            weeks[task.week_number] = {};
+export default function StudentTodo({ modules }: any){
+    const [todo, setTodo] = useState<any>({})
+    const [groupedTasks, setGroupedTasks] = useState<any>([])
+    
+    // Deletes todo from UI and also calls a function to delete from DB.
+    const deleteTodo = async(task:any) => {
+        const response = await UpdateTodo(task)
+        if(response){
+            setTodo(todo.filter((each:any) => each.question_title !== task.question_title))
         }
-        if (!weeks[task.week_number][task.day_number]) {
-            weeks[task.week_number][task.day_number] = [];
+    }   
+
+    useEffect(()=>{
+        // Fetch todo list from DB for the user
+        const getTodo = async() =>{
+            const data = await GetUserTodo()
+            setTodo(data.data)
         }
-        weeks[task.week_number][task.day_number].push(task);
-        return weeks;
-    }, {});
+        getTodo()
+    },[])
+
+    useEffect(()=>{
+        // This code will only run after the useEffect above adds the new value for the todo.
+        if(Array.isArray(todo)){
+            // order todo by week and day
+            const tasks = todo.reduce((weeks:any, task:any) => {
+                if (!weeks[task.week_number]) {
+                    weeks[task.week_number] = {};
+                }
+                if (!weeks[task.week_number][task.day_number]) {
+                    weeks[task.week_number][task.day_number] = [];
+                }
+                weeks[task.week_number][task.day_number].push(task);
+                return weeks;
+            }, {});
+            setGroupedTasks(tasks)
+        }
+    },[todo])
 
     return (
         <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue p-12">
@@ -42,8 +66,9 @@ export default function StudentTodo({ todoData, modules }: any){
                                             <p>Question: {task.question_title}</p>
                                             <p>Your answer: {task.answer_given}</p>
                                             <div className="flex justify-end gap-6 text-white">
-                                                <p className="px-5 py-1 bg-loginblue font-semibold rounded-lg hover:cursor-pointer">Chat with SoCBot</p>
-                                                <p className="px-5 py-1 bg-green-500 font-semibold rounded-lg hover:cursor-pointer">Mark as completed</p>
+                                                <p className="px-5 py-1 bg-green-500 font-semibold rounded-lg hover:cursor-pointer"
+                                                onClick={()=>deleteTodo(task)}
+                                                >Mark as completed</p>
                                             </div>
                                         </div>
                                     ))}
@@ -54,7 +79,7 @@ export default function StudentTodo({ todoData, modules }: any){
                 </div>
             ))
             ) : (
-                ''
+                'Well Done, no to-dos'
             )}
 
         </div>

@@ -58,7 +58,6 @@ export default async function Todo(failedQ:any,failedA:any,week:any,day:any){
                 day_number: day,
                 question_title: todo.question_title,
                 answer_given: todo.answer_given,
-                done: false,
             }])
             if(error){
                 console.log(error)
@@ -78,7 +77,6 @@ export default async function Todo(failedQ:any,failedA:any,week:any,day:any){
             day_number: day,
             question_title: failedQ[i],
             answer_given: failedA[i],
-            done: false
         }])
         if(error){
             console.log(error)

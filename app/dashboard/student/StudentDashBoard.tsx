@@ -3,18 +3,16 @@
 import { useEffect, useState } from "react"
 import StudentOverview from "./StudentOverview"
 import StudentScore from "./StudentScore"
-import Image from "next/image"
-import Link from "next/link"
 import StudentTodo from "./StudentTodo"
 
-export default function StudentDashBoard({ data, userData }: any){
+export default function StudentDashBoard({ data, userData, img }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
     const [backBtn, setBackBtn] = useState(false)
     const [recommended, setRecommended] = useState(false)
     const [userInfo, setUserInfo] = useState<any>({});
-    
+
     useEffect(()=>{
         setBackBtn(todo || overView)
         setRecommended(false)
@@ -28,7 +26,6 @@ export default function StudentDashBoard({ data, userData }: any){
         };
         getScore();
     }, [data]);
-    
     
     return(
         <div className="flex-1 flex flex-col pt-10 px-10 w-full dark:text-black">
@@ -60,9 +57,9 @@ export default function StudentDashBoard({ data, userData }: any){
             {!overView && !todo ? (
                 <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue">
                     <div className=" w-full h-fit gap-6 rounded-t-xl flex items-center p-4 dark:bg-gray-600">
-                        <Image
-                            className="bg-white rounded-full w-fit h-fit m-5 shadow-xl  dark:bg-gray-600"
-                            src="/usericon.png"
+                        <img
+                            className="bg-white rounded-full m-5 shadow-xl p-1  dark:bg-gray-600 w-32 h-32"
+                            src={img ? img : "/usericon.png"}
                             alt="User image"
                             width={100}
                             height={100}

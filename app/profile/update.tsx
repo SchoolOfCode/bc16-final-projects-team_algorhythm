@@ -14,7 +14,7 @@ export async function uploadImage(image:File){
       .from('avatars')
       .upload(user!.id + '/' + 'avatar.png', image,{
         cacheControl: '3600',
-        upsert: true
+        upsert: true,
       })
 
     if(error){

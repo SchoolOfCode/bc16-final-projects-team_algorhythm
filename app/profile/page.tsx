@@ -53,7 +53,7 @@ export default async function Profile({
     'use server'
     const image = formData.get("file") as File;
     const update = await uploadImage(image)
-    
+
     if(update){
       return redirect("?imgMessage=Image uploaded successfully!");
     }
@@ -72,7 +72,7 @@ export default async function Profile({
             height={100}
             src={searchParams?.img ? searchParams.img : '/usericon.png'} 
             />
-            <input type="file" id="file-upload" className="file-input bg-socskyblue file-input-bordered file-input-xs w-full max-w-xs mt-5" required/>
+            <input type="file" name="file" id="file-upload" className="file-input bg-socskyblue file-input-bordered file-input-xs w-full max-w-xs mt-5" required/>
           </label>
           <SubmitButton
               formAction={handleImage}

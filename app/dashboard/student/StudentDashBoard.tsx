@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import StudentOverview from "./StudentOverview"
 import StudentScore from "./StudentScore"
-import StudentTodo from "./StudentTodo"
+import StudentTodo from "./StudentToDo"
 
 export default function StudentDashBoard({ data, userData, img }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']

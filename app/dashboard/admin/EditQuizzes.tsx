@@ -148,7 +148,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
   }, []);
 
   return (
-    <div className="w-2/3">
+    <div className="flex items-center justify-center h-screen w-full">
+    <div className="w-2/3 ">
       {weeksData
         .slice()
         .reverse()
@@ -291,5 +292,6 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
           </div>
         ))}
     </div>
+</div>
   );
 }

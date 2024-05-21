@@ -32,6 +32,35 @@ export default async function Nav() {
     }
   };
 
+
+  
+  const getImage = async()=>{
+    let image;
+    // Check if there`s any image inside user storage
+    const { data, error } = await supabase.storage.from('avatars').list(user!.id + '/', {
+      limit: 1,
+      offset: 0,
+    });
+    if(data?.length){
+      // Fetch user image
+    const img = supabase
+      .storage
+      .from('avatars')
+      .getPublicUrl(user!.id + '/avatar.png')
+      image = img.data.publicUrl 
+    }
+
+    return (
+      <img 
+      className="w-16 h-16 b"
+      src={image ? image : '/usericon.png'}
+      alt='User Icon'
+      width={55}
+      height={55}
+      />
+    )
+  }
+
   return user ? (
     <div className="navbar bg-socskyblue px-10 animate-fade-down z-50 sticky top-0 shadow-md">
       <div className="flex-1 m-3">
@@ -43,11 +72,11 @@ export default async function Nav() {
         <Link className="px-3 dark:text-black" href="/">
           Home
         </Link>
-        <Link className="px-3 dark:text-black" href="/dashboard">
-          Dashboard
-        </Link>
         <Link className="px-3 dark:text-black" href="/modules">
           Modules
+        </Link>
+        <Link className="px-3 dark:text-black" href="/dashboard">
+          Dashboard
         </Link>
         <p className="pl-10 pr-10 dark:text-black">{userData()}!</p>
         <div className="dropdown dropdown-end">
@@ -56,13 +85,8 @@ export default async function Nav() {
             role="button"
             className="btn btn-ghost btn-circle avatar"
           >
-            <div className="w-10 rounded-full">
-              <Image
-                src="/usericon.png"
-                alt="User Icon"
-                width={50}
-                height={50}
-              />
+            <div className="w-14 rounded-full">
+            {getImage()}
             </div>
           </div>
           <form action={signOut}>

@@ -20,7 +20,6 @@ export default function QuizCreation() {
       .max(12, "Week must be 1 to 12")
       .required("Required."),
     day_number: yup.number().max(5, "Day must be 1 to 5").required("Required."),
-    day_number: yup.number().max(5, "Day must be 1 to 5").required("Required."),
     question: yup.string().max(120, "Too long!").required("Required."),
     correct_answer: yup.string().max(100, "Too long!").required("Required."),
     incorrect_answer1: yup.string().max(100, "Too long!").required("Required."),
@@ -42,15 +41,12 @@ export default function QuizCreation() {
     try {
       const { error } = await supabase.from("quizzes").insert({
         uuid: uuidv4(),
-      const { error } = await supabase.from("quizzes").insert({
-        uuid: uuidv4(),
         week_number: values.week_number,
         question: values.question,
         correct_answer: values.correct_answer,
         incorrect_answer1: values.incorrect_answer1,
         incorrect_answer2: values.incorrect_answer2,
         incorrect_answer3: values.incorrect_answer3,
-        day_number: values.day_number,
         day_number: values.day_number,
       });
       if (error) {
@@ -118,49 +114,6 @@ export default function QuizCreation() {
                   </div>
                 )}
               </Field>
-              <Field className="" name="week_number">
-                {({ field, meta }: any) => (
-                  <div className="form-control">
-                    <label className="font-bold">Week</label>
-                    <input
-                      className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
-                      {...field}
-                      placeholder="1"
-                      id="week_number"
-                      type="number"
-                      min="1"
-                      max="12"
-                    />
-                    {meta.error && meta.touched && (
-                      <p className="p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
-                        {meta.error}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </Field>
-              <Field className="" name="day_number">
-                {({ field, meta }: any) => (
-                  <div className="form-control">
-                    <label className="font-bold">Day</label>
-                    <input
-                      className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
-                      {...field}
-                      placeholder="1"
-                      id="day_number"
-                      type="number"
-                      min="1"
-                      max="5"
-                    />
-
-                    {meta.error && meta.touched && (
-                      <p className="p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
-                        {meta.error}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </Field>
             </div>
             <Field name="question">
               {({ field, meta }: any) => (
@@ -171,7 +124,6 @@ export default function QuizCreation() {
                     {...field}
                     placeholder="Enter question"
                     id="question"
-                    rows="1"
                     rows="1"
                   />
                   {meta.error && meta.touched && (
@@ -192,7 +144,6 @@ export default function QuizCreation() {
                     placeholder="Enter the correct answer"
                     id="correct_answer"
                     rows="1"
-                    rows="1"
                   />
                   {meta.error && meta.touched && (
                     <p className="mt-2 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
@@ -211,7 +162,6 @@ export default function QuizCreation() {
                     {...field}
                     placeholder="Enter incorrect answer 1"
                     id="incorrect_answer1"
-                    rows="1"
                     rows="1"
                   />
                   {meta.error && meta.touched && (
@@ -232,7 +182,6 @@ export default function QuizCreation() {
                     placeholder="Enter incorrect answer 2"
                     id="incorrect_answer2"
                     rows="1"
-                    rows="1"
                   />
                   {meta.error && meta.touched && (
                     <p className="mt-2 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
@@ -251,7 +200,6 @@ export default function QuizCreation() {
                     {...field}
                     placeholder="Enter incorrect answer 3"
                     id="incorrect_answer3"
-                    rows="1"
                     rows="1"
                   />
                   {meta.error && meta.touched && (

@@ -123,7 +123,7 @@ interface Question {
     };
   
     return (
-      <div className="w-2/3">
+      <div className="w-1/3">
         {weeksData.slice().reverse().map((week, index) => (
           <div key={week.week_number} className="collapse collapse-arrow bg-socskyblue ">
             <input type="checkbox" /> 

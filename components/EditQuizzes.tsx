@@ -30,6 +30,21 @@ interface Question {
     const [selectedDay, setSelectedDay] = useState<Day | null>(null);
     const [selectedWeek, setSelectedWeek] = useState<Week | null>(null);
     const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
+
+    const weekTitles = {
+      1: "Onboarding",
+      2: "Front-End engineer", 
+      3: "Software engineering",
+      4: "Back-End engineer",
+      5: "Database engineer",
+      6: "QA engineer",
+      7: "Web engineer",
+      8: "React",
+      9: "Product",
+      10: "DevOps",
+      12: "Cyber Security",
+      13: "AI and Data",
+    };
   
     const handleEditQuestion = (uuid: string, week_number: number, day_number: number, questionIndex: number, question: Question) => {
         setEditingQuestion({ uuid, week_number, day_number, questionIndex, question });
@@ -113,7 +128,7 @@ interface Question {
           <div key={week.week_number} className="collapse collapse-arrow bg-socskyblue ">
             <input type="checkbox" /> 
             <div className="collapse-title text-xl font-medium">
-              Week {week.week_number}
+            Week {week.week_number} - {weekTitles[week.week_number]}
             </div>
             <div className="collapse-content"> 
               {week.days.slice().reverse().map((day, index) => (

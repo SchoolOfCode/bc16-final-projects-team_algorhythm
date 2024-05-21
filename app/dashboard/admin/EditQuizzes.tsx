@@ -81,7 +81,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                           ),
                         }
                       : day
-                  ),
+                  ) 
+                  .sort((a, b) => a.day_number - b.day_number),
                 }
               : week
           )

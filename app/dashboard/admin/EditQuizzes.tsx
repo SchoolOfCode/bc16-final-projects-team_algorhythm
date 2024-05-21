@@ -97,22 +97,20 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
       const { data: quizzesData, error: quizzesError } = await supabase
         .from("quizzes")
         .select("*");
-      const { data: weeksData, error: weeksError } = await supabase
-        .from("weeks")
-        .select("*");
 
-      if (quizzesError || weeksError) {
+
+      if (quizzesError) {
         console.error("Error fetching data:", quizzesError || weeksError);
         return;
       }
 
-      if (quizzesData && weeksData) {
-        console.log(weeksData);
+      if (quizzesData && weeksNames.data) {
+        console.log(weeksNames.data);
         const groupedByWeek = quizzesData.reduce<Week[]>((acc, curr) => {
           const weekIndex = acc.findIndex(
             (w) => w.week_number === curr.week_number
           );
-          const weekTitle = weeksData.find(
+          const weekTitle = weeksNames.data.find(
             (w) => w.week_number === curr.week_number
           )?.title;
 

@@ -78,15 +78,20 @@ export default function EditQuizzes(): JSX.Element {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await supabase.from('quizzes').select('*');
-      if (error) {
-        console.error('Error fetching data:', error);
+      const { data: quizzesData, error: quizzesError } = await supabase.from('quizzes').select('*');
+      const { data: weeksData, error: weeksError } = await supabase.from('weeks').select('*');
+  
+      if (quizzesError || weeksError) {
+        console.error('Error fetching data:', quizzesError || weeksError);
         return;
       }
-
-      if (data) {
-        const groupedByWeek = data.reduce<Week[]>((acc, curr) => {
+  
+      if (quizzesData && weeksData) {
+        console.log(weeksData);
+        const groupedByWeek = quizzesData.reduce<Week[]>((acc, curr) => {
           const weekIndex = acc.findIndex((w) => w.week_number === curr.week_number);
+          const weekTitle = weeksData.find((w) => w.week_number === curr.week_number)?.title;
+  
           if (weekIndex !== -1) {
             const dayIndex = acc[weekIndex].days.findIndex((d) => d.day_number === curr.day_number);
             if (dayIndex !== -1) {
@@ -95,27 +100,29 @@ export default function EditQuizzes(): JSX.Element {
               acc[weekIndex].days.push({ day_number: curr.day_number, questions: [curr] });
             }
           } else {
-            acc.push({ week_number: curr.week_number, days: [{ day_number: curr.day_number, questions: [curr] }] });
+            acc.push({ week_number: curr.week_number, title: weekTitle, days: [{ day_number: curr.day_number, questions: [curr] }] });
           }
           return acc;
         }, []);
-
+  
         const sortedWeeksData = groupedByWeek.sort((a, b) => b.week_number - a.week_number);
+        console.log(sortedWeeksData);
         setWeeksData(sortedWeeksData);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   return (
     <div className="w-2/3">
       {weeksData.slice().reverse().map((week) => (
-        <div key={week.week_number} className="collapse collapse-arrow bg-socskyblue">
-          <input type="checkbox" />
-          <div className="collapse-title text-xl font-medium">
-            Week {week.week_number}
-          </div>
+  <div key={week.week_number} className="collapse collapse-arrow bg-socskyblue">
+    <input type="checkbox" />
+    <div className="collapse-title text-xl font-medium">
+      Week {week.week_number}: {week.title}
+    </div>
           <div className="collapse-content">
             {week.days.map((day) => (
               <div key={day.day_number} className="collapse bg-base-200">

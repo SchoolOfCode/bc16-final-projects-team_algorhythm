@@ -158,7 +158,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
             className="collapse collapse-arrow bg-socskyblue"
           >
             <input type="checkbox" />
-            <div className="collapse-title text-xl font-medium">
+            <div className="collapse-title text-xl font-medium ">
               Week {week.week_number}: {week.title}
             </div>
             <div className="collapse-content">
@@ -246,7 +246,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                                 }))
                               }
                             />
-                            <button
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-sky-300 text-black rounded-2xl px-2 py-2 mt-4 text-foreground text-center dark:text-black"
                               onClick={() =>
                                 handleSaveQuestion(editingQuestion)
                               }
@@ -267,7 +267,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               <li>{question.incorrect_answer2}</li>
                               <li>{question.incorrect_answer3}</li>
                             </ul>
-                            <button className="submit-button w-[20%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-4 mt-4 text-foreground text-center text-black dark:text-black"
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-sky-300 text-black rounded-2xl px-2 py-2 mt-4 text-foreground text-center dark:text-black"
                               onClick={() =>
                                 handleEditQuestion(
                                   question.uuid,

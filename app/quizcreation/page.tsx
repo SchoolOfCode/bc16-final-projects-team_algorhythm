@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import * as yup from "yup";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import EditQuizzes from "@/components/EditQuizzes";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -117,7 +118,7 @@ export default function QuizCreation() {
             <Field name="question">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Question</label>
+                  <label className="font-semibold  text-white">Question</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -136,7 +137,7 @@ export default function QuizCreation() {
             <Field name="correct_answer">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Correct Answer</label>
+                  <label className="font-semibold  text-white">Correct Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -155,7 +156,7 @@ export default function QuizCreation() {
             <Field name="incorrect_answer1">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Incorrect Answer</label>
+                  <label className="font-semibold  text-white">Incorrect Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -174,7 +175,7 @@ export default function QuizCreation() {
             <Field name="incorrect_answer2">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Incorrect Answer</label>
+                  <label className="font-semibold text-white">Incorrect Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -193,7 +194,7 @@ export default function QuizCreation() {
             <Field name="incorrect_answer3">
               {({ field, meta }: any) => (
                 <div className="form-control">
-                  <label className="font-bold">Incorrect Answer</label>
+                  <label className="font-semibold  text-white">Incorrect Answer</label>
                   <textarea
                     className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                     {...field}
@@ -222,6 +223,7 @@ export default function QuizCreation() {
           </Form>
         )}
       </Formik>
+      <EditQuizzes/>
     </div>
   );
 }

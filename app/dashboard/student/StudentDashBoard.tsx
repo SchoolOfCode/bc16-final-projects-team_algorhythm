@@ -7,11 +7,13 @@ import StudentTodo from "./StudentToDo"
 
 export default function StudentDashBoard({ data, userData, img }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
+    const rank = ['Noob','Novice','Starter','Apprentice','Journeyman','Adept','Expert','Master','Grand Master','Doyen','Guru','Yoad','Legend']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
     const [backBtn, setBackBtn] = useState(false)
     const [recommended, setRecommended] = useState(false)
     const [userInfo, setUserInfo] = useState<any>({});
+    const [achievements, setAchievementes] = useState(0)
 
     useEffect(()=>{
         setBackBtn(todo || overView)
@@ -23,10 +25,79 @@ export default function StudentDashBoard({ data, userData, img }: any){
         const getScore = async () => {
           const result = await StudentScore(data,userData);
           setUserInfo(result);
+
+          
         };
         getScore();
     }, [data]);
+
+    useEffect(()=>{
+        const modulesDone = userInfo.modules
+        const total = userInfo.totalCorrect
+        const leaderboard = userInfo.leaderboard
+        // Adding Achievements over modules completed
+        if(modulesDone){   
+            switch(modulesDone){
+                case 12:
+                    setAchievementes((prev:number)=> prev + 3)
+                    break; 
+                case 6:
+                    setAchievementes((prev:number)=> prev + 2)
+                    break;
+                case 1:
+                    setAchievementes((prev:number)=> prev + 1)
+                    break;
+                default:
+                    console.log("Invalid modules done!");
+                    break;
+            }
+        }
+        // Adding Achivements over correct answers
+        if(total){
+            switch(total){
+                case 600:
+                    setAchievementes((prev:number)=> prev + 5)
+                    break;
+                case 350:
+                    setAchievementes((prev:number)=> prev + 4)
+                    break;
+                case 250:
+                    setAchievementes((prev:number)=> prev + 3)
+                    break;
+                case 150:
+                    setAchievementes((prev:number)=> prev + 2)
+                    break;
+                case 20:
+                    setAchievementes((prev:number)=> prev + 1)
+                    break;
+                default:
+                    console.log("Invalid correct answers!");
+                    break;
+        }
+            
+        }
+        // Adding Achivements over leaderboard rank 
+        if(leaderboard){
+            switch(leaderboard){
+                case 1:
+                    setAchievementes((prev:number)=> prev + 1)
+                    break;
+                case 2:
+                    setAchievementes((prev:number)=> prev + 1)
+                    break;
+                case 3:
+                    setAchievementes((prev:number)=> prev + 1)
+                    break;
+                default:
+                        console.log("Invalid leaderboard!");
+                    break;
+            }
+        }
     
+    },[userInfo])
+
+    
+
     return(
         <div className="flex-1 flex flex-col pt-10 px-10 w-full dark:text-black">
             <div className=" flex flex-row justify-between mb-5 ">
@@ -76,11 +147,11 @@ export default function StudentDashBoard({ data, userData, img }: any){
                             </thead>
                             <tbody>
                             <tr className="flex w-full justify-between rounded-b-xl ">
-                                <td className="flex-1">Noob</td>
+                                <td className="flex-1">{userInfo.modules > -1 ? rank[userInfo.modules] : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.leaderboard ? userInfo.leaderboard : userInfo.leaderboard === undefined ? '0' : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.modules > -1 ? userInfo.modules : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.totalCorrect > -1 ? userInfo.totalCorrect : "Loading..."}</td>
-                                <td className="flex-1">0</td>
+                                <td className="flex-1">{achievements}</td>
                             </tr>
                             </tbody>
                         </table>

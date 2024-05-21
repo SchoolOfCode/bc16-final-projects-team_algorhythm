@@ -170,7 +170,7 @@ export default function TableOverview({ data }: any) {
             ))}
           </tr>
         </thead>
-        <tbody className="bg-gray-200">
+        <tbody className="bg-gray-200 dark:bg-gray-500">
           {usersData.map((row: any, index: number) => (
             <tr key={index}>
               <td className="border px-4 py-2">{index + 1}</td>

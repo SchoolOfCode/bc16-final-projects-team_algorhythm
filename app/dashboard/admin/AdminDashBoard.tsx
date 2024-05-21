@@ -4,6 +4,8 @@ import React, { useEffect, useState, useRef, use } from "react";
 import QuizCreation from "./QuizCreation";
 import EditQuizzes from "./EditQuizzes";
 import TableOverview from "./TableOverview";
+import EachQuestion from "./EachQuestion";
+import StudentsTodo from "./StudentsTodo";
 
 export default function AdminDashBoard({ data, userData, img }: any) {
   const [allData, setAllData] = useState(data);
@@ -23,10 +25,11 @@ export default function AdminDashBoard({ data, userData, img }: any) {
   const [editQuiz, setEditQuiz] = useState(false);
   const [quizCreation, setQuizCreation] = useState(false);
   const [tableOverview, setTableOverview] = useState(false);
+  const [studentsTodo, setStudentsTodo] = useState(false);
 
   useEffect(() => {
-    setBackBtn(editQuiz || quizCreation || tableOverview);
-  }, [editQuiz, quizCreation, tableOverview]);
+    setBackBtn(editQuiz || quizCreation || tableOverview || studentsTodo);
+  }, [editQuiz, quizCreation, tableOverview, studentsTodo]);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -59,7 +62,8 @@ export default function AdminDashBoard({ data, userData, img }: any) {
       }
 
       if (dayData.length) {
-        setProgressBar1(
+        incrementProgress(
+          setProgressBar1,
           (dayData[dayData.length - 1].correct_answers /
             dayData[dayData.length - 1].total_questions) *
             100
@@ -75,7 +79,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
 
       let weeklyAverage = totalCorrectAnswers / totalQuestions;
 
-      setProgressBar2(weeklyAverage * 100);
+      incrementProgress(setProgressBar2, weeklyAverage * 100);
 
       let totalDailyCorrectAnswers = 0;
       let totalDailyQuestions = 0;
@@ -90,7 +94,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
 
       dailyAverage = Math.round(dailyAverage * 100);
 
-      setProgressBar3(dailyAverage);
+      incrementProgress(setProgressBar3, dailyAverage);
 
       let totalWeeklyCorrectAnswers = 0;
       let totalWeeklyQuestions = 0;
@@ -105,7 +109,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
 
       weeklyAverageAll = Math.round(weeklyAverageAll * 100);
 
-      setProgressBar4(weeklyAverageAll);
+      incrementProgress(setProgressBar4, weeklyAverageAll);
     }
   }, [module, day, user]);
 
@@ -134,6 +138,21 @@ export default function AdminDashBoard({ data, userData, img }: any) {
     return null;
   });
 
+  const incrementProgress = (bar: any, value: any) => {
+    let start = 0;
+    const step = value / 100; // This will complete in 100 steps
+    const interval = setInterval(() => {
+      start += step;
+      const roundedValue = Math.ceil(start * 100) / 100; // Round to two decimal places
+      if (roundedValue >= value) {
+        clearInterval(interval);
+        bar(Math.ceil(value));
+      } else {
+        bar(roundedValue);
+      }
+    }, 10); // Run every 10ms
+  };
+
   return (
     <div className="flex flex-col  pt-10 px-10 w-full ">
       <div className=" flex flex-row justify-between mb-5 ">
@@ -158,6 +177,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
                 setQuizCreation(false);
                 setEditQuiz(false);
                 setTableOverview(false);
+                setStudentsTodo(false);
               }}
             >
               <svg
@@ -179,9 +199,21 @@ export default function AdminDashBoard({ data, userData, img }: any) {
           <p
             className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
             onClick={() => {
+              setStudentsTodo(!studentsTodo);
+              setTableOverview(false);
+              setQuizCreation(false);
+              setEditQuiz(false);
+            }}
+          >
+            Student&apos;s Todo
+          </p>
+          <p
+            className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
+            onClick={() => {
               setTableOverview(!tableOverview);
               setQuizCreation(false);
               setEditQuiz(false);
+              setStudentsTodo(false);
             }}
           >
             Table Overview
@@ -192,6 +224,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               setQuizCreation(!quizCreation);
               setEditQuiz(false);
               setTableOverview(false);
+              setStudentsTodo(false);
             }}
           >
             Create Quiz
@@ -202,19 +235,21 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               setEditQuiz(!editQuiz);
               setQuizCreation(false);
               setTableOverview(false);
+              setStudentsTodo(false);
             }}
           >
             Modify quizzes
           </p>
         </div>
       </div>
-      {!editQuiz && !quizCreation && !tableOverview ? (
+      {!editQuiz && !quizCreation && !tableOverview && !studentsTodo ? (
         <>
           <form>
+            <h1 className="card-title mb-3 text-2xl">Bootcamper tracker</h1>
             <div className="flex flex-row justify-start align-middle">
               <select
                 name="module"
-                className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4"
+                className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 text-base"
                 required
               >
                 <option value="">Select module</option>
@@ -233,7 +268,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               </select>
               <select
                 name="day"
-                className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 "
+                className="select select-bordered w-1/6 max-w-xs bg-loginblue text-white mr-4 text-base"
                 required
               >
                 <option value="">Select day</option>
@@ -245,7 +280,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               </select>
               <select
                 name="user"
-                className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 "
+                className="select select-bordered w-1/4 max-w-xs bg-loginblue text-white mr-4 text-base"
                 required
               >
                 <option value="">Select name</option>
@@ -253,7 +288,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               </select>
 
               <SubmitButton
-                className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-1 text-foreground text-sm hover:text-white font-semibold mr-5"
+                className="hover:bg-loginblue dark:text-black bg-lightblue text-black rounded-lg px-6 py-1 text-foreground text-base hover:text-white font-semibold mr-5"
                 formAction={handleSubmit}
                 pendingText="Submitting..."
               >
@@ -294,11 +329,11 @@ export default function AdminDashBoard({ data, userData, img }: any) {
             <div className="grid grid-cols-subgrid col-span-7 justify-items-center ">
               <div className="col-start-2">
                 <div
-                  className="absolute z-20 mt-5 radial-progress text-loginblue "
+                  className="absolute z-20 mt-5 radial-progress text-loginblue"
                   style={
                     {
                       "--value": progressBar1,
-                      "--size": "8rem",
+                      "--size": progressBar1 && "8rem",
                     } as React.CSSProperties
                   }
                   role="progressbar"
@@ -306,7 +341,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
                   {progressBar1 ? `${progressBar1}%` : ""}{" "}
                 </div>
                 <div
-                  className="z-1 mt-5 radial-progress text-socskyblue"
+                  className="z-1 mt-5 radial-progress text-socskyblue shadow-lg"
                   style={
                     { "--value": 100, "--size": "8rem" } as React.CSSProperties
                   }
@@ -315,11 +350,11 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               </div>
               <div className="col-start-3">
                 <div
-                  className="absolute z-20 mt-5 radial-progress text-black    "
+                  className="absolute z-20 mt-5 radial-progress text-black"
                   style={
                     {
                       "--value": progressBar2,
-                      "--size": "8rem",
+                      "--size": progressBar2 && "8rem",
                     } as React.CSSProperties
                   }
                   role="progressbar"
@@ -327,7 +362,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
                   {progressBar2 ? `${progressBar2}%` : ""}{" "}
                 </div>
                 <div
-                  className="z-1 mt-5 radial-progress text-lightgrey"
+                  className="z-1 mt-5 radial-progress text-lightgrey shadow-lg"
                   style={
                     { "--value": 100, "--size": "8rem" } as React.CSSProperties
                   }
@@ -338,11 +373,11 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               {/* COHORT DAILY AVERAGE */}
               <div className="col-start-5">
                 <div
-                  className="absolute z-20 mt-5 radial-progress text-loginblue  "
+                  className="absolute z-20 mt-5 radial-progress text-loginblue"
                   style={
                     {
                       "--value": progressBar3,
-                      "--size": "8rem",
+                      "--size": progressBar3 && "8rem",
                     } as React.CSSProperties
                   }
                   role="progressbar"
@@ -350,7 +385,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
                   {progressBar3 ? `${progressBar3}%` : ""}{" "}
                 </div>
                 <div
-                  className="z-1 mt-5 radial-progress text-socskyblue"
+                  className="z-1 mt-5 radial-progress text-socskyblue shadow-lg"
                   style={
                     { "--value": 100, "--size": "8rem" } as React.CSSProperties
                   }
@@ -360,11 +395,11 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               {/* COHORT WEEKLY AVERAGE */}
               <div className="col-start-6">
                 <div
-                  className="absolute z-20 mt-5 radial-progress text-black  "
+                  className="absolute z-20 mt-5 radial-progress text-black"
                   style={
                     {
                       "--value": progressBar4,
-                      "--size": "8rem",
+                      "--size": progressBar4 && "8rem",
                     } as React.CSSProperties
                   }
                   role="progressbar"
@@ -372,7 +407,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
                   {progressBar4 ? `${progressBar4}%` : ""}{" "}
                 </div>
                 <div
-                  className="z-1 mt-5 radial-progress text-lightgrey"
+                  className="z-1 mt-5 radial-progress text-lightgrey shadow-lg"
                   style={
                     { "--value": 100, "--size": "8rem" } as React.CSSProperties
                   }
@@ -381,19 +416,30 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               </div>
             </div>
             <div className="grid grid-cols-subgrid col-span-7 justify-items-center text-lg mt-5 mb-10">
-              <p className="col-start-2 ">Daily score</p>
-              <p className="col-start-3">Weekly average</p>
-              <p className="col-start-5">Daily average</p>
-              <p className="col-start-6">Weekly average</p>
+              <p className="col-start-2 ">Day score</p>
+              <p className="col-start-3">Week score</p>
+              <p className="col-start-5">Day average</p>
+              <p className="col-start-6">Week average</p>
+            </div>
+            <div className="grid grid-cols-subgrid col-span-7 justify-items-center text-xs text-center mb-10 text-slate-400">
+              <p className="col-start-2 col-span-2 px-12">
+                Displays user score for the selected week & day only.
+              </p>
+              <p className="col-start-5 col-span-2 px-12">
+                Displays the average score across the entire cohort.
+              </p>
             </div>
           </div>
+          <EachQuestion data={data} />
         </>
-      ) : !quizCreation && !tableOverview ? (
+      ) : !quizCreation && !tableOverview && !studentsTodo ? (
         <EditQuizzes />
-      ) : !tableOverview ? (
+      ) : !tableOverview && !studentsTodo ? (
         <QuizCreation />
-      ) : (
+      ) : !studentsTodo ? (
         <TableOverview data={data} />
+      ) : (
+        <StudentsTodo />
       )}
     </div>
   );

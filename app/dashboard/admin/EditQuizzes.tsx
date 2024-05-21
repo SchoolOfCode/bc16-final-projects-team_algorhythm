@@ -256,8 +256,10 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                           </div>
                         ) : (
                           <div>
-                            <h3>Question {questionIndex + 1}</h3>
+                    <div className="py-3">
+                            <h3 className="font-semibold">Question {questionIndex + 1}</h3>
                             <p>{question.question}</p>
+                            </div>
                             <p>Correct Answer: {question.correct_answer}</p>
                             <p>Incorrect Answers:</p>
                             <ul>
@@ -265,7 +267,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               <li>{question.incorrect_answer2}</li>
                               <li>{question.incorrect_answer3}</li>
                             </ul>
-                            <button
+                            <button className="submit-button w-[20%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-4 mt-4 text-foreground text-center text-black dark:text-black"
                               onClick={() =>
                                 handleEditQuestion(
                                   question.uuid,

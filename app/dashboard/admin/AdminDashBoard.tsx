@@ -1,6 +1,8 @@
 "use client";
-import { SubmitButton } from "./Submit";
+import { SubmitButton } from "@/components/Submit";
 import React, { useEffect, useState, useRef, use } from "react";
+import QuizCreation from "./QuizCreation";
+import EditQuizzes from "./EditQuizzes";
 
 export default function AdminDashBoard({ data }: any) {
   const [allData, setAllData] = useState(data);
@@ -15,6 +17,15 @@ export default function AdminDashBoard({ data }: any) {
   const [progressBar4, setProgressBar4] = useState(0);
   const [message, setMessage] = useState("");
   const [messageVisibility, setMessageVisibility] = useState(false);
+
+  const [backBtn, setBackBtn] = useState(false)
+  const [editQuiz, setEditQuiz] = useState(false)
+  const [quizCreation, setQuizCreation] = useState(false)
+  useEffect(()=>{
+
+    setBackBtn(editQuiz || quizCreation)
+
+  },[editQuiz,quizCreation])
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -123,7 +134,34 @@ export default function AdminDashBoard({ data }: any) {
   });
 
   return (
-    <>
+    <div className="flex flex-col  pt-10 px-10 w-full">
+      <div className=" flex flex-row justify-between mb-5 ">
+        <h1 className="font-black text-4xl pb-3 text-left ">
+          Welcome to your dashboard
+        </h1>
+        <div className="flex gap-5">
+          {backBtn ? 
+            <p 
+            className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
+            onClick={()=>{setBackBtn(false); setQuizCreation(false); setEditQuiz(false)}}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                </svg>
+            </p> : null }
+            <p 
+            className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
+            onClick={()=>{setQuizCreation(!quizCreation); setEditQuiz(false)}}>
+                Create Quiz
+            </p>
+            <p 
+            className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
+            onClick={()=>{setEditQuiz(!editQuiz); setQuizCreation(false)}}>
+                Modify quizzes
+            </p>
+        </div>
+      </div>
+    {!editQuiz && !quizCreation ? (
+      <>
       <form>
         <div className="flex flex-row justify-start align-middle">
           <select
@@ -283,6 +321,12 @@ export default function AdminDashBoard({ data }: any) {
           <p className="col-start-6">Weekly average</p>
         </div>
       </div>
-    </>
-  );
+      </>
+      ) : !quizCreation ? ( 
+        <EditQuizzes/>
+      ) : (
+        <QuizCreation/>
+      )}
+    </div>  
+    )
 }

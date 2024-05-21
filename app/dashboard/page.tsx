@@ -1,8 +1,9 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import AdminDashBoard from "@/components/AdminDashBoard";
 import { redirect } from "next/navigation";
+
 import StudentDashBoard from "./student/StudentDashBoard";
+import AdminDashBoard from "./admin/AdminDashBoard";
 /* imports as required */
 
 
@@ -56,20 +57,7 @@ export default async function DashBoard() {
 
   return (
     admin ? (
-    <div className="flex flex-col  pt-10 px-10 w-full">
-      <div className=" flex flex-row justify-between mb-5 ">
-        <h1 className="font-black text-4xl pb-3 text-left ">
-          Welcome to your dashboard
-        </h1>
-        <Link
-          href="/quizcreation"
-          className="hover:bg-loginblue bg-lightblue text-black rounded-lg px-6 py-3 text-foreground hover:text-white font-semibold text-sm text-left h-9 flex items-center mt-1"
-        >
-          Modify quizzes
-        </Link>
-      </div>
         <AdminDashBoard data={data}/> 
-    </div>
     ) : (
         <StudentDashBoard data={data} userData={userData} img={img}/>
     )

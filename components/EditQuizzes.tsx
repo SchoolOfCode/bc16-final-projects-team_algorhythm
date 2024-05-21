@@ -77,28 +77,30 @@ interface Question {
           console.log('Fetched Data:', data);
           const groupedByWeek = data.reduce((acc, curr) => {
             const weekIndex = acc.findIndex(w => w.week_number === curr.week_number);
-            if (weekIndex!== -1) {
+            if (weekIndex !== -1) {
               const dayIndex = acc[weekIndex].days.findIndex(d => d.day_number === curr.day_number);
-              if (dayIndex!== -1) {
+              if (dayIndex !== -1) {
                 acc[weekIndex].days[dayIndex].questions.push(curr);
               } else {
                 acc[weekIndex].days.push({ day_number: curr.day_number, questions: [curr] });
+                acc[weekIndex].days.sort((a, b) => b.day_number - a.day_number); // Add this line
               }
             } else {
               acc.push({ week_number: curr.week_number, days: [{ day_number: curr.day_number, questions: [curr] }] });
             }
             return acc;
           }, []);
-  
+    
           const sortedWeeksData = groupedByWeek.sort((a, b) => b.week_number - a.week_number);
-  
+    
           console.log('Processed Data:', sortedWeeksData);
           setWeeksData(sortedWeeksData);
         }
       }
-  
+    
       fetchData();
     }, []);
+    
   
     const handleSelectDayInWeek = (week: Week, day_number: number) => {
       const selectedDayObj = week.days.find(day => day.day_number === day_number);

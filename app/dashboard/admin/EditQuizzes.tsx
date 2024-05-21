@@ -148,7 +148,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen w-full">
+    <div className="flex items-center justify-center my-10 w-full">
     <div className="w-2/3 ">
       {weeksData
         .slice()

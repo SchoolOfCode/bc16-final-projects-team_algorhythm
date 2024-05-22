@@ -160,7 +160,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                 day_number: curr.day_number,
                 questions: [curr],
               });
-            }
+            } 
           } else {
             acc.push({
               week_number: curr.week_number,

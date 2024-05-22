@@ -73,7 +73,7 @@ export default function QuizCreation() {
               <Field className="" name="week_number">
                 {({ field, meta }: any) => (
                   <div className="form-control">
-                    <label className="font-bold">Week</label>
+                    <label className="font-bold text-white text-center">Week</label>
                     <input
                       className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                       {...field}
@@ -94,7 +94,7 @@ export default function QuizCreation() {
               <Field className="" name="day_number">
                 {({ field, meta }: any) => (
                   <div className="form-control">
-                    <label className="font-bold">Day</label>
+                    <label className="font-bold text-white text-center">Day</label>
                     <input
                       className="bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
                       {...field}

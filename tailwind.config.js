@@ -34,6 +34,8 @@ module.exports = {
         orangetheme: "#FD7566",
         lightblue: "#CDF6FF",
         lightgrey: "#d1d5db",
+        green: "#007E00",
+        red: "#D60505",
       },
     },
   },

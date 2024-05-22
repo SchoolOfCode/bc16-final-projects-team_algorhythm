@@ -211,7 +211,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                         editingQuestion?.questionIndex === questionIndex ? (
                           <div className="flex flex-col space-y-4">
   
-                          <label className="font-medium">Question:
+                          <label className="font-medium ">Question:
                             <textarea className="ml-2 w-3/4 " rows="1"
                               value={editingQuestion.question.question}
                               onChange={(e) =>
@@ -226,8 +226,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               
                             />
                           </label>
-                          <label className="font-medium">Correct Answer:
-                          <textarea className="ml-2 w-3/4" rows="1"
+                          <label className="font-medium text-green">Correct Answer:
+                          <textarea className="ml-2 w-3/4 text-black" rows="1"
                               value={editingQuestion.question.correct_answer}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -240,8 +240,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               }
                             />
                           </label>
-                          <label className="font-medium">Incorrect Answer 1:
-                          <textarea className="ml-2 w-3/4" rows="1"
+                          <label className="font-medium text-red">Incorrect Answer 1:
+                          <textarea className="ml-2 w-3/4 text-black" rows="1"
                               value={editingQuestion.question.incorrect_answer1 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -254,8 +254,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               }
                             />
                           </label>
-                          <label className="font-medium">Incorrect Answer 2:
-                          <textarea className="ml-2 w-3/4" rows="1"
+                          <label className="font-medium text-red">Incorrect Answer 2:
+                          <textarea className="ml-2 w-3/4 text-black" rows="1"
                               value={editingQuestion.question.incorrect_answer2 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -268,8 +268,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               }
                             />
                           </label>
-                          <label className="font-medium">Incorrect Answer 3:
-                          <textarea className="ml-2 w-3/4" rows="1"
+                          <label className="font-medium text-red">Incorrect Answer 3:
+                          <textarea className="ml-2 w-3/4 text-black" rows="1"
                               value={editingQuestion.question.incorrect_answer3 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -298,12 +298,12 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             <h3 className="font-semibold">Question {questionIndex + 1}</h3>
                             <p>{question.question}</p>
                             </div>
-                            <p>Correct Answer: {question.correct_answer}</p>
-                            <p>Incorrect Answers:</p>
+                            <p className="font-medium"> <span className="text-green">Correct Answer:</span><span className="font-normal"> {question.correct_answer} </span></p>
+                            <p className="font-medium text-red">Incorrect Answers:</p>
                             <ul>
-                              <li>{question.incorrect_answer1}</li>
-                              <li>{question.incorrect_answer2}</li>
-                              <li>{question.incorrect_answer3}</li>
+                              <li className="font-normal">{question.incorrect_answer1}</li>
+                              <li className="font-normal">{question.incorrect_answer2}</li>
+                              <li className="font-normal">{question.incorrect_answer3}</li>
                             </ul>
                             <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black"
                               onClick={() =>

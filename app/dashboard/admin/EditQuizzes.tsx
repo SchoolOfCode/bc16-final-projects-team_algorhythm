@@ -22,6 +22,7 @@ interface Day {
 
 interface Week {
   week_number: number;
+  title: string;
   days: Day[];
 }
 
@@ -134,7 +135,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
 
 
       if (quizzesError) {
-        console.error("Error fetching data:", quizzesError || weeksError);
+        console.error("Error fetching data:", quizzesError);
         return;
       }
 
@@ -145,7 +146,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
             (w) => w.week_number === curr.week_number
           );
           const weekTitle = weeksNames.data.find(
-            (w) => w.week_number === curr.week_number
+            (w:any) => w.week_number === curr.week_number
           )?.title;
 
           if (weekIndex !== -1) {
@@ -187,7 +188,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
       {weeksData
         .slice()
         .reverse()
-        .map((week) => (
+        .map((week:any) => (
           <div
             key={week.week_number}
             className="collapse collapse-arrow bg-socskyblue dark:bg-loginblue"
@@ -197,14 +198,14 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
               Week {week.week_number}: {week.title}
             </div>
             <div className="collapse-content">
-              {week.days.map((day) => (
+              {week.days.map((day:any) => (
                 <div key={day.day_number} className="collapse bg-base-200">
                   <input type="checkbox" />
                   <div className="collapse-title text-xl font-medium">
                     Day {day.day_number}
                   </div>
                   <div className="collapse-content">
-                    {day.questions.map((question, questionIndex) => (
+                    {day.questions.map((question:any, questionIndex:any) => (
                       <div key={questionIndex}>
                         {editingQuestion?.week_number === week.week_number &&
                         editingQuestion?.day_number === day.day_number &&
@@ -212,8 +213,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                           <div className="flex flex-col space-y-4">
   
                           <label className="font-medium ">Question:
-                            <textarea className="ml-2 w-3/4 dark:bg-white dark:text-black " rows="1"
-                              value={editingQuestion.question.question}
+                            <textarea className="ml-2 w-3/4 dark:bg-white dark:text-black " rows={1}
+                              value={editingQuestion!.question.question}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
                                   ...prevState!,
@@ -227,8 +228,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             />
                           </label>
                           <label className="font-medium text-green dark:text-darkmodegreen">Correct Answer:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
-                              value={editingQuestion.question.correct_answer}
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                              value={editingQuestion!.question.correct_answer}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
                                   ...prevState!,
@@ -241,8 +242,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             />
                           </label>
                           <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 1:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
-                              value={editingQuestion.question.incorrect_answer1 || ""}
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                              value={editingQuestion!.question.incorrect_answer1 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
                                   ...prevState!,
@@ -255,8 +256,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             />
                           </label>
                           <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 2:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
-                              value={editingQuestion.question.incorrect_answer2 || ""}
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                              value={editingQuestion!.question.incorrect_answer2 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
                                   ...prevState!,
@@ -269,8 +270,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             />
                           </label>
                           <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 3:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
-                              value={editingQuestion.question.incorrect_answer3 || ""}
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                              value={editingQuestion!.question.incorrect_answer3 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
                                   ...prevState!,
@@ -284,7 +285,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                           </label>
                           <div className="flex space-x-4">
                           <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white"
-                            onClick={() => handleSaveQuestion(editingQuestion)}
+                            onClick={() => handleSaveQuestion(editingQuestion!)}
                           >
                             Save
                           </button>

@@ -154,7 +154,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
   };
 
   return (
-    <div className="flex flex-col  pt-10 px-10 w-full ">
+    <div className="flex-1 flex flex-col  pt-10 px-10 w-full ">
       <div className=" flex flex-row justify-between mb-5 ">
         <div className="flex items-center">
           <img
@@ -205,7 +205,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               setEditQuiz(false);
             }}
           >
-            Student&apos;s Todo
+            Common Mistake
           </p>
           <p
             className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
@@ -238,7 +238,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
               setStudentsTodo(false);
             }}
           >
-            Modify quizzes
+            Modify Quizzes
           </p>
         </div>
       </div>

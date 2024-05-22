@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import StudentOverview from "./StudentOverview"
 import StudentScore from "./StudentScore"
 import StudentTodo from "./StudentToDo"
+import Image from "next/image"
 
 export default function StudentDashBoard({ data, userData, img }: any){
     const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
@@ -13,7 +14,8 @@ export default function StudentDashBoard({ data, userData, img }: any){
     const [backBtn, setBackBtn] = useState(false)
     const [recommended, setRecommended] = useState(false)
     const [userInfo, setUserInfo] = useState<any>({});
-    const [achievements, setAchievementes] = useState(0)
+    const [achievements, setAchievements] = useState(1)
+    const [achievementsImgs, setAchievementsImgs] = useState(['/soclogo.png'])
 
     useEffect(()=>{
         setBackBtn(todo || overView)
@@ -39,16 +41,18 @@ export default function StudentDashBoard({ data, userData, img }: any){
         if(modulesDone){   
             switch(modulesDone){
                 case 12:
-                    setAchievementes((prev:number)=> prev + 3)
+                    setAchievements((prev:number)=> prev + 3)
+                    achievementsImgs.push('/achievements/module1.png','/achievements/module2.png','/achievements/module3.png')
                     break; 
                 case 6:
-                    setAchievementes((prev:number)=> prev + 2)
+                    setAchievements((prev:number)=> prev + 2)
+                    achievementsImgs.push('/achievements/module1.png','/achievements/module2.png')
                     break;
                 case 1:
-                    setAchievementes((prev:number)=> prev + 1)
+                    setAchievements((prev:number)=> prev + 1)
+                    achievementsImgs.push('/achievements/module1.png')
                     break;
                 default:
-                    console.log("Invalid modules done!");
                     break;
             }
         }
@@ -56,22 +60,26 @@ export default function StudentDashBoard({ data, userData, img }: any){
         if(total){
             switch(total){
                 case 600:
-                    setAchievementes((prev:number)=> prev + 5)
+                    setAchievements((prev:number)=> prev + 5)
+                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png','/achievements/answers250.png','/achievements/answers350.png','/achievements/answers600.png')
                     break;
                 case 350:
-                    setAchievementes((prev:number)=> prev + 4)
+                    setAchievements((prev:number)=> prev + 4)
+                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png','/achievements/answers250.png','/achievements/answers350.png')
                     break;
                 case 250:
-                    setAchievementes((prev:number)=> prev + 3)
+                    setAchievements((prev:number)=> prev + 3)
+                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png','/achievements/answers250.png')
                     break;
                 case 150:
-                    setAchievementes((prev:number)=> prev + 2)
+                    setAchievements((prev:number)=> prev + 2)
+                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png')
                     break;
                 case 20:
-                    setAchievementes((prev:number)=> prev + 1)
+                    setAchievements((prev:number)=> prev + 1)
+                    achievementsImgs.push('/achievements/answers20.png')
                     break;
                 default:
-                    console.log("Invalid correct answers!");
                     break;
         }
             
@@ -80,23 +88,24 @@ export default function StudentDashBoard({ data, userData, img }: any){
         if(leaderboard){
             switch(leaderboard){
                 case 1:
-                    setAchievementes((prev:number)=> prev + 1)
+                    setAchievements((prev:number)=> prev + 1)
+                    achievementsImgs.push('/achievements/top1.png')
                     break;
                 case 2:
-                    setAchievementes((prev:number)=> prev + 1)
+                    setAchievements((prev:number)=> prev + 1)
+                    achievementsImgs.push('/achievements/top2.png')
                     break;
                 case 3:
-                    setAchievementes((prev:number)=> prev + 1)
+                    setAchievements((prev:number)=> prev + 1)
+                    achievementsImgs.push('/achievements/top3.png')
                     break;
                 default:
-                        console.log("Invalid leaderboard!");
                     break;
             }
         }
-    
     },[userInfo])
 
-    
+
 
     return(
         <div className="flex-1 flex flex-col pt-10 px-10 w-full dark:text-black">
@@ -146,7 +155,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
                             </tr>
                             </thead>
                             <tbody>
-                            <tr className="flex w-full justify-between rounded-b-xl ">
+                            <tr className="flex w-full justify-between rounded-b-xl dark:text-gray-200">
                                 <td className="flex-1">{userInfo.modules > -1 ? rank[userInfo.modules] : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.leaderboard ? userInfo.leaderboard : userInfo.leaderboard === undefined ? '0' : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.modules > -1 ? userInfo.modules : 'Loading...'}</td>
@@ -158,16 +167,18 @@ export default function StudentDashBoard({ data, userData, img }: any){
                     </div>
                     <div className=" rounded-b-xl p-5 dark:bg-gray-600 dark:text-white">
                         <div className="flex justify-evenly">
-                            <div className="flex flex-col items-center mb-3">
+                            <div className="flex flex-col items-center mb-3 w-[20%]">
                                 <h2 className="card-title px-2">
                                     Your achievements : 
                                     {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
                                 </h2>
-                                <p>
-                                    N/A
-                                </p>
+                                <div className="flex flex-wrap gap-2">
+                                    {achievementsImgs.map((item, key) => (
+                                        <Image key={key} src={item} alt={`achivement` + key} width={50} height={50} className=" inline-block bg-white dark:bg-gray-300 rounded-full p-1 shadow-lg border-gray-300 border-solid border"/>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="flex flex-col items-center mb-3">
+                            <div className="flex flex-col items-center mb-3 w-[20%]">
                                 <h2 className="card-title px-2">
                                     Your leading module : 
                                     {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
@@ -181,12 +192,12 @@ export default function StudentDashBoard({ data, userData, img }: any){
                                     } 
                                 </p>
                             </div>
-                            <div className="flex flex-col items-center mb-3">
+                            <div className="flex flex-col items-center mb-3 w-[20%]">
                                 <h2 className="card-title px-2">
                                     Your weakest module : 
                                     {/* <div className="badge shadow-md bg-socskyblue">NEW</div> */}
                                 </h2>
-                                <p>
+                                <div className="flex flex-wrap">
                                     {userInfo.bestAndWorst ? 
                                         Number(userInfo.bestAndWorst.worstWeek) !== Number(userInfo.bestAndWorst.bestWeek) ?
                                         userInfo.bestAndWorst.worstWeek !== undefined ?
@@ -195,7 +206,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
                                         : 'N/A'
                                         : 'Loading...'
                                     }
-                                </p>
+                                </div>
                             </div>
                         </div>
                         <div className="flex justify-around mt-10 text-center">

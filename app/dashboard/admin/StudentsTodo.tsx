@@ -78,27 +78,27 @@ export default function StudentsTodo() {
       <h1 className="card-title mb-5">Track the most common mistakes</h1>
       {Object.keys(groupedTasks).length > 0 ? (
         Object.keys(groupedTasks).map((weekNumber: string) => (
-          <div key={`week-${weekNumber}`} className="collapse collapse-arrow hover:bg-loginblue transition ease-in-out delay-150 border-2">
-            <input type="checkbox" className="peer" />
-            <div className="collapse-title text-xl font-medium peer-checked:bg-loginblue shadow-lg pb-0">
+          <div key={`week-${weekNumber}`} className="collapse collapse-arrow transition ease-in-out delay-150">
+            <input type="checkbox" className="peer " />
+            <div className="collapse-title text-xl font-medium dark:bg-loginblue bg-socskyblue shadow-lg pb-0 border-0">
               Week {weekNumber}
             </div>
-            <div className="collapse-content peer-checked:bg-white shadow-lg p-0">
+            <div className="collapse-content  shadow-lg dark:bg-black bg-white p-0">
               {Object.keys(groupedTasks[weekNumber]).map((dayNumber: string) => (
-                <div key={`week-${weekNumber}-day-${dayNumber}`} className="collapse rounded-none collapse-plus hover:bg-sky-200 transition ease-in-out delay-150">
-                  <input type="checkbox" className="peer" />
-                  <div className="collapse-title text-lg font-medium peer-checked:bg-sky-200 shadow-lg">
+                <div key={`week-${weekNumber}-day-${dayNumber}`} className="collapse rounded-none collapse-plus transition ease-in-out delay-150 hover:bg-gray-300 dark:hover:bg-black">
+                  <input type="checkbox" className="peer " />
+                  <div className="collapse-title text-lg font-medium peer-checked:bg-gray-300 peer-checked:text-black shadow-lg dark:text-white dark:bg-black  rounded-xl">
                     Day {dayNumber}
                   </div>
-                  <div className="collapse-content peer-checked:bg-white shadow-lg">
+                  <div className="collapse-content dark:peer-checked:bg-black bg-white shadow-lg ">
                     {groupedTasks[weekNumber][dayNumber].map((task: any) => (
-                      <div key={task.question_title} className="flex flex-col pt-3 font-semibold gap-1 hover:bg-gray-300 p-3 rounded-xl">
+                      <div key={task.question_title} className="flex flex-col pt-3 font-semibold gap-1 hover:bg-gray-300 p-3 rounded-xl dark:text-white dark:hover:text-black">
                         <p>Question : {task.question_title}</p>
                         <p>Most answer given : {task.answer_given}</p>
                         <p>Wrongly Answered : {task.count}</p>
                         <div className="flex justify-end gap-6 text-white">
                           <p
-                            className="px-5 py-1 bg-green-500 font-semibold rounded-lg hover:cursor-pointer hover:bg-green-600"
+                            className="px-5 py-1 bg-darkmodegreen hover:bg-green font-semibold rounded-lg hover:cursor-pointer"
                             onClick={() => deleteTodo(task, weekNumber, dayNumber)}
                           >
                             Mark as completed

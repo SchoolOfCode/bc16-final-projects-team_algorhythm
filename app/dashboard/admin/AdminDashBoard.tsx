@@ -7,7 +7,7 @@ import TableOverview from "./TableOverview";
 import EachQuestion from "./EachQuestion";
 import StudentsTodo from "./StudentsTodo";
 
-export default function AdminDashBoard({ data, userData, img }: any) {
+export default function AdminDashBoard({ data, weeksNames, userData, img }: any) {
   const [allData, setAllData] = useState(data);
   const [module, setModule] = useState(0);
   const [day, setDay] = useState(0);
@@ -158,7 +158,7 @@ export default function AdminDashBoard({ data, userData, img }: any) {
       <div className=" flex flex-row justify-between mb-5 ">
         <div className="flex items-center">
           <img
-            className="bg-white rounded-full m-5 shadow-xl p-1  dark:bg-gray-600 w-32 h-32"
+            className="bg-white rounded-full m-5 shadow-xl p-1  dark:bg-gray-200 w-32 h-32"
             src={img ? img : "/usericon.png"}
             alt="User image"
             width={100}
@@ -433,9 +433,9 @@ export default function AdminDashBoard({ data, userData, img }: any) {
           <EachQuestion data={data} />
         </>
       ) : !quizCreation && !tableOverview && !studentsTodo ? (
-        <EditQuizzes />
+        <EditQuizzes weeksNames={weeksNames}/>
       ) : !tableOverview && !studentsTodo ? (
-        <QuizCreation />
+        <QuizCreation weeksNames={weeksNames}/>
       ) : !studentsTodo ? (
         <TableOverview data={data} />
       ) : (

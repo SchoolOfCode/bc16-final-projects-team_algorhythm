@@ -316,7 +316,7 @@ export default function EachQuestion({ data }: any) {
               ))}
               <button
                 onClick={clearFilter}
-                className="px-5 py-3 text-sm font-semibold rounded-2xl bg-gray-200 text-gray-700 hover:bg-red-500 hover:text-white"
+                className="px-5 py-3 text-sm font-semibold rounded-2xl bg-clearbtn hover:bg-darkmodered text-gray-700 hover:bg-red-500 hover:text-white"
               >
                 Clear
               </button>

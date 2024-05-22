@@ -75,7 +75,7 @@ export default function Results({ data }: any) {
     return passed ? ( // Here s the answer for the bootcamper who passed the quiz 
         <div>
             <div className="text-center">
-                <h1 className=" text-2xl font-medium mb-8 bg-gradient-to-r from-transparent via-green-500 to-transparent py-2">
+                <h1 className=" text-2xl font-medium mb-8 bg-gradient-to-r from-transparent via-lime-600 to-transparent py-2">
                     Well done
                 </h1>
                 <div className="radial-progress text-gray-300 text-2xl shadow-lg" 
@@ -120,7 +120,7 @@ export default function Results({ data }: any) {
                         ))}
                     </tbody>
                 </table>
-                <p className="text-gray-500 text-sm text-center">Added to your to-do</p>
+                <p className="text-gray-500 dark:text-gray-300 text-sm text-center">Added to your to-do</p>
                 <div className="flex flex-col justify-center items-center">
                     <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
                     <p className="btn btn-ghost w-[50%] my-5 text-black bg-loginblue shadow-lg border-0 dark:text-white"
@@ -154,7 +154,7 @@ export default function Results({ data }: any) {
     ) : (  // Here starts the page if the bootcamper fails the quiz
         <div>
             <div className="text-center">
-                <h1 className=" text-2xl font-medium mb-8 bg-gradient-to-r from-transparent via-red-600 to-transparent py-1">
+                <h1 className=" text-2xl font-medium mb-8 bg-gradient-to-r from-transparent via-rose-600 to-transparent py-1">
                     Try again...
                 </h1>
                 <div className="radial-progress text-gray-300 text-2xl shadow-lg" 
@@ -194,7 +194,7 @@ export default function Results({ data }: any) {
                     ))}
                 </tbody>
             </table>
-            <p className="text-gray-500 text-sm text-center">Added to your to-do</p>
+            <p className="text-gray-500 dark:text-gray-300 text-sm text-center">Added to your to-do</p>
             <div className="flex flex-col justify-center items-center">
                 <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
                 <p className="btn btn-ghost w-[50%] px-20 my-8 text-black bg-loginblue shadow-lg border-0 dark:text-white"

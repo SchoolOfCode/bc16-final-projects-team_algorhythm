@@ -190,7 +190,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
         .map((week) => (
           <div
             key={week.week_number}
-            className="collapse collapse-arrow bg-socskyblue"
+            className="collapse collapse-arrow bg-socskyblue dark:bg-loginblue"
           >
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium ">
@@ -212,7 +212,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                           <div className="flex flex-col space-y-4">
   
                           <label className="font-medium ">Question:
-                            <textarea className="ml-2 w-3/4 " rows="1"
+                            <textarea className="ml-2 w-3/4 dark:bg-white dark:text-black " rows="1"
                               value={editingQuestion.question.question}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -226,8 +226,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               
                             />
                           </label>
-                          <label className="font-medium text-green">Correct Answer:
-                          <textarea className="ml-2 w-3/4 text-black" rows="1"
+                          <label className="font-medium text-green dark:text-darkmodegreen">Correct Answer:
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
                               value={editingQuestion.question.correct_answer}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -240,8 +240,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               }
                             />
                           </label>
-                          <label className="font-medium text-red">Incorrect Answer 1:
-                          <textarea className="ml-2 w-3/4 text-black" rows="1"
+                          <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 1:
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
                               value={editingQuestion.question.incorrect_answer1 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -254,8 +254,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               }
                             />
                           </label>
-                          <label className="font-medium text-red">Incorrect Answer 2:
-                          <textarea className="ml-2 w-3/4 text-black" rows="1"
+                          <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 2:
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
                               value={editingQuestion.question.incorrect_answer2 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -268,8 +268,8 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               }
                             />
                           </label>
-                          <label className="font-medium text-red">Incorrect Answer 3:
-                          <textarea className="ml-2 w-3/4 text-black" rows="1"
+                          <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 3:
+                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows="1"
                               value={editingQuestion.question.incorrect_answer3 || ""}
                               onChange={(e) =>
                                 setEditingQuestion((prevState) => ({
@@ -283,12 +283,12 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             />
                           </label>
                           <div className="flex space-x-4">
-                          <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black"
+                          <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white"
                             onClick={() => handleSaveQuestion(editingQuestion)}
                           >
                             Save
                           </button>
-                          <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black" onClick={() => handleDeleteQuestion(question.uuid)}>Delete</button>
+                          <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white" onClick={() => handleDeleteQuestion(question.uuid)}>Delete</button>
                         </div>
                         </div>
                         
@@ -298,14 +298,14 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                             <h3 className="font-semibold">Question {questionIndex + 1}</h3>
                             <p>{question.question}</p>
                             </div>
-                            <p className="font-medium"> <span className="text-green">Correct Answer:</span><span className="font-normal"> {question.correct_answer} </span></p>
-                            <p className="font-medium text-red">Incorrect Answers:</p>
+                            <p className="font-medium"> <span className="text-green dark:text-darkmodegreen ">Correct Answer:</span><span className="font-normal"> {question.correct_answer} </span></p>
+                            <p className="font-medium text-red dark:text-darkmodered ">Incorrect Answers:</p>
                             <ul>
                               <li className="font-normal">{question.incorrect_answer1}</li>
                               <li className="font-normal">{question.incorrect_answer2}</li>
                               <li className="font-normal">{question.incorrect_answer3}</li>
                             </ul>
-                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black"
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white"
                               onClick={() =>
                                 handleEditQuestion(
                                   question.uuid,

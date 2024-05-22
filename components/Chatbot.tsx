@@ -8,10 +8,10 @@ export default function Chatbot() {
     <>
       <div className="chat chat-end absolute">
         <div
-          className="chat-bubble fixed bottom-10 right-24 z-50 shadow-xl bg-loginblue text-white hover:bg-sky-300 hover:text-black flex items-center py-2 hover:cursor-pointer"
+          className="chat-bubble fixed bottom-8 right-14 z-50 shadow-xl bg-loginblue text-white hover:bg-sky-300 hover:text-black flex items-center py-2 hover:cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <p className="pr-2">SoCBot</p>
+          
 
           <svg
             xmlns="http://www.w3.org/2000/svg"

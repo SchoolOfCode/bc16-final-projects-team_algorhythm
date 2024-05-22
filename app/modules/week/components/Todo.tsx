@@ -82,6 +82,15 @@ export default async function Todo(failedQ:any,failedA:any,week:any,day:any){
             console.log(error)
             return
         }
+        const admin = await supabase
+        .from('admintodo')
+        .insert([{
+            user_uuid : user.id,
+            week_number: week,
+            day_number: day,
+            question_title: failedQ[i],
+            answer_given: failedA[i],
+        }])
     
     }
     return

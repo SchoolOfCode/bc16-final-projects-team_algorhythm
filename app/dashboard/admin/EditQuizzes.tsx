@@ -210,6 +210,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                         editingQuestion?.day_number === day.day_number &&
                         editingQuestion?.questionIndex === questionIndex ? (
                           <div className="flex flex-col space-y-4">
+  
                           <label className="font-medium">Question:
                             <textarea className="ml-2 w-3/4 " rows="1"
                               value={editingQuestion.question.question}
@@ -222,6 +223,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                                   },
                                 }))
                               }
+                              
                             />
                           </label>
                           <label className="font-medium">Correct Answer:

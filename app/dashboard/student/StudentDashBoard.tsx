@@ -39,16 +39,16 @@ export default function StudentDashBoard({ data, userData, img }: any){
         const leaderboard = userInfo.leaderboard
         // Adding Achievements over modules completed
         if(modulesDone){   
-            switch(modulesDone){
-                case 12:
+            switch(true){
+                case modulesDone >= 12:
                     setAchievements((prev:number)=> prev + 3)
                     achievementsImgs.push('/achievements/module1.png','/achievements/module2.png','/achievements/module3.png')
                     break; 
-                case 6:
+                case modulesDone >= 6:
                     setAchievements((prev:number)=> prev + 2)
                     achievementsImgs.push('/achievements/module1.png','/achievements/module2.png')
                     break;
-                case 1:
+                case modulesDone >= 1:
                     setAchievements((prev:number)=> prev + 1)
                     achievementsImgs.push('/achievements/module1.png')
                     break;
@@ -58,30 +58,50 @@ export default function StudentDashBoard({ data, userData, img }: any){
         }
         // Adding Achivements over correct answers
         if(total){
-            switch(total){
-                case 600:
-                    setAchievements((prev:number)=> prev + 5)
-                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png','/achievements/answers250.png','/achievements/answers350.png','/achievements/answers600.png')
+            
+            switch (true) {
+                case total >= 600:
+                    setAchievements((prev: number) => prev + 5);
+                    achievementsImgs.push(
+                        '/achievements/answers20.png',
+                        '/achievements/answers150.png',
+                        '/achievements/answers250.png',
+                        '/achievements/answers350.png',
+                        '/achievements/answers600.png'
+                    );
                     break;
-                case 350:
-                    setAchievements((prev:number)=> prev + 4)
-                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png','/achievements/answers250.png','/achievements/answers350.png')
+                case total >= 350:
+                    setAchievements((prev: number) => prev + 4);
+                    achievementsImgs.push(
+                        '/achievements/answers20.png',
+                        '/achievements/answers150.png',
+                        '/achievements/answers250.png',
+                        '/achievements/answers350.png'
+                    );
                     break;
-                case 250:
-                    setAchievements((prev:number)=> prev + 3)
-                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png','/achievements/answers250.png')
+                case total >= 250:
+                    setAchievements((prev: number) => prev + 3);
+                    achievementsImgs.push(
+                        '/achievements/answers20.png',
+                        '/achievements/answers150.png',
+                        '/achievements/answers250.png'
+                    );
                     break;
-                case 150:
-                    setAchievements((prev:number)=> prev + 2)
-                    achievementsImgs.push('/achievements/answers20.png','/achievements/answers150.png')
+                case total >= 150:
+                    setAchievements((prev: number) => prev + 2);
+                    achievementsImgs.push(
+                        '/achievements/answers20.png',
+                        '/achievements/answers150.png'
+                    );
                     break;
-                case 20:
-                    setAchievements((prev:number)=> prev + 1)
-                    achievementsImgs.push('/achievements/answers20.png')
+                case total >= 20:
+                    setAchievements((prev: number) => prev + 1);
+                    achievementsImgs.push('/achievements/answers20.png');
                     break;
                 default:
                     break;
-        }
+            }
+            
             
         }
         // Adding Achivements over leaderboard rank 
@@ -136,9 +156,9 @@ export default function StudentDashBoard({ data, userData, img }: any){
             </div>
             {!overView && !todo ? (
                 <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue">
-                    <div className=" w-full h-fit gap-6 rounded-t-xl flex items-center p-4 dark:bg-gray-600">
+                    <div className=" w-full h-fit gap-6 rounded-t-xl flex items-center p-4 ">
                         <img
-                            className="bg-white rounded-full m-5 shadow-xl p-1  dark:bg-gray-600 w-32 h-32"
+                            className="bg-white rounded-full m-5 shadow-xl p-1  dark:bg-gray-100 w-32 h-32"
                             src={img ? img : "/usericon.png"}
                             alt="User image"
                             width={100}
@@ -155,7 +175,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
                             </tr>
                             </thead>
                             <tbody>
-                            <tr className="flex w-full justify-between rounded-b-xl dark:text-gray-200">
+                            <tr className="flex w-full justify-between rounded-b-xl dark:text-black">
                                 <td className="flex-1">{userInfo.modules > -1 ? rank[userInfo.modules] : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.leaderboard ? userInfo.leaderboard : userInfo.leaderboard === undefined ? '0' : 'Loading...'}</td>
                                 <td className="flex-1">{userInfo.modules > -1 ? userInfo.modules : 'Loading...'}</td>
@@ -165,7 +185,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
                             </tbody>
                         </table>
                     </div>
-                    <div className=" rounded-b-xl p-5 dark:bg-gray-600 dark:text-white">
+                    <div className=" rounded-b-xl p-5  dark:text-white">
                         <div className="flex justify-evenly">
                             <div className="flex flex-col items-center mb-3 w-[20%]">
                                 <h2 className="card-title px-2">

@@ -38,6 +38,7 @@ module.exports = {
         red: "#D60505",
         darkmodegreen: "#2EC732",
         darkmodered: "#FF4040",
+        clearbtn: "#E56060",
       },
     },
   },

@@ -41,16 +41,16 @@ export default function StudentTodo({ modules }: any){
     },[todo])
 
     return (
-        <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue p-12">
+        <div className="card w-full bg-gradient-to-t from-transparent to-socskyblue p-12 ">
 
             <h2 className=" text-3xl font-bold mb-6">To-Do</h2>
-            <p className="text-gray-600 mb-4">Time to refine your weaker points!</p>
+            <p className="text-gray-600 mb-4 font-semibold">Time to refine your weaker points!</p>
 
             {Object.keys(groupedTasks).length > 0 ? (
             Object.keys(groupedTasks).map(weekNumber => (
                 <div key={`week-${weekNumber}`} className="collapse collapse-arrow hover:bg-loginblue transition ease-in-out delay-150 border-2">
                     <input type="checkbox" className="peer" />
-                    <div className="collapse-title text-xl font-medium peer-checked:bg-loginblue shadow-lg pb-0">
+                    <div className="collapse-title text-xl font-medium peer-checked:bg-loginblue shadow-lg pb-0 dark:bg-socskyblue">
                         {modules[Number(weekNumber)-1]} - Week {weekNumber}
                     </div>
                     <div className="collapse-content peer-checked:bg-white shadow-lg p-0">
@@ -62,11 +62,11 @@ export default function StudentTodo({ modules }: any){
                                 </div>
                                 <div className="collapse-content peer-checked:bg-white shadow-lg">
                                     {groupedTasks[weekNumber][dayNumber].map((task:any) => (
-                                        <div key={task.id} className="flex flex-col pt-3 font-semibold gap-1">
+                                        <div key={task.id} className="flex flex-col pt-3 font-semibold gap-1 hover:bg-gray-300 p-3 rounded-xl">
                                             <p>Question: {task.question_title}</p>
                                             <p>Your answer: {task.answer_given}</p>
                                             <div className="flex justify-end gap-6 text-white">
-                                                <p className="px-5 py-1 bg-green-500 font-semibold rounded-lg hover:cursor-pointer"
+                                                <p className="px-5 py-1 bg-darkmodegreen hover:bg-green font-semibold rounded-lg hover:cursor-pointer"
                                                 onClick={()=>deleteTodo(task)}
                                                 >Mark as completed</p>
                                             </div>

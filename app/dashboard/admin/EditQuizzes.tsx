@@ -201,7 +201,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
               {week.days.map((day:any) => (
                 <div key={day.day_number} className="collapse bg-base-200">
                   <input type="checkbox" />
-                  <div className="collapse-title text-xl font-medium">
+                  <div className="collapse-title text-xl font-medium ">
                     Day {day.day_number}
                   </div>
                   <div className="collapse-content">

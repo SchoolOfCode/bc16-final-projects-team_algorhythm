@@ -56,6 +56,39 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
     });
   };
 
+
+  const handleDeleteQuestion = async (uuid: string) => {
+    const { error } = await supabase
+      .from("quizzes")
+      .delete()
+      .match({ uuid });
+  
+    if (!error) {
+      setWeeksData((prevWeeksData) =>
+        prevWeeksData.map((week) =>
+          week.week_number === editingQuestion?.week_number
+            ? {
+                ...week,
+                days: week.days.map((day) =>
+                  day.day_number === editingQuestion?.day_number
+                    ? {
+                        ...day,
+                        questions: day.questions.filter(
+                          (q, index) => index !== editingQuestion?.questionIndex
+                        ),
+                      }
+                    : day
+                ),
+              }
+            : week
+        )
+      );
+  
+      setEditingQuestion(null);
+    }
+  };
+  
+
   const handleSaveQuestion = async (updatedQuestion: EditingQuestion) => {
     const { uuid, question } = updatedQuestion;
     const { error } = await supabase
@@ -248,13 +281,14 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                                 }))
                               }
                             />
-                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-sky-300 text-black rounded-2xl px-2 py-2 mt-4 text-foreground text-center dark:text-black"
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black"
                               onClick={() =>
                                 handleSaveQuestion(editingQuestion)
                               }
                             >
                               Save
                             </button>
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black" onClick={() => handleDeleteQuestion(question.uuid)}>Delete</button>
                           </div>
                         ) : (
                           <div>
@@ -269,7 +303,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                               <li>{question.incorrect_answer2}</li>
                               <li>{question.incorrect_answer3}</li>
                             </ul>
-                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-sky-300 text-black rounded-2xl px-2 py-2 mt-4 text-foreground text-center dark:text-black"
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-black"
                               onClick={() =>
                                 handleEditQuestion(
                                   question.uuid,

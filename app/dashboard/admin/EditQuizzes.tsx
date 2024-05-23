@@ -185,14 +185,14 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center my-10 w-full md:w-3/4">
+    <div className="flex flex-col items-center justify-center my-10 w-full md:w-3/4 mx-auto">
       {weeksData
         .slice()
         .reverse()
         .map((week:any) => (
           <div
             key={week.week_number}
-            className="collapse collapse-arrow bg-socskyblue dark:bg-loginblue w-full md:w-3/4"
+            className="collapse collapse-arrow bg-socskyblue dark:bg-loginblue w-full md:w-3/4 mx-auto"
           >
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium ">

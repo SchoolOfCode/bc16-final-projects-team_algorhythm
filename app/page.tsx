@@ -13,14 +13,14 @@ export default async function Index() {
   if (!user) {
     return redirect("/login");
   }
-  
+
   return (
-    <div className="flex-1 w-full flex  items-center justify-evenly">
+    <div className="flex-1 w-full flex  items-center justify-evenly md:flex-col">
       <div className="animate-fade-right">
-        <p className="text-loginblue text-xl font-semibold">
+        <p className="text-loginblue text-xl font-semibold md:mt-10">
           Test your knowledge
         </p>
-        <h1 className="font-black text-6xl pt-5">Welcome to</h1>
+        <h1 className="font-black text-6xl pt-5 md:text-3xl md:">Welcome to</h1>
         <h1 className="font-black text-6xl pb-10 pt-2">SoCBrain</h1>
         <Link
           href="/modules"
@@ -29,7 +29,7 @@ export default async function Index() {
           Explore quizzes
         </Link>
       </div>
-      <div className="animate-fade-left">
+      <div className="animate-fade-left md:w-[50%] md:invisible">
         <Image
           src="/homeImg.png"
           alt="Home image"

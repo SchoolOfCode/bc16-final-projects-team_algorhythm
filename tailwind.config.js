@@ -14,12 +14,7 @@ module.exports = {
       },
       // note: 'screens' is used to define the screen size breakpoints, similar to how media queries work in default CSS
       screens: {
-        xs: "320px",
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1280px",
-        "2xl": "1536px",
+        md: { max: "768px" },
       },
       colors: {
         background: "hsl(var(--background))",

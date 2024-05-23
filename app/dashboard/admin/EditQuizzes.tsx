@@ -171,10 +171,13 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
           return acc;
         }, []);
 
+        groupedByWeek.forEach(week => {
+          week.days.sort((a, b) => a.day_number - b.day_number);
+        });
+
         const sortedWeeksData = groupedByWeek.sort(
           (a, b) => b.week_number - a.week_number
         );
-        console.log(sortedWeeksData);
         setWeeksData(sortedWeeksData);
       }
     };

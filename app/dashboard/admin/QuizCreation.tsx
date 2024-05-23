@@ -51,7 +51,7 @@ export default function QuizCreation({ weeksNames }:any) {
       if (error) {
         throw error;
       }
-      setFeedback("Form submitted successfully");
+      setFeedback("Success!");
       resetForm();
     } catch (error) {
       console.log("Error occurred", { error });
@@ -68,34 +68,34 @@ export default function QuizCreation({ weeksNames }:any) {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-6 rounded-2xl my-10">
-            <div className="flex flex-row justify-between">
-            <Field name="week_number">
-  {({ field, meta, form }: any) => (
-    <div className="form-control">
-      <label className="font-bold text-white ">Week</label>
-      <select 
-        className={`bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 ${field.value ? 'text-black' : 'text-gray-400'}`}
-        {...field}
-        id="week_number"
-        onChange={(e) => {
-          form.setFieldValue(field.name, e.target.value);
-          e.target.style.color = e.target.value ? 'black' : 'gray';
-        }} 
-      >
-        <option value="" disabled> Select week</option>
-        {weeksNames.data.sort((a, b) => a.week_number - b.week_number).map((week, index) => (
-          <option key={index} value={week.week_number}>
-            {week.week_number}. {week.title}
-          </option>
-        ))}
-      </select>
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </div>
-  )}
-</Field>
+          <Form className="animate-fade-up flex flex-col justify-center gap-2 text-foreground bg-loginblue p-6 rounded-2xl my-10 md:w-[50%] w-full">
+            <div className="flex flex-col md:flex-row justify-between">
+              <Field name="week_number">
+                {({ field, meta, form }: any) => (
+                  <div className="form-control">
+                    <label className="font-bold text-white ">Week</label>
+                    <select 
+                      className={`bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 ${field.value ? 'text-black' : 'text-gray-400'}`}
+                      {...field}
+                      id="week_number"
+                      onChange={(e) => {
+                        form.setFieldValue(field.name, e.target.value);
+                        e.target.style.color = e.target.value ? 'black' : 'gray';
+                      }} 
+                    >
+                      <option value="" disabled> Select week</option>
+                      {weeksNames.data.sort((a, b) => a.week_number - b.week_number).map((week, index) => (
+                        <option key={index} value={week.week_number}>
+                          {week.week_number}. {week.title}
+                        </option>
+                      ))}
+                    </select>
+                    {meta.touched && meta.error ? (
+                      <div className="error">{meta.error}</div>
+                    ) : null}
+                  </div>
+                )}
+              </Field>
 
               <Field className="" name="day_number">
                 {({ field, meta }: any) => (
@@ -217,10 +217,10 @@ export default function QuizCreation({ weeksNames }:any) {
             </Field>
 
             <div className="button-container items-center flex justify-center">
-              {feedback && <p>{feedback}</p>}
+              {feedback && <p className="m-4 text-white">{feedback}</p>}
               <button
                 type="submit"
-                className="submit-button w-[20%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-4 mt-4 text-foreground text-center text-black dark:text-black"
+                className="submit-button w-full md:w-[20%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-4 mt-4 text-foreground text-center text-black dark:text-black"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>

@@ -11,7 +11,6 @@ const supabase = createClient(
 );
 
 export default function QuizCreation({ weeksNames }:any) {
-  console.log(weeksNames);
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({

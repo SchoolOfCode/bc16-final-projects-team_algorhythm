@@ -185,15 +185,14 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
   }, []);
 
   return (
-    <div className="flex items-center justify-center my-10 w-full">
-    <div className="w-2/3 ">
+    <div className="flex flex-col items-center justify-center my-10 w-full md:w-3/4">
       {weeksData
         .slice()
         .reverse()
         .map((week:any) => (
           <div
             key={week.week_number}
-            className="collapse collapse-arrow bg-socskyblue dark:bg-loginblue"
+            className="collapse collapse-arrow bg-socskyblue dark:bg-loginblue w-full md:w-3/4"
           >
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium ">
@@ -201,7 +200,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
             </div>
             <div className="collapse-content">
               {week.days.map((day:any) => (
-                <div key={day.day_number} className="collapse bg-base-200">
+                <div key={day.day_number} className="collapse bg-base-200 w-full md:w-full">
                   <input type="checkbox" />
                   <div className="collapse-title text-xl font-medium ">
                     Day {day.day_number}
@@ -213,125 +212,122 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
                         editingQuestion?.day_number === day.day_number &&
                         editingQuestion?.questionIndex === questionIndex ? (
                           <div className="flex flex-col space-y-4">
-  
-                          <label className="font-medium ">Question:
-                            <textarea className="ml-2 w-3/4 dark:bg-white dark:text-black " rows={1}
-                              value={editingQuestion!.question.question}
-                              onChange={(e) =>
-                                setEditingQuestion((prevState) => ({
-                                  ...prevState!,
-                                  question: {
-                                    ...prevState!.question,
-                                    question: e.target.value,
-                                  },
-                                }))
-                              }
-                              
-                            />
-                          </label>
-                          <label className="font-medium text-green dark:text-darkmodegreen">Correct Answer:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
-                              value={editingQuestion!.question.correct_answer}
-                              onChange={(e) =>
-                                setEditingQuestion((prevState) => ({
-                                  ...prevState!,
-                                  question: {
-                                    ...prevState!.question,
-                                    correct_answer: e.target.value,
-                                  },
-                                }))
-                              }
-                            />
-                          </label>
-                          <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 1:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
-                              value={editingQuestion!.question.incorrect_answer1 || ""}
-                              onChange={(e) =>
-                                setEditingQuestion((prevState) => ({
-                                  ...prevState!,
-                                  question: {
-                                    ...prevState!.question,
-                                    incorrect_answer1: e.target.value,
-                                  },
-                                }))
-                              }
-                            />
-                          </label>
-                          <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 2:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
-                              value={editingQuestion!.question.incorrect_answer2 || ""}
-                              onChange={(e) =>
-                                setEditingQuestion((prevState) => ({
-                                  ...prevState!,
-                                  question: {
-                                    ...prevState!.question,
-                                    incorrect_answer2: e.target.value,
-                                  },
-                                }))
-                              }
-                            />
-                          </label>
-                          <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 3:
-                          <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
-                              value={editingQuestion!.question.incorrect_answer3 || ""}
-                              onChange={(e) =>
-                                setEditingQuestion((prevState) => ({
-                                  ...prevState!,
-                                  question: {
-                                    ...prevState!.question,
-                                    incorrect_answer3: e.target.value,
-                                  },
-                                }))
-                              }
-                            />
-                          </label>
-                          <div className="flex space-x-4">
-                          <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white"
-                            onClick={() => handleSaveQuestion(editingQuestion!)}
-                          >
-                            Save
-                          </button>
-                          <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white" onClick={() => handleDeleteQuestion(question.uuid)}>Delete</button>
-                        </div>
-                        </div>
-                        
-                        ) : (
-                          <div>
-                    <div className="py-3">
-                            <h3 className="font-semibold">Question {questionIndex + 1}</h3>
-                            <p>{question.question}</p>
-                            </div>
-                            <p className="font-medium"> <span className="text-green dark:text-darkmodegreen ">Correct Answer:</span><span className="font-normal"> {question.correct_answer} </span></p>
-                            <p className="font-medium text-red dark:text-darkmodered ">Incorrect Answers:</p>
-                            <ul>
-                              <li className="font-normal">{question.incorrect_answer1}</li>
-                              <li className="font-normal">{question.incorrect_answer2}</li>
-                              <li className="font-normal">{question.incorrect_answer3}</li>
-                            </ul>
+                            <label className="font-medium ">Question:
+                              <textarea className="ml-2 w-3/4 dark:bg-white dark:text-black " rows={1}
+                                value={editingQuestion!.question.question}
+                                onChange={(e) =>
+                                  setEditingQuestion((prevState) => ({
+                                    ...prevState!,
+                                    question: {
+                                      ...prevState!.question,
+                                      question: e.target.value,
+                                    },
+                                  }))
+                                }
+                              />
+                            </label>
+                            <label className="font-medium text-green dark:text-darkmodegreen">Correct Answer:
+                            <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                                value={editingQuestion!.question.correct_answer}
+                                onChange={(e) =>
+                                  setEditingQuestion((prevState) => ({
+                                    ...prevState!,
+                                    question: {
+                                      ...prevState!.question,
+                                      correct_answer: e.target.value,
+                                    },
+                                  }))
+                                }
+                              />
+                            </label>
+                            <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 1:
+                            <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                                value={editingQuestion!.question.incorrect_answer1 || ""}
+                                onChange={(e) =>
+                                  setEditingQuestion((prevState) => ({
+                                    ...prevState!,
+                                    question: {
+                                      ...prevState!.question,
+                                      incorrect_answer1: e.target.value,
+                                    },
+                                  }))
+                                }
+                              />
+                            </label>
+                            <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 2:
+                            <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                                value={editingQuestion!.question.incorrect_answer2 || ""}
+                                onChange={(e) =>
+                                  setEditingQuestion((prevState) => ({
+                                    ...prevState!,
+                                    question: {
+                                      ...prevState!.question,
+                                      incorrect_answer2: e.target.value,
+                                    },
+                                  }))
+                                }
+                              />
+                            </label>
+                            <label className="font-medium text-red dark:text-darkmodered">Incorrect Answer 3:
+                            <textarea className="ml-2 w-3/4 text-black dark:bg-white dark:text-black" rows={1}
+                                value={editingQuestion!.question.incorrect_answer3 || ""}
+                                onChange={(e) =>
+                                  setEditingQuestion((prevState) => ({
+                                    ...prevState!,
+                                    question: {
+                                      ...prevState!.question,
+                                      incorrect_answer3: e.target.value,
+                                    },
+                                  }))
+                                }
+                              />
+                            </label>
+                            <div className="flex space-x-4">
                             <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white"
-                              onClick={() =>
-                                handleEditQuestion(
-                                  question.uuid,
-                                  week.week_number,
-                                  day.day_number,
-                                  questionIndex,
-                                  question
-                                )
-                              }
+                              onClick={() => handleSaveQuestion(editingQuestion!)}
                             >
-                              Edit
+                              Save
                             </button>
+                            <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white" onClick={() => handleDeleteQuestion(question.uuid)}>Delete</button>
                           </div>
-                        )}
-                      </div>
-                    ))}
+                          </div>
+                          
+                          ) : (
+                            <div>
+                              <div className="py-3">
+                                <h3 className="font-semibold">Question {questionIndex + 1}</h3>
+                                <p>{question.question}</p>
+                              </div>
+                              <p className="font-medium"> <span className="text-green dark:text-darkmodegreen ">Correct Answer:</span><span className="font-normal"> {question.correct_answer} </span></p>
+                              <p className="font-medium text-red dark:text-darkmodered ">Incorrect Answers:</p>
+                              <ul>
+                                <li className="font-normal">{question.incorrect_answer1}</li>
+                                <li className="font-normal">{question.incorrect_answer2}</li>
+                                <li className="font-normal">{question.incorrect_answer3}</li>
+                              </ul>
+                              <button className="submit-button w-[20%] text-sm hover:bg-socskyblue bg-loginblue text-white rounded-2xl px-2 py-2 mt-4 text-foreground text-center hover:text-black dark:text-white"
+                                onClick={() =>
+                                  handleEditQuestion(
+                                    question.uuid,
+                                    week.week_number,
+                                    day.day_number,
+                                    questionIndex,
+                                    question
+                                  )
+                                }
+                              >
+                                Edit
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
               ))}
             </div>
           </div>
         ))}
     </div>
-</div>
   );
-}
+}  

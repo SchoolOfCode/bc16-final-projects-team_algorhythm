@@ -49,26 +49,26 @@ export default async function SignUp({
     }
 
     // Inserting role to Roles table
-    const { error: rolesError } = await supabase
-    .from("roles")
-    .insert([{ 
-      uuid: data.user!.id, 
-      role: 'student'
-    }])
+    const { error: rolesError } = await supabase.from("roles").insert([
+      {
+        uuid: data.user!.id,
+        role: "student",
+      },
+    ]);
     if (rolesError) {
       console.error("Error inserting data to table roles:", rolesError);
     }
     // Ends
 
     // Inserting data to Profiles table
-    const { error: profileError } = await supabase
-    .from("profiles")
-    .insert([{ 
-      uuid: data.user!.id, 
-      first_name, 
-      last_name, 
-      email 
-    }])
+    const { error: profileError } = await supabase.from("profiles").insert([
+      {
+        uuid: data.user!.id,
+        first_name,
+        last_name,
+        email,
+      },
+    ]);
     if (profileError) {
       console.error("Error inserting data to table profiles:", profileError);
     }
@@ -78,10 +78,10 @@ export default async function SignUp({
   };
 
   return (
-    <div className="flex-1 flex w-full justify-center">
+    <div className="flex-1 flex w-full justify-center md:flex-col">
       <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center shadow-2xl">
         <Image
-          className="pb-10 animate-fade-right"
+          className="pb-10 animate-fade-right md:animate-fade-down"
           src="/soclarge.png"
           alt="SoC Logo"
           width={600}
@@ -89,7 +89,7 @@ export default async function SignUp({
         />
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
-        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl shadow-md">
+        <form className="animate-fade-left md:animate-fade-up md:my-10 flex w-[50%] md:w-[80%] flex-col justify-center gap-2 text-foreground bg-loginblue p-10 rounded-2xl shadow-md">
           <label className="text-md text-white" htmlFor="first_name">
             First name
           </label>
@@ -140,7 +140,15 @@ export default async function SignUp({
           >
             Submit
           </SubmitButton>
-          <p className="text-center text-white">Already have an account? <Link href="/login" className="font-bold underline hover:text-black">Login</Link></p>
+          <p className="text-center text-white">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="font-bold underline hover:text-black"
+            >
+              Login
+            </Link>
+          </p>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
               {searchParams.message}

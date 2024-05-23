@@ -40,7 +40,7 @@ export default async function Login({
 
   return (
     <div className="flex-1 flex w-full justify-center md:flex-col">
-      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center shadow-2xl md:h-[20%]">
+      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center shadow-2xl">
         <Image
           className="pb-10 animate-fade-right md:animate-fade-down"
           src="/soclarge.png"
@@ -50,7 +50,7 @@ export default async function Login({
         />
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
-        <form className="animate-fade-left md:animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl shadow-md">
+        <form className="animate-fade-left md:animate-fade-up md:my-10 flex w-[50%] md:w-[80%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl shadow-md">
           <label className="text-md text-white" htmlFor="email">
             Email
           </label>

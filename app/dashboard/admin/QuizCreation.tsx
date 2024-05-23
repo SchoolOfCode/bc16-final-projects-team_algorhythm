@@ -19,11 +19,11 @@ export default function QuizCreation({ weeksNames }:any) {
       .max(12, "Week must be 1 to 12")
       .required("Required."),
     day_number: yup.number().max(5, "Day must be 1 to 5").required("Required."),
-    question: yup.string().max(120, "Too long!").required("Required."),
-    correct_answer: yup.string().max(100, "Too long!").required("Required."),
-    incorrect_answer1: yup.string().max(100, "Too long!").required("Required."),
-    incorrect_answer2: yup.string().max(100, "Too long!").required("Required."),
-    incorrect_answer3: yup.string().max(100, "Too long!").required("Required."),
+    question: yup.string().max(150, "Too long!").required("Required."),
+    correct_answer: yup.string().max(150, "Too long!").required("Required."),
+    incorrect_answer1: yup.string().max(150, "Too long!").required("Required."),
+    incorrect_answer2: yup.string().max(150, "Too long!").required("Required."),
+    incorrect_answer3: yup.string().max(150, "Too long!").required("Required."),
   });
 
   const QuizValues = {

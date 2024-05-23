@@ -11,6 +11,7 @@ const supabase = createClient(
 );
 
 export default function QuizCreation({ weeksNames }:any) {
+  console.log(weeksNames);
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({
@@ -35,8 +36,6 @@ export default function QuizCreation({ weeksNames }:any) {
     incorrect_answer2: "",
     incorrect_answer3: "",
   };
-
-  const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
 
   async function handleSubmit(values: any, { resetForm }: any) {
     try {
@@ -86,9 +85,9 @@ export default function QuizCreation({ weeksNames }:any) {
         }}
       >
         <option value="" disabled> Select week</option>
-        {modules.map((module, index) => (
-          <option key={index} value={index + 1}>
-            {index + 1}. {module}
+        {weeksNames.data.sort((a, b) => a.week_number - b.week_number).map((week, index) => (
+          <option key={index} value={week.week_number}>
+            {week.week_number}. {week.title}
           </option>
         ))}
       </select>

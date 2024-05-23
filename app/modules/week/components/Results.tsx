@@ -122,7 +122,7 @@ export default function Results({ data }: any) {
                 </table>
                 <p className="text-gray-500 dark:text-gray-300 text-sm text-center">Added to your to-do</p>
                 <div className="flex flex-col justify-center items-center">
-                    <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
+                    <p className="mt-5 font-bold">Why not initiate a chat with Coach Bot ?</p>
                     <p className="btn btn-ghost w-[50%] my-5 text-black bg-loginblue shadow-lg border-0 dark:text-white"
                         onClick={data.day < 5 ? () => { data.setSubmitted(false); data.props.setSelected(data.day + 1); data.setAttempts(1) }: undefined}
                     >
@@ -196,7 +196,7 @@ export default function Results({ data }: any) {
             </table>
             <p className="text-gray-500 dark:text-gray-300 text-sm text-center">Added to your to-do</p>
             <div className="flex flex-col justify-center items-center">
-                <p className="mt-5 font-bold">Why not initiate a chat with SoCBot ?</p>
+                <p className="mt-5 font-bold">Why not initiate a chat with Coach Bot ?</p>
                 <p className="btn btn-ghost w-[50%] px-20 my-8 text-black bg-loginblue shadow-lg border-0 dark:text-white"
                     onClick={handleTryAgain}
                 >

@@ -150,7 +150,7 @@ export default function TableOverview({ data }: any) {
   return (
     <div className="overflow-x-auto mb-10">
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-        <thead className="bg-gray-800 text-white">
+        <thead className="bg-loginblue text-white">
           <tr>
             <th className="w-10">#</th>
             <th className="px-4 py-2" onClick={reverseByName}>

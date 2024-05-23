@@ -34,6 +34,7 @@ export default async function Footer() {
         <p className="mt-4 text-center">
           © Copyright 2024 School of Code. All Rights Reserved. School of Code Ltd is registered in England, Company No. 09793790. School of Code, Custard Factory, Gibb Street, Birmingham, B9 4AA
         </p>
+        <p className="text-xs text-center">Images by <a href="https://www.freepik.com/author/vectorjuice">vectorjuice</a> on Freepik</p>
       </div>
       <nav>
         <h6 className="footer-title">Company</h6> 

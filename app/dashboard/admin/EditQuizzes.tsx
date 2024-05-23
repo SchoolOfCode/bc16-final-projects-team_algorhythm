@@ -39,7 +39,6 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
   const [editingQuestion, setEditingQuestion] =
     useState<EditingQuestion | null>(null);
 
-  console.log(weeksNames.data);
 
   const handleEditQuestion = (
     uuid: string,
@@ -140,7 +139,7 @@ export default function EditQuizzes({ weeksNames }: any): JSX.Element {
       }
 
       if (quizzesData && weeksNames.data) {
-        console.log(weeksNames.data);
+       
         const groupedByWeek = quizzesData.reduce<Week[]>((acc, curr) => {
           const weekIndex = acc.findIndex(
             (w) => w.week_number === curr.week_number

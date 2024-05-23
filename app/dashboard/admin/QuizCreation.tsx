@@ -81,7 +81,7 @@ export default function QuizCreation({ weeksNames }:any) {
         onChange={(e) => {
           form.setFieldValue(field.name, e.target.value);
           e.target.style.color = e.target.value ? 'black' : 'gray';
-        }}
+        }} 
       >
         <option value="" disabled> Select week</option>
         {weeksNames.data.sort((a, b) => a.week_number - b.week_number).map((week, index) => (

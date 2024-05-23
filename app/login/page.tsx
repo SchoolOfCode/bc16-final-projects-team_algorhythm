@@ -39,10 +39,10 @@ export default async function Login({
   };
 
   return (
-    <div className="flex-1 flex w-full justify-center">
-      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center shadow-2xl">
+    <div className="flex-1 flex w-full justify-center md:flex-col">
+      <div className="bg-socskyblue flex-1 flex flex-col w-full px-8 justify-center items-center shadow-2xl md:h-[20%]">
         <Image
-          className="pb-10 animate-fade-right"
+          className="pb-10 animate-fade-right md:animate-fade-down"
           src="/soclarge.png"
           alt="SoC Logo"
           width={600}
@@ -50,7 +50,7 @@ export default async function Login({
         />
       </div>
       <div className="flex-1 flex w-full px-8 justify-center gap-2 items-center">
-        <form className="animate-fade-left flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl shadow-md">
+        <form className="animate-fade-left md:animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-10 rounded-2xl shadow-md">
           <label className="text-md text-white" htmlFor="email">
             Email
           </label>
@@ -77,8 +77,18 @@ export default async function Login({
           >
             Login
           </SubmitButton>
-          <Link href="/" className="hover:text-black text-center text-white">Forgot Password?</Link>
-          <p className="text-center text-white">Need an account? <Link href="/signup" className="font-bold underline hover:text-black">Signup</Link></p>
+          <Link href="/" className="hover:text-black text-center text-white">
+            Forgot Password?
+          </Link>
+          <p className="text-center text-white">
+            Need an account?{" "}
+            <Link
+              href="/signup"
+              className="font-bold underline hover:text-black"
+            >
+              Signup
+            </Link>
+          </p>
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
               {searchParams.message}

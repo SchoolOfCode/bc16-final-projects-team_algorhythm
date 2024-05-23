@@ -73,26 +73,28 @@ export default function QuizCreation({ weeksNames }:any) {
           <Form className="animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-6 rounded-2xl my-10">
             <div className="flex flex-row justify-between">
             <Field name="week_number">
-  {({ field, meta }: any) => (
+  {({ field, meta, form }: any) => (
     <div className="form-control">
       <label className="font-bold text-white ">Week</label>
       <select 
-        className="bg-white text-gray-400 rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
+        className={`bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 ${field.value ? 'text-black' : 'text-gray-400'}`}
         {...field}
         id="week_number"
+        onChange={(e) => {
+          form.setFieldValue(field.name, e.target.value);
+          e.target.style.color = e.target.value ? 'black' : 'gray';
+        }}
       >
-        <option value="" disabled selected> Select week</option>
+        <option value="" disabled> Select week</option>
         {modules.map((module, index) => (
           <option key={index} value={index + 1}>
             {index + 1}. {module}
           </option>
         ))}
       </select>
-      {meta.error && meta.touched && (
-        <p className="p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
-          {meta.error}
-        </p>
-      )}
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
     </div>
   )}
 </Field>

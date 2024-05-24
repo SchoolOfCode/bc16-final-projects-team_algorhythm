@@ -47,7 +47,7 @@ export default async function modules({
   }
   return (
     <div className="flex-1 flex flex-col items-center w-full">
-      {week < 12 ? (
+      {week <= 12 && week > 0 ? (
         data && quizzes ? <Week props={props}/> : <h1>Week content not available yet</h1>
       ) : (
         <div className="flex-1 flex flex-col justify-center items center">

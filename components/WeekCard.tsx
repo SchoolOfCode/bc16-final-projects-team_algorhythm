@@ -10,7 +10,7 @@ export default async function WeekCard() {
   return data ? (
     <>
       {data.map((week, index) => (
-        <div key={index} className="card w-96 bg-base-100 m-10 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer">
+        <div key={index} className="card bg-base-100 m-10 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer h-min">
           <Link href={`/modules/week?w=${index + 1}`}>
             <div className="card-body">
               <h2 className="card-title">{week.title}</h2>

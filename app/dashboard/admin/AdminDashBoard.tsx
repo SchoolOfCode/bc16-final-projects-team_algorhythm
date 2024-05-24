@@ -205,7 +205,7 @@ export default function AdminDashBoard({ data, weeksNames, userData, img }: any)
               setEditQuiz(false);
             }}
           >
-            Common Mistake
+            Common mistakes
           </p>
           <p
             className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
@@ -216,7 +216,7 @@ export default function AdminDashBoard({ data, weeksNames, userData, img }: any)
               setStudentsTodo(false);
             }}
           >
-            Table Overview
+            Table overview
           </p>
           <p
             className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
@@ -227,7 +227,7 @@ export default function AdminDashBoard({ data, weeksNames, userData, img }: any)
               setStudentsTodo(false);
             }}
           >
-            Create Quiz
+            Create quiz
           </p>
           <p
             className="hover:bg-socskyblue bg-loginblue text-white cursor-pointer rounded-lg px-6 py-3 text-foreground hover:text-black font-semibold text-sm text-left h-9 flex items-center mt-1"
@@ -238,7 +238,7 @@ export default function AdminDashBoard({ data, weeksNames, userData, img }: any)
               setStudentsTodo(false);
             }}
           >
-            Modify Quizzes
+            Modify quizzes
           </p>
         </div>
       </div>

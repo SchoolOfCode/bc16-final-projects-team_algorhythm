@@ -34,8 +34,8 @@ export default function Chatbot() {
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
         style={{
-          width: "500px",
-          height: "800px",
+          width: "25vw",
+          height: "75vh",
         }}
       >
         <button

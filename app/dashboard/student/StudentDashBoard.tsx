@@ -7,8 +7,8 @@ import StudentTodo from "./StudentToDo"
 import Image from "next/image"
 
 export default function StudentDashBoard({ data, userData, img }: any){
-    const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
-    const rank = ['Noob','Novice','Starter','Apprentice','Journeyman','Adept','Expert','Master','Grand Master','Doyen','Guru','Yoad','Legend']
+    const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data']
+    const rank = ['Newbie','Novice','Starter','Apprentice','Journeyman','Adept','Expert','Master','Grand Master','Doyen','Guru','Yoda','Legend']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
     const [backBtn, setBackBtn] = useState(false)
@@ -253,9 +253,6 @@ export default function StudentDashBoard({ data, userData, img }: any){
                                     </div>
                                 </div>
                             </details>
-                        </div>
-                        <div className="card-actions justify-end absolute right-3 bottom-3">
-                            <div className="badge bg-loginblue text-white p-3 cursor-pointer hover:bg-socskyblue hover:text-black rounded-lg">Share progress</div>
                         </div>
                     </div>
                 </div>

@@ -106,7 +106,7 @@ export default function Quiz({ props }: any) {
   return (
       <>
         {shuffledLabels.map((label:any, idx:any) => (
-          <label key={idx} className="bg-socskyblue p-4 mb-2 rounded-md dark:text-black" htmlFor={`question${index}${label.id}`}>
+          <label key={idx} className="bg-socskyblue p-4 mb-2 rounded-md dark:text-black hover:bg-loginblue hover:text-black" htmlFor={`question${index}${label.id}`}>
             {label.text}
             <input className="ml-2 radio radio-xs bg-white border-loginblue dark:focus:bg-loginblue" type="radio" id={`question${index}${label.id}`} name={`question_${index}`} value={label.text} onChange={() => handleInputChange(index)} required />
           </label>
@@ -135,25 +135,25 @@ export default function Quiz({ props }: any) {
                       <h1 className="text-xl font-bold mb-10">{item.question}</h1>
                       {/* All answers below */}
                       {random(item, index)}
-                      <div className="join grid grid-cols-2 py-5 px-20 mt-5">
+                      <div className="join py-5 px-20 mt-5 ">
                         {index ? (
-                          <a href={`#slide${index - 1}`} className='join-item btn btn-ghost bg-loginblue'>Previous</a>
+                          <a href={`#slide${index - 1}`} className='w-24 join-item btn btn-ghost bg-loginblue text-white hover:bg-socskyblue hover:text-black'>Previous</a>
                         ) : (
-                          <a href={`#slide${index - 1}`} className='join-item btn btn-ghost text-black bg-gray-300 pointer-events-none'>Previous</a>
+                          <a href={`#slide${index - 1}`} className='w-24 join-item btn btn-ghost text-black bg-gray-300 pointer-events-none'>Previous</a>
                         )}
                         {index === total - 1 && selected[index] ? (
                           <SubmitButton
                             formAction={submit}
-                            className=" bg-loginblue hover:bg-socskyblue text-black dark:text-white hover:text-black join-item btn btn-ghost"
+                            className="w-24 bg-loginblue hover:bg-socskyblue text-white dark:text-white hover:text-black join-item btn btn-ghost"
                             pendingText="Submitting..."
                           >
                             Submit
                           </SubmitButton>
                         ) : selected[index] ? (
-                          <a href={`#slide${index + 1}`} className='join-item btn btn-ghost bg-loginblue '>Next</a>
+                          <a href={`#slide${index + 1}`} className='w-24 join-item btn btn-ghost bg-loginblue text-white hover:bg-socskyblue hover:text-black'>Next</a>
                         ) : (
-                          <div className="tooltip tooltip-right w-full" data-tip="Select an answer">
-                            <a href={`#slide${index + 1}`} className='join-item btn btn-ghost w-full bg-gray-300 text-black pointer-events-none'>
+                          <div className="tooltip tooltip-right" data-tip="Select an answer">
+                            <a href={`#slide${index + 1}`} className='w-24 join-item btn btn-ghost bg-gray-300 text-black pointer-events-none'>
                               Next
                             </a>
                           </div>
@@ -169,7 +169,7 @@ export default function Quiz({ props }: any) {
                 )}
         </div> 
         <div>
-          <p className='btn btn-ghost bg-loginblue' onClick={()=>{props.setSelected(false); props.setRadialProgress(0)}}>
+          <p className='btn btn-ghost bg-loginblue text-white hover:bg-socskyblue hover:text-black' onClick={()=>{props.setSelected(false); props.setRadialProgress(0)}}>
           Exit
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />

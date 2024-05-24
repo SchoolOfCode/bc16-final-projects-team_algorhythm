@@ -10,7 +10,18 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-export default function QuizCreation({ weeksNames }:any) {
+interface Week {
+  week_number: number;
+  title: string;
+}
+
+interface WeeksNames {
+  data: Week[];
+}
+
+
+
+export default function QuizCreation({ weeksNames }: { weeksNames: WeeksNames }) {
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({

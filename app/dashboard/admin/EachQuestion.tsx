@@ -139,7 +139,7 @@ export default function EachQuestion({ data }: any) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h1 className="card-title mb-3 text-2xl">Quiz tracker</h1>
+        <h1 className="card-title mb-3 text-2xl">Quiz completion</h1>
         <div className="flex flex-row justify-start align-middle">
           <select
             name="module"
@@ -172,7 +172,7 @@ export default function EachQuestion({ data }: any) {
       <div className="grid grid-rows-[10vh, 30vh, 10vh] ">
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center items-end h-24 mb-2 ">
           <p className="col-start-4 text-2xl font-bold absolute">
-            Bootcampers progress
+            Cohort completion
           </p>
         </div>
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center ">
@@ -291,14 +291,14 @@ export default function EachQuestion({ data }: any) {
         </div>
         <div className="grid grid-cols-subgrid col-span-7 justify-items-center text-xs text-center mb-10 text-slate-400">
           <p className="col-start-4 absolute">
-            Displays the overall progress per day of the selected week.
+            Displays the percentage of completed quizzes per day of the selected week.
           </p>
         </div>
       </div>
       {incompleteParticipants.length > 0 && (
         <div className="my-8">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Incomplete Bootcampers:</h2>
+            <h2 className="text-2xl font-semibold">Incomplete quizzes by bootcamper:</h2>
             <div className="flex items-center space-x-2">
               <span className="text-slate-400 text-sm">Filter by Day:</span>
               {[1, 2, 3, 4, 5].map((day) => (

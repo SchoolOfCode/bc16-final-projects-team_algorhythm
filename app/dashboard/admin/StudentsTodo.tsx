@@ -94,8 +94,8 @@ export default function StudentsTodo() {
                     {groupedTasks[weekNumber][dayNumber].map((task: any) => (
                       <div key={task.question_title} className="flex flex-col pt-3 font-semibold gap-1 hover:bg-gray-300 p-3 rounded-xl dark:text-white dark:hover:text-black">
                         <p>Question : {task.question_title}</p>
-                        <p>Most answer given : {task.answer_given}</p>
-                        <p>Wrongly Answered : {task.count}</p>
+                        <p>Most common incorrect answer : {task.answer_given}</p>
+                        <p>Incorrect answers : {task.count}</p>
                         <div className="flex justify-end gap-6 text-white">
                           <p
                             className="px-5 py-1 bg-darkmodegreen hover:bg-green font-semibold rounded-lg hover:cursor-pointer"

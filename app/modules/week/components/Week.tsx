@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import DayProgress from "./DayProgress"
 import Quiz from "./Quiz"
+import Link from "next/link"
 
 export default function Week({ props }: any){
     const [day1, setDay1] = useState(true)
@@ -33,8 +34,15 @@ export default function Week({ props }: any){
     return (
         <>
         <h1 className="text-black font-semibold text-4xl m-5 animate-fade dark:text-white">
+            <Link href={'/modules'} className=" absolute left-40 btn bg-loginblue text-white hover:text-black hover:bg-socskyblue border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+          </svg>
+                Return
+            </Link>
             {props.data[0].title}
         </h1>
+        <div className="w-64"/>
         <div className="flex items-start w-full justify-evenly animate-fade">
             <DayProgress props={props}/>
             {!selected ? (

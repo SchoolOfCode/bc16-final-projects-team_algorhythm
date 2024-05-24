@@ -10,7 +10,18 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-export default function QuizCreation({ weeksNames }:any) {
+interface Week {
+  week_number: number;
+  title: string;
+}
+
+interface WeeksNames {
+  data: Week[];
+}
+
+
+
+export default function QuizCreation({ weeksNames }: { weeksNames: WeeksNames }) {
   const [feedback, setFeedback] = useState("");
 
   const QuizSchema = yup.object().shape({
@@ -19,11 +30,11 @@ export default function QuizCreation({ weeksNames }:any) {
       .max(12, "Week must be 1 to 12")
       .required("Required."),
     day_number: yup.number().max(5, "Day must be 1 to 5").required("Required."),
-    question: yup.string().max(120, "Too long!").required("Required."),
-    correct_answer: yup.string().max(100, "Too long!").required("Required."),
-    incorrect_answer1: yup.string().max(100, "Too long!").required("Required."),
-    incorrect_answer2: yup.string().max(100, "Too long!").required("Required."),
-    incorrect_answer3: yup.string().max(100, "Too long!").required("Required."),
+    question: yup.string().max(150, "Too long!").required("Required."),
+    correct_answer: yup.string().max(150, "Too long!").required("Required."),
+    incorrect_answer1: yup.string().max(150, "Too long!").required("Required."),
+    incorrect_answer2: yup.string().max(150, "Too long!").required("Required."),
+    incorrect_answer3: yup.string().max(150, "Too long!").required("Required."),
   });
 
   const QuizValues = {
@@ -35,8 +46,6 @@ export default function QuizCreation({ weeksNames }:any) {
     incorrect_answer2: "",
     incorrect_answer3: "",
   };
-
-  const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data experience']
 
   async function handleSubmit(values: any, { resetForm }: any) {
     try {
@@ -53,7 +62,7 @@ export default function QuizCreation({ weeksNames }:any) {
       if (error) {
         throw error;
       }
-      setFeedback("Form submitted successfully");
+      setFeedback("Success!");
       resetForm();
     } catch (error) {
       console.log("Error occurred", { error });
@@ -70,32 +79,34 @@ export default function QuizCreation({ weeksNames }:any) {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="animate-fade-up flex w-[50%] flex-col justify-center gap-2 text-foreground  bg-loginblue p-6 rounded-2xl my-10">
-            <div className="flex flex-row justify-between">
-            <Field name="week_number">
-  {({ field, meta }: any) => (
-    <div className="form-control">
-      <label className="font-bold text-white ">Week</label>
-      <select 
-        className="bg-white text-gray-400 rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 dark:text-black"
-        {...field}
-        id="week_number"
-      >
-        <option value="" disabled selected> Select week</option>
-        {modules.map((module, index) => (
-          <option key={index} value={index + 1}>
-            {index + 1}. {module}
-          </option>
-        ))}
-      </select>
-      {meta.error && meta.touched && (
-        <p className="p-4 bg-foreground/10 text-foreground text-center rounded-2xl text-pink-300">
-          {meta.error}
-        </p>
-      )}
-    </div>
-  )}
-</Field>
+          <Form className="animate-fade-up flex flex-col justify-center gap-2 text-foreground bg-loginblue p-6 rounded-2xl my-10 md:w-[50%] w-full">
+            <div className="flex flex-col md:flex-row justify-between">
+              <Field name="week_number">
+                {({ field, meta, form }: any) => (
+                  <div className="form-control">
+                    <label className="font-bold text-white ">Week</label>
+                    <select 
+                      className={`bg-white rounded-2xl px-4 py-2 bg-inherit border mx-6 my-1 ${field.value ? 'text-black' : 'text-gray-400'}`}
+                      {...field}
+                      id="week_number"
+                      onChange={(e) => {
+                        form.setFieldValue(field.name, e.target.value);
+                        e.target.style.color = e.target.value ? 'black' : 'gray';
+                      }} 
+                    >
+                      <option value="" disabled> Select week</option>
+                      {weeksNames.data.sort((a, b) => a.week_number - b.week_number).map((week, index) => (
+                        <option key={index} value={week.week_number}>
+                          {week.week_number}. {week.title}
+                        </option>
+                      ))}
+                    </select>
+                    {meta.touched && meta.error ? (
+                      <div className="error">{meta.error}</div>
+                    ) : null}
+                  </div>
+                )}
+              </Field>
 
               <Field className="" name="day_number">
                 {({ field, meta }: any) => (
@@ -217,10 +228,10 @@ export default function QuizCreation({ weeksNames }:any) {
             </Field>
 
             <div className="button-container items-center flex justify-center">
-              {feedback && <p>{feedback}</p>}
+              {feedback && <p className="m-4 text-white">{feedback}</p>}
               <button
                 type="submit"
-                className="submit-button w-[20%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-4 mt-4 text-foreground text-center text-black dark:text-black"
+                className="submit-button w-full md:w-[20%] bg-socskyblue hover:bg-sky-300 hover:text-white rounded-2xl px-2 py-4 mt-4 text-foreground text-center text-black dark:text-black"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>

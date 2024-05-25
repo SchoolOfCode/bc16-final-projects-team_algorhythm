@@ -11,8 +11,6 @@ export default function Chatbot() {
           className="chat-bubble fixed bottom-8 right-14 z-50 shadow-xl bg-loginblue text-white hover:bg-sky-300 hover:text-black flex items-center py-2 hover:cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
-          
-
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -30,7 +28,7 @@ export default function Chatbot() {
         </div>
       </div>
       <div
-        className={`fixed -bottom-10 right-20 z-50 drop-shadow transition-transform duration-500 ease-in-out transform ${
+        className={`fixed md:right-auto -bottom-10 right-20 z-50 drop-shadow transition-transform duration-500 ease-in-out transform ${
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
         style={{

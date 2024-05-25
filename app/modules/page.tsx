@@ -9,12 +9,12 @@ export default async function Modules() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if(!user){
-    redirect('/login')
+  if (!user) {
+    redirect("/login");
   }
   return (
-    <div className="grid grid-cols-4 gap-4 animate-fade-up">
-        <WeekCard/>
+    <div className="grid grid-cols-4 gap-4 animate-fade-up md:flex md:flex-col">
+      <WeekCard />
     </div>
-  )
+  );
 }

@@ -163,7 +163,7 @@ export default function Quiz({ props }: any) {
   });
   //
   return (
-    <div className="flex flex-col items-center gap-5 mt-2">
+    <div className="flex flex-col items-center gap-5 mt-2 md:mb-10 md:-mt-10">
       {!submitted ? (
         <>
           <div className="carousel items-center w-[70%] ">
@@ -174,7 +174,9 @@ export default function Quiz({ props }: any) {
                   key={index}
                   className="carousel-item flex-col items-center w-full"
                 >
-                  <h1 className="text-xl font-bold mb-10">{item.question}</h1>
+                  <h1 className="text-xl font-bold mb-10  md:-mt-3">
+                    {item.question}
+                  </h1>
                   {/* All answers below */}
                   {random(item, index)}
                   <div className="join grid grid-cols-2 py-5 px-20 mt-5">

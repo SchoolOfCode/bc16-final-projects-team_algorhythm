@@ -48,7 +48,7 @@ export default function DayProgress({ props }: any) {
   }, [props.refresh]);
 
   return (
-    <ul className="steps steps-vertical w-64 pt-2 animate-fade-right md:m-50">
+    <ul className="steps steps-vertical md:steps-horizontal md:w-[80%] w-64 pt-2 animate-fade-right md:mb-20">
       <li
         className={props.day1 ? "step h-24 step-info" : "step h-24"}
         data-content={props.day1 ? "✓" : "1"}

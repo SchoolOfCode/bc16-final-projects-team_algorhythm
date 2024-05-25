@@ -47,7 +47,7 @@ export default function Week({ props }: any) {
               alt="Content"
               width={400}
               height={400}
-              className="w-full max-w-[400px] m-2 md:hidden"
+              className="w-full max-w-[400px] m-2 md:w-[50%]"
             />
           </div>
         ) : (
@@ -56,7 +56,7 @@ export default function Week({ props }: any) {
           </form>
         )}
         {selected && radialProgress ? (
-          <div className="w-64 flex flex-col items-center justify-between">
+          <div className="w-64 flex flex-col items-center justify-between md:-mt-24 md:hidden">
             <div className="h-28" />
             <p className="pb-3">Quiz Progress </p>
             <div
@@ -84,6 +84,7 @@ export default function Week({ props }: any) {
                 {radialProgress}%
               </div>
             </div>
+
             <div className="h-28" />
           </div>
         ) : (

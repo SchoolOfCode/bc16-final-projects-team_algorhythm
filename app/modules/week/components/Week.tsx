@@ -38,7 +38,7 @@ export default function Week({ props }: any) {
       <div className="flex items-start w-full justify-evenly animate-fade md:flex-col md:items-center">
         <DayProgress props={props} />
         {!selected ? (
-          <div className="flex flex-col w-[30%] items-center md:order-first md:w-[80%]">
+          <div className="flex flex-col w-[30%] items-center md:order-first">
             <h1 className="text-black font-semibold text-2xl m-5 dark:text-white">
               Time to test your knowledge
             </h1>

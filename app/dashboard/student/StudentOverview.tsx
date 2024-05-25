@@ -37,12 +37,12 @@ export default function StudentOverview({ data, userData }: any) {
     } else {
       const bootCamper = allData.data.filter(
         (obj: { week_number: number; user_uuid: string }) =>
-          obj.week_number === Number(module) && obj.user_uuid === user
+          obj.week_number === Number(module) && obj.user_uuid === user,
       );
 
       if (!bootCamper.length) {
         setMessage("You haven't completed the quiz for this day");
-        setMessageVisibility(true)
+        setMessageVisibility(true);
         setProgressBar1(0);
         setProgressBar2(0);
         setProgressBar3(0);
@@ -51,7 +51,7 @@ export default function StudentOverview({ data, userData }: any) {
       }
 
       const dayData = bootCamper.filter(
-        (obj: { day_number: number }) => obj.day_number === Number(day)
+        (obj: { day_number: number }) => obj.day_number === Number(day),
       );
       if (!dayData.length) {
         setMessage("You haven't completed the quiz for this day");
@@ -68,9 +68,11 @@ export default function StudentOverview({ data, userData }: any) {
 
       if (dayData.length) {
         incrementProgress(
-            setProgressBar1,
-            (dayData[dayData.length - 1].correct_answers /
-            dayData[dayData.length - 1].total_questions) * 100)
+          setProgressBar1,
+          (dayData[dayData.length - 1].correct_answers /
+            dayData[dayData.length - 1].total_questions) *
+            100,
+        );
       }
 
       let totalCorrectAnswers = 0;
@@ -82,7 +84,7 @@ export default function StudentOverview({ data, userData }: any) {
 
       let weeklyAverage = totalCorrectAnswers / totalQuestions;
 
-      incrementProgress(setProgressBar2,weeklyAverage * 100);
+      incrementProgress(setProgressBar2, weeklyAverage * 100);
 
       let totalDailyCorrectAnswers = 0;
       let totalDailyQuestions = 0;
@@ -97,7 +99,7 @@ export default function StudentOverview({ data, userData }: any) {
 
       dailyAverage = Math.round(dailyAverage * 100);
 
-      incrementProgress(setProgressBar3,dailyAverage); 
+      incrementProgress(setProgressBar3, dailyAverage);
 
       let totalWeeklyCorrectAnswers = 0;
       let totalWeeklyQuestions = 0;
@@ -112,20 +114,19 @@ export default function StudentOverview({ data, userData }: any) {
 
       weeklyAverageAll = Math.round(weeklyAverageAll * 100);
 
-      incrementProgress(setProgressBar4,weeklyAverageAll);
+      incrementProgress(setProgressBar4, weeklyAverageAll);
     }
   }, [module, day, user]);
 
   const handleSubmit = async (formData: FormData) => {
     const module = formData.get("module") as unknown as number;
     const day = formData.get("day") as unknown as number;
-    const user = userData.data[0].uuid
+    const user = userData.data[0].uuid;
     setModule(module);
     setDay(day);
     setUser(user);
     setSubmited(!submited);
   };
-
 
   return (
     <div className="bg-gradient-to-t from-transparent to-socskyblue w-full h-fit rounded-t-xl flex items-center p-4">
@@ -205,34 +206,42 @@ export default function StudentOverview({ data, userData }: any) {
             <div className="col-start-2">
               <div
                 className="absolute z-20 mt-5 radial-progress text-loginblue shadow-lg"
-                style={{
-                  "--value": progressBar1,
-                  "--size": "8rem",
-                } as React.CSSProperties}
+                style={
+                  {
+                    "--value": progressBar1,
+                    "--size": "8rem",
+                  } as React.CSSProperties
+                }
                 role="progressbar"
               >
                 {progressBar1 ? `${progressBar1}%` : ""}{" "}
               </div>
               <div
                 className="z-1 mt-5 radial-progress text-socskyblue"
-                style={{ "--value": 100, "--size": "8rem" } as React.CSSProperties}
+                style={
+                  { "--value": 100, "--size": "8rem" } as React.CSSProperties
+                }
                 role="progressbar"
               ></div>
             </div>
             <div className="col-start-3">
               <div
                 className="absolute z-20 mt-5 radial-progress text-black shadow-lg"
-                style={{
-                  "--value": progressBar2,
-                  "--size": "8rem",
-                } as React.CSSProperties}
+                style={
+                  {
+                    "--value": progressBar2,
+                    "--size": "8rem",
+                  } as React.CSSProperties
+                }
                 role="progressbar"
               >
                 {progressBar2 ? `${progressBar2}%` : ""}{" "}
               </div>
               <div
                 className="z-1 mt-5 radial-progress text-lightgrey"
-                style={{ "--value": 100, "--size": "8rem" } as React.CSSProperties}
+                style={
+                  { "--value": 100, "--size": "8rem" } as React.CSSProperties
+                }
                 role="progressbar"
               ></div>
             </div>
@@ -241,17 +250,21 @@ export default function StudentOverview({ data, userData }: any) {
             <div className="col-start-5">
               <div
                 className="absolute z-20 mt-5 radial-progress text-loginblue shadow-lg"
-                style={{
-                  "--value": progressBar3,
-                  "--size": "8rem",
-                } as React.CSSProperties}
+                style={
+                  {
+                    "--value": progressBar3,
+                    "--size": "8rem",
+                  } as React.CSSProperties
+                }
                 role="progressbar"
               >
                 {progressBar3 ? `${progressBar3}%` : ""}{" "}
               </div>
               <div
                 className="z-1 mt-5 radial-progress text-socskyblue"
-                style={{ "--value": 100, "--size": "8rem" }as React.CSSProperties}
+                style={
+                  { "--value": 100, "--size": "8rem" } as React.CSSProperties
+                }
                 role="progressbar"
               ></div>
             </div>
@@ -259,17 +272,21 @@ export default function StudentOverview({ data, userData }: any) {
             <div className="col-start-6">
               <div
                 className="absolute z-20 mt-5 radial-progress text-black shadow-lg"
-                style={{
-                  "--value": progressBar4,
-                  "--size": "8rem",
-                } as React.CSSProperties}
+                style={
+                  {
+                    "--value": progressBar4,
+                    "--size": "8rem",
+                  } as React.CSSProperties
+                }
                 role="progressbar"
               >
                 {progressBar4 ? `${progressBar4}%` : ""}{" "}
               </div>
               <div
                 className="z-1 mt-5 radial-progress text-lightgrey"
-                style={{ "--value": 100, "--size": "8rem" } as React.CSSProperties}
+                style={
+                  { "--value": 100, "--size": "8rem" } as React.CSSProperties
+                }
                 role="progressbar"
               ></div>
             </div>
@@ -289,7 +306,7 @@ export default function StudentOverview({ data, userData }: any) {
             </p>
           </div>
         </div>
-        </div>
+      </div>
     </div>
   );
 }

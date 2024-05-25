@@ -50,7 +50,12 @@ export default async function DashBoard() {
   const weeksNames = await supabase.from("weeks").select("*");
 
   return admin ? (
-    <AdminDashBoard data={data} weeksNames={weeksNames} userData={userData} img={img} />
+    <AdminDashBoard
+      data={data}
+      weeksNames={weeksNames}
+      userData={userData}
+      img={img}
+    />
   ) : (
     <StudentDashBoard data={data} userData={userData} img={img} />
   );

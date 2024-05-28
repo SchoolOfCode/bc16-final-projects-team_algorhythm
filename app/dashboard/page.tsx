@@ -52,6 +52,6 @@ export default async function DashBoard() {
   return admin ? (
     <AdminDashBoard data={data} weeksNames={weeksNames} userData={userData} img={img} />
   ) : (
-    <StudentDashBoard data={data} userData={userData} img={img} />
+    <StudentDashBoard data={data} weeksNames={weeksNames} userData={userData} img={img} />
   );
 }

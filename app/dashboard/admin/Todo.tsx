@@ -18,10 +18,10 @@ export async function UpdateTodo(task:any){
         .eq('question_title', task.question_title)
 
     if(error){
-        console.log('Error deleting admin to-do',error)
+        //console.log('Error deleting admin to-do',error)
         return false
     }
-        console.log('It worked')
+        //console.log('It worked')
     return true
 }
 

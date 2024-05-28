@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from "react";
 import {GetUserTodo, UpdateTodo} from "./UpdateTodo";
 
-export default function StudentTodo({ modules }: any){
+export default function StudentTodo({ weeksNames }: any){
     const [todo, setTodo] = useState<any>({})
     const [groupedTasks, setGroupedTasks] = useState<any>([])
     
@@ -51,7 +51,7 @@ export default function StudentTodo({ modules }: any){
                 <div key={`week-${weekNumber}`} className="collapse collapse-arrow hover:bg-loginblue transition ease-in-out delay-150 border-2">
                     <input type="checkbox" className="peer" />
                     <div className="collapse-title text-xl font-medium peer-checked:bg-loginblue shadow-lg pb-0 dark:bg-socskyblue">
-                        {modules[Number(weekNumber)-1]} - Week {weekNumber}
+                        {weeksNames.data[Number(weekNumber)-1].title} - Week {weekNumber}
                     </div>
                     <div className="collapse-content peer-checked:bg-white shadow-lg p-0">
                         {Object.keys(groupedTasks[weekNumber]).map(dayNumber => (

@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import StudentOverview from "./StudentOverview"
 import StudentScore from "./StudentScore"
 import StudentTodo from "./StudentToDo"
 import Image from "next/image"
 
-export default function StudentDashBoard({ data, userData, img }: any){
-    const modules = ['Onboarding', 'Front end engineer','Software engineer','Back end engineer','Database engineer','QA engineer','Web engineer','React','Product experience','DevOps engineer','Cybersecurity','AI and Data']
+export default function StudentDashBoard({ data, weeksNames, userData, img }: any){
     const rank = ['Newbie','Novice','Starter','Apprentice','Journeyman','Adept','Expert','Master','Grand Master','Doyen','Guru','Yoda','Legend']
     const [overView, setOverView] = useState(false)
     const [todo, setTodo] = useState(false)
@@ -16,22 +15,22 @@ export default function StudentDashBoard({ data, userData, img }: any){
     const [userInfo, setUserInfo] = useState<any>({});
     const [achievements, setAchievements] = useState(1)
     const [achievementsImgs, setAchievementsImgs] = useState(['/soclogo.png'])
+    weeksNames.data.sort((a:any, b:any) => a.week_number - b.week_number);
+
 
     useEffect(()=>{
         setBackBtn(todo || overView)
         setRecommended(false)
-
     },[todo,overView])
 
     useEffect(() => {
         const getScore = async () => {
           const result = await StudentScore(data,userData);
-          setUserInfo(result);
-
-          
+          setUserInfo(result);     
         };
         getScore();
     }, [data]);
+    
 
     useEffect(()=>{
         const modulesDone = userInfo.modules
@@ -124,9 +123,6 @@ export default function StudentDashBoard({ data, userData, img }: any){
             }
         }
     },[userInfo])
-
-
-
     return(
         <div className="flex-1 flex flex-col pt-10 px-10 w-full dark:text-black">
             <div className=" flex flex-row justify-between mb-5 ">
@@ -206,7 +202,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
                                 <p>
                                     {userInfo.bestAndWorst ?
                                         userInfo.bestAndWorst.bestWeek !== undefined ?
-                                        modules[`${Number(userInfo.bestAndWorst.bestWeek)-1}`]
+                                        weeksNames.data[`${Number(userInfo.bestAndWorst.bestWeek)-1}`].title
                                         : 'N/A'
                                         : 'Loading...'
                                     } 
@@ -221,7 +217,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
                                     {userInfo.bestAndWorst ? 
                                         Number(userInfo.bestAndWorst.worstWeek) !== Number(userInfo.bestAndWorst.bestWeek) ?
                                         userInfo.bestAndWorst.worstWeek !== undefined ?
-                                        modules[Number(userInfo.bestAndWorst.worstWeek) - 1] 
+                                        weeksNames.data[Number(userInfo.bestAndWorst.worstWeek) - 1].title
                                         : 'N/A'
                                         : 'N/A'
                                         : 'Loading...'
@@ -259,7 +255,7 @@ export default function StudentDashBoard({ data, userData, img }: any){
             ) : !todo ? ( 
                 <StudentOverview data={data} userData={userData}/>
             ) : (
-                <StudentTodo modules={modules}/>
+                <StudentTodo weeksNames={weeksNames}/>
             )
             }
         </div>

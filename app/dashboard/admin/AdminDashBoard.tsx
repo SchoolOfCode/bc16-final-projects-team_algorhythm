@@ -41,7 +41,7 @@ export default function AdminDashBoard({ data, weeksNames, userData, img }: any)
       );
 
       if (!bootCamper.length) {
-        console.log("No quizzes completed in this module");
+        //console.log("No quizzes completed in this module");
         return;
       }
 

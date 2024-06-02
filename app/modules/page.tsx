@@ -13,7 +13,7 @@ export default async function Modules() {
     redirect('/login')
   }
   return (
-    <div className="grid grid-cols-4 gap-5 animate-fade-up">
+    <div className=" animate-fade-up">
         <WeekCard/>
     </div>
   )

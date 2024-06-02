@@ -15,8 +15,15 @@ export default async function Index() {
   }
   
   return (
-    <div className="flex-1 w-full flex  items-center justify-evenly">
-      <div className="animate-fade-right">
+    <div className="flex-1 w-full flex items-center flex-col md:flex-row justify-evenly pb-10">
+      <Image
+        src="/homeImg.png"
+        alt="Home image"
+        width={700}
+        height={700}
+        className="md:order-2"
+      />
+      <div className="animate-fade-right text-center md:text-left">
         <p className="text-loginblue text-xl font-semibold">
           Test your knowledge
         </p>
@@ -29,14 +36,6 @@ export default async function Index() {
           Explore quizzes
         </Link>
       </div>
-      <div className="animate-fade-left">
-        <Image
-          src="/homeImg.png"
-          alt="Home image"
-          width={700}
-          height={700}
-        ></Image>
-      </div>
     </div>
   );
-}
+}  
